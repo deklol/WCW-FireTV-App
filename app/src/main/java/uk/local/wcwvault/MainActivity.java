@@ -453,9 +453,7 @@ public final class MainActivity extends Activity {
       root.addView(filterScroll, Ui.lp(this, -1, 52));
       LinearLayout chips = Ui.horizontal(this);
       filterScroll.addView(chips);
-      ArrayList<String> labels =
-          new ArrayList<>(
-              Arrays.asList("All", "Nitro", "Thunder", "PPV", "Clash of the Champions"));
+      ArrayList<String> labels = new ArrayList<>(Arrays.asList("All", "Nitro", "Thunder", "PPV"));
       if (extras()) labels.addAll(Arrays.asList("Saturday Night", "Worldwide", "Pro"));
       for (String choice : labels) {
         TextView chip =
@@ -519,10 +517,13 @@ public final class MainActivity extends Activity {
     class Holder extends RecyclerView.ViewHolder {
       ImageView image;
       TextView title, date, source;
+      ProgressBar progress;
 
       Holder(LinearLayout card) {
         super(card);
-        image = (ImageView) card.getChildAt(0);
+        FrameLayout artwork = (FrameLayout) card.getChildAt(0);
+        image = (ImageView) artwork.getChildAt(0);
+        progress = (ProgressBar) artwork.getChildAt(1);
         title = (TextView) card.getChildAt(1);
         date = (TextView) card.getChildAt(2);
         source = (TextView) card.getChildAt(3);
@@ -546,7 +547,18 @@ public final class MainActivity extends Activity {
           portrait ? ImageView.ScaleType.FIT_CENTER : ImageView.ScaleType.CENTER_CROP);
       image.setBackground(Ui.shape(MainActivity.this, Color.rgb(33, 38, 52), 0));
       image.setClipToOutline(true);
-      card.addView(image, Ui.lp(MainActivity.this, -1, portrait ? 206 : 112));
+      FrameLayout artwork = new FrameLayout(MainActivity.this);
+      artwork.addView(image, new FrameLayout.LayoutParams(-1, -1));
+      ProgressBar progress =
+          new ProgressBar(MainActivity.this, null, android.R.attr.progressBarStyleHorizontal);
+      progress.setMax(100);
+      progress.setProgressTintList(android.content.res.ColorStateList.valueOf(Ui.RED));
+      progress.setProgressBackgroundTintList(
+          android.content.res.ColorStateList.valueOf(0xb3404040));
+      progress.setFocusable(false);
+      progress.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+      artwork.addView(progress, new FrameLayout.LayoutParams(-1, d(4), Gravity.BOTTOM));
+      card.addView(artwork, Ui.lp(MainActivity.this, -1, portrait ? 206 : 112));
       TextView title = text("", 14, Ui.WHITE);
       title.setTypeface(null, Typeface.BOLD);
       title.setMaxLines(1);
@@ -562,11 +574,24 @@ public final class MainActivity extends Activity {
     public void onBindViewHolder(Holder holder, int position) {
       Catalog.Episode item = items.get(position);
       Art.load(holder.image, portrait && !item.poster.isEmpty() ? item.poster : item.thumbnail);
-      holder.title.setText(
-          (Catalog.watched(MainActivity.this, item) ? "✓  " : "") + item.heading());
+      boolean watched = Catalog.watched(MainActivity.this, item);
+      long viewed = Catalog.displayPosition(MainActivity.this, item);
+      long duration = Catalog.displayDuration(MainActivity.this, item);
+      int percent = Catalog.progressPercent(viewed, duration, watched);
+      holder.progress.setVisibility(
+          watched || (viewed > 0 && duration > 0) ? View.VISIBLE : View.GONE);
+      holder.progress.setProgress(percent);
+      holder.title.setText((watched ? "✓  " : "") + item.heading());
       holder.date.setText(Catalog.dateLabel(item.date));
-      holder.source.setText(item.sourceLabel());
-      holder.itemView.setContentDescription(item.heading() + ", " + Catalog.dateLabel(item.date));
+      String progressText =
+          watched
+              ? "Watched"
+              : viewed > 0
+                  ? (duration > 0 ? percent + "% watched" : viewed / 60000 + " min watched")
+                  : "";
+      holder.source.setText(progressText.isEmpty() ? item.sourceLabel() : progressText);
+      holder.itemView.setContentDescription(
+          item.heading() + ", " + Catalog.dateLabel(item.date) + ", " + progressText);
       holder.itemView.setOnClickListener(
           view -> details(item, horizontal ? Catalog.forYear(item.year, "All", extras()) : items));
     }
@@ -668,10 +693,16 @@ public final class MainActivity extends Activity {
     actions.addView(
         Ui.button(
             this,
-            "Mark watched",
+            Catalog.watched(this, item) ? "Mark unwatched" : "Mark watched",
             false,
             () -> {
-              Catalog.progress(this, item, 0, true);
+              boolean watched = !Catalog.watched(this, item);
+              Catalog.progress(this, item, 0, watched);
+              Catalog.prefs(this)
+                  .edit()
+                  .remove("seen:" + item.id)
+                  .remove("part:" + item.id)
+                  .apply();
               dialog.dismiss();
               render();
             }));
@@ -884,10 +915,14 @@ public final class MainActivity extends Activity {
                       for (String key : prefs.getAll().keySet())
                         if (key.startsWith("pos:")
                             || key.startsWith("watched:")
+                            || key.startsWith("seen:")
+                            || key.startsWith("length:")
+                            || key.startsWith("partLength:")
                             || key.equals("last")
                             || key.startsWith("last:")
                             || key.startsWith("part:")
-                            || key.startsWith("provider:")) edit.remove(key);
+                            || key.startsWith("provider:")
+                            || key.startsWith("choice:")) edit.remove(key);
                       edit.apply();
                       dialog.dismiss();
                       render();

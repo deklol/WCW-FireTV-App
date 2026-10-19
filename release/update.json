@@ -1,7 +1,7 @@
 {
-  "versionCode": 3,
-  "versionName": "0.2.1",
-  "apkUrl": "https://github.com/deklol/WCW-FireTV-App/releases/download/v0.2.1/WCW-FireTV-App.apk",
-  "sha256": "7c8bb8018121b69bc5ba1bdef119577f48ae10da27c4c55b2050c2f7c77ac71c",
-  "notes": "Adds Fire OS 6 / Android 7.1 compatibility and legacy Android update verification. Keeps Home navigation and newest-found-first home rows."
+  "versionCode": 6,
+  "versionName": "0.2.4",
+  "apkUrl": "https://github.com/deklol/WCW-FireTV-App/releases/download/v0.2.4/WCW-FireTV-App.apk",
+  "sha256": "91cdf051d79238fab443e675466530f34db847d8cab478048ed30c83c6b9d625",
+  "notes": "Six-second Archive.org stall recovery; episode progress bars, watched/unwatched tracking and source-aware resume; Clash events grouped under PPV. Retains Fire OS 6 compatibility and chronological autoplay."
 }

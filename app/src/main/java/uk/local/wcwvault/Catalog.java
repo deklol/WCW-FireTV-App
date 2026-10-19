@@ -173,6 +173,23 @@ final class Catalog {
     return prefs(context).getBoolean("watched:" + item.id, false);
   }
 
+  static long displayPosition(Context context, Episode item) {
+    return prefs(context)
+        .getLong(
+            "seen:" + item.id,
+            prefs(context).getInt("part:" + item.id, 0) == 0 ? position(context, item) : 0);
+  }
+
+  static long displayDuration(Context context, Episode item) {
+    return prefs(context).getLong("length:" + item.id, item.duration * 1000L);
+  }
+
+  static int progressPercent(long position, long duration, boolean watched) {
+    if (watched) return 100;
+    if (duration <= 0 || position <= 0) return 0;
+    return (int) Math.min(99, Math.max(1, 100d * position / duration));
+  }
+
   static void progress(Context context, Episode item, long position, boolean watched) {
     prefs(context)
         .edit()
@@ -205,7 +222,8 @@ final class Catalog {
       date = data.getString("date");
       year = data.getInt("year");
       title = data.getString("title");
-      show = data.getString("show");
+      String category = data.getString("show");
+      show = category.equals("Clash of the Champions") ? "PPV" : category;
       description = data.optString("description");
       thumbnail = data.optString("thumbnail");
       poster = data.optString("poster");

@@ -27,6 +27,7 @@ public final class PlayerActivity extends Activity {
   final Handler handler = new Handler(Looper.getMainLooper());
   final ExecutorService work = Executors.newSingleThreadExecutor();
   final ArrayList<Catalog.Episode> queue = new ArrayList<>();
+  final ArchiveRecovery archiveRecovery = new ArchiveRecovery();
   ExoPlayer player;
   PlayerView view;
   MediaSession session;
@@ -148,6 +149,7 @@ public final class PlayerActivity extends Activity {
     session.setActive(true);
     open();
     handler.post(progressTick);
+    handler.post(recoveryTick);
   }
 
   void open() {
@@ -180,6 +182,16 @@ public final class PlayerActivity extends Activity {
             Catalog.prefs(this).getInt("source", 1),
             override,
             Catalog.prefs(this).getInt("quality", 720));
+    if (override == null && resumePosition > 0) {
+      String choice = Catalog.prefs(this).getString("choice:" + item.id, "");
+      String provider = Catalog.prefs(this).getString("provider:" + item.id, "");
+      options.sort(
+          Comparator.comparingInt(
+              source ->
+                  Catalog.sourceKey(source).equals(choice)
+                      ? 0
+                      : source.optString("type").equals(provider) ? 1 : 2));
+    }
     Log.i(TAG, "OPEN id=" + item.id + " index=" + index + " options=" + options.size());
     tryOption(generation);
   }
@@ -232,6 +244,7 @@ public final class PlayerActivity extends Activity {
   }
 
   void prepare(Resolver.Resolved stream, int token) {
+    archiveRecovery.reset();
     if (player != null) {
       player.release();
       player = null;
@@ -247,7 +260,8 @@ public final class PlayerActivity extends Activity {
             .setPreferredAudioLanguage("en"));
     DefaultLoadControl load =
         new DefaultLoadControl.Builder()
-            .setBufferDurationsMs(15000, 45000, 1800, 5000)
+            .setBufferDurationsMs(
+                15000, 45000, 1800, stream.provider.equals("archive") ? 2000 : 5000)
             .setTargetBufferBytes(16 * 1024 * 1024)
             .setPrioritizeTimeOverSizeThresholds(false)
             .build();
@@ -264,7 +278,7 @@ public final class PlayerActivity extends Activity {
         new DefaultHttpDataSource.Factory()
             .setUserAgent(Resolver.USER_AGENT)
             .setConnectTimeoutMs(12000)
-            .setReadTimeoutMs(15000);
+            .setReadTimeoutMs(stream.provider.equals("archive") ? 8000 : 15000);
     boolean youtube = stream.provider.equals("youtube");
     if (youtube) {
       Map<String, String> headers = new HashMap<>();
@@ -363,7 +377,8 @@ public final class PlayerActivity extends Activity {
                     + " code="
                     + error.getErrorCodeName());
             if (player != null) {
-              resumePosition = Math.max(resumePosition, player.getCurrentPosition());
+              save(false);
+              resumePosition = Math.max(0, player.getCurrentPosition());
               player.release();
               player = null;
               view.setPlayer(null);
@@ -395,12 +410,43 @@ public final class PlayerActivity extends Activity {
         && !ended
         && player.getPlaybackState() != Player.STATE_IDLE) {
       Catalog.progress(this, current(), player.getCurrentPosition(), false);
+      saveDisplayProgress();
       Catalog.prefs(this)
           .edit()
           .putInt("part:" + current().id, player.getCurrentMediaItemIndex())
           .putString("provider:" + current().id, resolved.provider)
+          .putString("choice:" + current().id, Catalog.sourceKey(options.get(optionIndex)))
           .apply();
     }
+  }
+
+  void saveDisplayProgress() {
+    SharedPreferences prefs = Catalog.prefs(this);
+    SharedPreferences.Editor edit = prefs.edit();
+    int count = player.getMediaItemCount(), currentPart = player.getCurrentMediaItemIndex();
+    Timeline timeline = player.getCurrentTimeline();
+    Timeline.Window window = new Timeline.Window();
+    long prefix = 0, total = 0;
+    boolean prefixKnown = true, totalKnown = true;
+    for (int i = 0; i < count; i++) {
+      String key = "partLength:" + current().id + ":" + resolved.provider + ":" + i;
+      long length =
+          i < timeline.getWindowCount()
+              ? timeline.getWindow(i, window).getDurationMs()
+              : C.TIME_UNSET;
+      if (length > 0) edit.putLong(key, length);
+      else length = prefs.getLong(key, 0);
+      if (length <= 0) {
+        totalKnown = false;
+        if (i < currentPart) prefixKnown = false;
+      } else {
+        total += length;
+        if (i < currentPart) prefix += length;
+      }
+    }
+    if (totalKnown && total > 0) edit.putLong("length:" + current().id, total);
+    if (prefixKnown) edit.putLong("seen:" + current().id, prefix + player.getCurrentPosition());
+    edit.apply();
   }
 
   void advance(boolean automatic) {
@@ -459,6 +505,58 @@ public final class PlayerActivity extends Activity {
         }
       };
 
+  final Runnable recoveryTick =
+      new Runnable() {
+        public void run() {
+          if (!active) return;
+          ExoPlayer currentPlayer = player;
+          if (currentPlayer != null) {
+            int state = currentPlayer.getPlaybackState();
+            boolean eligible =
+                resolved != null
+                    && resolved.provider.equals("archive")
+                    && hasPlayed
+                    && !ended
+                    && currentPlayer.getPlayWhenReady()
+                    && currentPlayer.getPlaybackSuppressionReason()
+                        == Player.PLAYBACK_SUPPRESSION_REASON_NONE
+                    && currentPlayer.getPlayerError() == null
+                    && (state == Player.STATE_BUFFERING || state == Player.STATE_READY);
+            ArchiveRecovery.Action action =
+                archiveRecovery.sample(
+                    SystemClock.elapsedRealtime(),
+                    eligible,
+                    currentPlayer.isPlaying(),
+                    currentPlayer.getCurrentMediaItemIndex(),
+                    currentPlayer.getCurrentPosition(),
+                    currentPlayer.getBufferedPosition());
+            if (action != ArchiveRecovery.Action.NONE) {
+              int part = currentPlayer.getCurrentMediaItemIndex();
+              long position = currentPlayer.getCurrentPosition();
+              Log.i(TAG, "ARCHIVE_STALL action=" + action + " part=" + part + " pos=" + position);
+              if (action == ArchiveRecovery.Action.RECONNECT) {
+                status.setText("Reconnecting to Internet Archive…");
+                // Reopen the transport at the exact current part/time; never skip ahead.
+                currentPlayer.stop();
+                currentPlayer.seekTo(part, position);
+                currentPlayer.prepare();
+                currentPlayer.play();
+              } else {
+                save(false);
+                resumePosition = position;
+                generation++;
+                player = null;
+                view.setPlayer(null);
+                currentPlayer.release();
+                optionIndex++;
+                tryOption(generation);
+              }
+            }
+          } else archiveRecovery.reset();
+          handler.postDelayed(this, 1000);
+        }
+      };
+
   void updateSession() {
     if (session == null || player == null) return;
     session.setPlaybackState(
@@ -471,7 +569,12 @@ public final class PlayerActivity extends Activity {
                     | PlaybackState.ACTION_SKIP_TO_NEXT
                     | PlaybackState.ACTION_SKIP_TO_PREVIOUS)
             .setState(
-                player.isPlaying() ? PlaybackState.STATE_PLAYING : PlaybackState.STATE_PAUSED,
+                player.isPlaying()
+                    ? PlaybackState.STATE_PLAYING
+                    : player.getPlayWhenReady()
+                            && player.getPlaybackState() == Player.STATE_BUFFERING
+                        ? PlaybackState.STATE_BUFFERING
+                        : PlaybackState.STATE_PAUSED,
                 player.getCurrentPosition(),
                 1f)
             .build());
@@ -526,7 +629,7 @@ public final class PlayerActivity extends Activity {
     }
     if (key == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
       if (down && player != null) {
-        if (player.isPlaying()) player.pause();
+        if (player.getPlayWhenReady()) player.pause();
         else player.play();
         view.showController();
       }

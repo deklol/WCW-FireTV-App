@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.4
+
+- Reconnect stalled Archive.org streams after six seconds without progress instead of twelve.
+- Display episode progress bars, watched percentages and completed-show markers on home and catalogue cards. Add Mark unwatched to correct viewing history.
+- Prefer the previously used source when resuming, and track observed durations and multipart progress.
+- Group Clash of the Champions events under PPV instead of a separate category, preserving event names and history IDs.
+
+## 0.2.2
+
+- Automatically reconnect stalled Archive.org playback at the same part and position after 12 seconds without playback or buffer progress.
+- Respect user pauses and audio-focus suppression; allow two reconnects before trying the next source. Reset the retry budget after 30 seconds of healthy playback.
+- Resume Archive.org playback after two seconds of buffered media and time out stalled reads after eight seconds.
+- Report buffering correctly to remote media controls and allow play/pause to pause while buffering.
+
 ## 0.2.1
 
 - Lower minimum Android version to 7.1/API 25 for Fire OS 6 devices.

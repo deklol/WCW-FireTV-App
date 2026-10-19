@@ -106,15 +106,19 @@ final class Updater {
                 if (!hash.toString().equalsIgnoreCase(expected))
                   throw new IOException("Update checksum mismatch");
                 PackageManager manager = activity.getPackageManager();
-                int signingFlags = Build.VERSION.SDK_INT >= 28
-                    ? PackageManager.GET_SIGNING_CERTIFICATES : PackageManager.GET_SIGNATURES;
+                int signingFlags =
+                    Build.VERSION.SDK_INT >= 28
+                        ? PackageManager.GET_SIGNING_CERTIFICATES
+                        : PackageManager.GET_SIGNATURES;
                 PackageInfo installed =
                     manager.getPackageInfo(activity.getPackageName(), signingFlags);
-                PackageInfo archive =
-                    manager.getPackageArchiveInfo(apk.toString(), signingFlags);
+                PackageInfo archive = manager.getPackageArchiveInfo(apk.toString(), signingFlags);
                 if (archive == null
                     || !activity.getPackageName().equals(archive.packageName)
-                    || (Build.VERSION.SDK_INT >= 28 ? archive.getLongVersionCode() : archive.versionCode) != version
+                    || (Build.VERSION.SDK_INT >= 28
+                            ? archive.getLongVersionCode()
+                            : archive.versionCode)
+                        != version
                     || !sameSigners(installed, archive))
                   throw new IOException("Update package or signing certificate mismatch");
                 activity.runOnUiThread(

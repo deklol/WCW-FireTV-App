@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T00:32:05.640075",
+  "generatedAt": "2026-10-20T00:56:11.421333",
   "files": [
     {
       "path": ".editorconfig",
@@ -24,7 +24,7 @@
     {
       "path": "app/build.gradle",
       "bytes": 2239,
-      "sha256": "caaff1d7532a198a1a020f2eb4d859012eb50b856fa13b574c6a243a91de16d3"
+      "sha256": "59b8b01b129b989a4b8f44fc00e781927c6422d20133d3ae79dfa096cb530239"
     },
     {
       "path": "app/src/main/AndroidManifest.xml",
@@ -52,6 +52,11 @@
       "sha256": "7f65622aa74c364f151101ea9835e9f2842f2133d5855c81fe47333486f3c7c7"
     },
     {
+      "path": "app/src/main/java/uk/local/wcwvault/ArchiveRecovery.java",
+      "bytes": 1715,
+      "sha256": "23e1ee25b104f8b80d4571ce1d95b8018bbbbdb5051d2754f799d22a5d4240ab"
+    },
+    {
       "path": "app/src/main/java/uk/local/wcwvault/ArchiveSync.java",
       "bytes": 10060,
       "sha256": "1805dd9080ab0cff878382ce1cbb796cd05c1d7a2cffff358eb8424de9160111"
@@ -63,8 +68,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Catalog.java",
-      "bytes": 8903,
-      "sha256": "987909b2a33c3bdc06e685e96a7e570e52b43e35365040517cc4251dc356ed70"
+      "bytes": 9606,
+      "sha256": "1f1701334d19d3494cc59ccc84ec45afcde4d3455557641336c8d1e3dd409d02"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/CatalogSync.java",
@@ -78,8 +83,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/MainActivity.java",
-      "bytes": 37544,
-      "sha256": "915b4c3c41d044ecb0e0e267cd331d4ff4942222ece30685055b9cc93ff6a9d8"
+      "bytes": 39545,
+      "sha256": "714f04ced20e278e05466f4f7e4a9458463d689da468515610f9c53749c81d4b"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/MetadataCache.java",
@@ -88,8 +93,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/PlayerActivity.java",
-      "bytes": 19473,
-      "sha256": "563e3913d442e1e306d9f66f0fbe06e1f326c01a25d933bb795bfbcac6463544"
+      "bytes": 24012,
+      "sha256": "949fd634c2f65f0c61ca7d5ae01fa6102001ec9fd75bfb226fecbdca2fcaa583"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Resolver.java",
@@ -113,8 +118,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Updater.java",
-      "bytes": 7742,
-      "sha256": "1cba4a06d072484fba384040dc7084e463cd2da3f37013445fa26ded0533aa2f"
+      "bytes": 7850,
+      "sha256": "210f25a89477157acfded06530a80a514182107be3b3a95d4f878fcca79e6927"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/YoutubeDataSource.java",
@@ -147,9 +152,14 @@
       "sha256": "b3df7059f9aa0b1656956377cce9f8287b21fef3c80a2ad5af5a6fb93c41fbff"
     },
     {
+      "path": "app/src/test/java/uk/local/wcwvault/ArchiveRecoveryTest.java",
+      "bytes": 2574,
+      "sha256": "12cfa8a64644843c14ffbf39c21f414edcf914cf9e074c29c7bbe265260bc8b5"
+    },
+    {
       "path": "app/src/test/java/uk/local/wcwvault/CatalogueTest.java",
-      "bytes": 9928,
-      "sha256": "f6b3708d07f4a93009d885b99a612e7304bcee227e1c2413684541bdcde661db"
+      "bytes": 10744,
+      "sha256": "d2518c0f8f0801d3911fbd4a7ffc2594d8fc2ff449a3f4262ffc275d22ea0b9e"
     },
     {
       "path": "build.gradle",
@@ -158,8 +168,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1166,
-      "sha256": "b3c486b0ee25a490db8714d13446055625e34ace3cee74d31f2e36db268280b9"
+      "bytes": 2214,
+      "sha256": "68bacaf665a17189ed796ed57d17daaa1e119e5b466e7001a20f81ce9a089533"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -168,8 +178,8 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "bytes": 3612,
-      "sha256": "3cfc0f89e7da638c9e4947da8a7b862164af0a74e8fd62c3c65965f010eaef0b"
+      "bytes": 5354,
+      "sha256": "7bc8faf3712740b7445ac5395e2ca304078834f8a68205d09d53315b60b182da"
     },
     {
       "path": "docs/BUILDING.md",
@@ -197,6 +207,11 @@
       "sha256": "a20986936a8fe0127c228f8ef1745876bcabe7e4d73e280e495a8a1e44044388"
     },
     {
+      "path": "docs/screenshots/progress.png",
+      "bytes": 1387828,
+      "sha256": "48e960f10be800bc27d47b2d54ab255eaa73b161b69e1b16a092cefa2f1cd3fb"
+    },
+    {
       "path": "docs/SOURCES.md",
       "bytes": 3880,
       "sha256": "e52b729ecdbcf83c8d9683004bec164c9ed0d033010d4a860c9cadf995ca654c"
@@ -208,8 +223,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 3247,
-      "sha256": "8d671a2e90a05fa4a45f7ceab3b532890e6edb9a2a3d3c42fedf4d917ab42a42"
+      "bytes": 5595,
+      "sha256": "401f4e86bc5ac8c70b57519325ac730ba532ba638c93cb65d4b35e05881027d1"
     },
     {
       "path": "gradle/wrapper/gradle-wrapper.jar",
@@ -243,28 +258,28 @@
     },
     {
       "path": "README.md",
-      "bytes": 4618,
-      "sha256": "852e0c3afe70e0a2b0f88fda7cbfc92231ae3f7b72e22d194cca6bf62ced8c64"
+      "bytes": 5036,
+      "sha256": "1864a96fa07433e2c2c655081d5dfc47a3311c3cd52d4ea571fd00aab9b9ef30"
     },
     {
       "path": "release/NOTES.md",
-      "bytes": 244,
-      "sha256": "d78f1cc3d699941c856af002395c920dc0c1e11e608d8e5a4d68b1baa028dc86"
+      "bytes": 311,
+      "sha256": "326c6a22cee3f7a56b8dd935da3ac83ef36d3e6dbaab8d2fb94763346e2e8001"
     },
     {
       "path": "release/SHA256SUMS.txt",
       "bytes": 86,
-      "sha256": "770824fc02beac68d6dcce922222d4007d6dce97e3d06b9e4abd5f5687611494"
+      "sha256": "b632b0d16563af3496795d71a3de51903e3711beeb3e3aae44ed53133184a6c9"
     },
     {
       "path": "release/update.json",
-      "bytes": 389,
-      "sha256": "33cf1ae23192b030eea1b2d9d5b14a8946a19375db6770c998ccf071a4d4fa8e"
+      "bytes": 456,
+      "sha256": "6f76751a46eccd9c83596ebd4278c765496db7410755991f4e358687104dbc88"
     },
     {
       "path": "release/WCW-FireTV-App.apk",
-      "bytes": 7044585,
-      "sha256": "7c8bb8018121b69bc5ba1bdef119577f48ae10da27c4c55b2050c2f7c77ac71c"
+      "bytes": 7048221,
+      "sha256": "91cdf051d79238fab443e675466530f34db847d8cab478048ed30c83c6b9d625"
     },
     {
       "path": "scripts/check_sources.py",
@@ -293,8 +308,8 @@
     },
     {
       "path": "START_HERE.md",
-      "bytes": 2444,
-      "sha256": "2b7a3a411e81913f58fe42c87bfaa5580119056d147388390ce3905605acf607"
+      "bytes": 2686,
+      "sha256": "fad0a90de599885e5fd15cb440e6a1cee8c3314eb00e283ce83068d3e013a993"
     },
     {
       "path": "third_party/licenses/APACHE-2.0.txt",

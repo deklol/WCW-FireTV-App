@@ -25,6 +25,7 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Features
 
+- Version **0.2.4** adds six-second Archive.org stall recovery, episode progress bars and watched percentages, manual watched/unwatched controls, and source-aware resume. Clash of the Champions events are grouped under PPV.
 - Dark TV interface, artwork, event descriptions and remote-friendly cards.
 - Top navigation: **Home · Nitro · Thunder · PPV · Search · Settings**, with year filters in each show catalogue. Home returns to the homepage.
 - Separate **Latest found Nitro**, **Latest found Thunder** and **Latest found PPVs** rows, directly below the hero. Newest discoveries appear first; broadcasts discovered together use newest broadcast date first. Playback queues remain chronological.
@@ -39,11 +40,11 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Install
 
-Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.2.1** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.2.4** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 
-The playback-tested device is **Fire TV Stick HD, AFTSS (sheldon), Fire OS 7.7.1.7**. Version **0.2.1** lowers the minimum to **Android 7.1/API 25** for Fire OS 6, including the first-generation Fire TV Stick 4K. Installation and playback on Fire OS 6 still need device confirmation.
+The playback-tested device is **Fire TV Stick HD, AFTSS (sheldon), Fire OS 7.7.1.7**. The minimum is **Android 7.1/API 25** for Fire OS 6, including the first-generation Fire TV Stick 4K. The user confirmed the 0.2.1 compatibility fix worked on their Fire Stick; version 0.2.4 still needs device confirmation.
 
 ## Watch in order
 

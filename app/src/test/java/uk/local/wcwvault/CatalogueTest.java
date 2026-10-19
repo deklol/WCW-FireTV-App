@@ -10,6 +10,25 @@ import org.schabi.newpipe.extractor.stream.*;
 
 public class CatalogueTest {
   @Test
+  public void progressOnlyShowsCompleteWhenWatched() {
+    assertEquals(50, Catalog.progressPercent(30000, 60000, false));
+    assertEquals(99, Catalog.progressPercent(60000, 60000, false));
+    assertEquals(99, Catalog.progressPercent(90000, 60000, false));
+    assertEquals(100, Catalog.progressPercent(0, 0, true));
+    assertEquals(0, Catalog.progressPercent(30000, 0, false));
+  }
+
+  @Test
+  public void clashUsesPpvCategoryAndPreservesItsTitleAndId() throws Exception {
+    JSONObject data =
+        episode("1997-08-21", "Clash of the Champions").put("title", "Clash of the Champions XXXV");
+    Catalog.Episode item = new Catalog.Episode(data);
+    assertEquals("PPV", item.show);
+    assertEquals("Clash of the Champions XXXV", item.heading());
+    assertEquals(data.getString("id"), item.id);
+  }
+
+  @Test
   public void oldSuperbrawlIsNotInventedAsANewThunder() throws Exception {
     JSONObject data = data();
     data.getJSONArray("eventCalendar")

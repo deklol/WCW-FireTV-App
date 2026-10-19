@@ -1,5 +1,21 @@
 # Validation
 
+## 0.2.4 progress and faster recovery update
+
+- Signed release build and all 16 Java tests passed; Android lint reports 0 errors and 21 warnings.
+- Stall-policy tests check no reconnect before six seconds, recovery at six seconds, pause/focus protection, growing buffers, multipart/seek handling and bounded retry/fallback.
+- New progress tests cover percentages, unknown duration and watched completion. Another test verifies Clash events use PPV while preserving their original title and ID.
+- Playback history stores the actual observed duration where available and retains existing resume positions. Multipart progress uses measured prior-part durations; unknown totals fall back to catalogue metadata. Unknown durations show elapsed minutes instead of an invented percentage.
+- Resuming prefers the exact previously selected source, then its provider, before other sources. Six-second stall recovery still needs confirmation against the rare live network issue.
+- Installed version 0.2.3 on the existing AFTSS stick using an in-place update, keeping its data and a rollback APK. Resumed the user's existing 3 January 2000 Nitro on Archive.org at approximately 50 minutes; the active media session reported playback, and returning to the library showed a red progress bar and **52% watched**. No sample viewing-history entries were injected.
+
+## 0.2.2 Archive recovery update
+
+- Signed release build and all 14 Java tests passed, including five new simulated-timeline tests for stalled playback, bounded retry/fallback, growing buffers, pause/focus suppression, seeks, multipart transitions and retry-budget recovery after healthy playback.
+- Android lint: 0 errors, 21 warnings, including the new non-localised reconnect status text. Minimum API remains 25.
+- The recovery action reopens the existing playlist at the captured part and playback position; it does not intentionally advance the video.
+- A rare live Archive.org stall has not been reproduced and recovered on a TV with this build. Unit tests validate the detection/retry policy; they do not prove end-to-end network recovery on the user's connection. This release still needs that device check.
+
 ## 0.2.1 compatibility update
 
 - Signed release build and all nine Java tests passed with minimum Android API 25.
@@ -26,3 +42,5 @@ Tested on Fire TV Stick HD **AFTSS / sheldon**, Fire OS **7.7.1.7**, on 19 Octob
 - Back-button handling was checked during playback: first press hid the controls and kept the player open; a second press returned to the library.
 
 GitHub-hosted CI execution and an online APK-update feed require publication to the maintainer's chosen repository. They were not represented as live services during device testing. Other Fire TV models/OS builds are not claimed as tested.
+
+Release numbering corrected from the locally tested 0.2.3 build to 0.2.4 (versionCode 6). The player and library behavior are unchanged.
