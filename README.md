@@ -1,5 +1,18 @@
 # WCW Chronology
 
+## Install with Downloader on Fire TV
+
+**Downloader code: `7990024`**
+
+**Short URL: [aftv.news/7990024](https://aftv.news/7990024)**
+
+1. Install and open **Downloader by AFTVnews** on your Fire TV or Fire Stick.
+2. Enter **`7990024`** in Downloader's URL field and select **Go**.
+3. Download the APK. If prompted, allow Downloader to install unknown apps in Fire TV settings, then return and select **Install**.
+4. Open **WCW Chronology** from your apps.
+
+[Download the latest APK directly](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk)
+
 A Fire TV app for watching the Monday Night era in order. Pick a year, press **Play all**, and watch the available Nitro, Thunder and PPV broadcasts in one built-in player.
 
 Created by [digitalm1nd](https://x.com/digitalm1nd).
@@ -22,7 +35,7 @@ Created by [digitalm1nd](https://x.com/digitalm1nd).
 
 ## Install
 
-Download `WCW-Chronology-0.2.0.apk` from this repository's GitHub Releases when published. The supplied share folder also includes it under `release/` with a SHA-256 checksum.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). The supplied share folder also includes the original APK under `release/` with a SHA-256 checksum.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 
