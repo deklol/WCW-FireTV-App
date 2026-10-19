@@ -33,7 +33,7 @@ chmod +x gradlew
 
 Output: `app/build/outputs/apk/debug/app-debug.apk`. Android's local debug key signs this build. A different developer/CI machine normally has a different key, so its build cannot replace a differently signed installed copy without uninstalling that copy.
 
-The project deliberately targets API 28 for the tested Fire OS 7 sideloading environment and compiles against API 35. The Google Play target-policy lint check is disabled specifically for that reason; the rest of lint remains enabled. This is not a Google Play submission configuration.
+The project supports Android API 25 and newer, targets API 28 for sideloading on Fire OS 6 and newer, and compiles against API 35. The Google Play target-policy lint check is disabled specifically for sideloading; the rest of lint remains enabled. This is not a Google Play submission configuration.
 
 ## Signed release APK
 

@@ -39,11 +39,11 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Install
 
-Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). The supplied share folder also includes the original APK under `release/` with a SHA-256 checksum.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.2.1** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 
-The tested device is **Fire TV Stick HD, AFTSS (sheldon), Fire OS 7.7.1.7**. The app requires Android 9/API 28 or newer. Other devices are not claimed as tested.
+The playback-tested device is **Fire TV Stick HD, AFTSS (sheldon), Fire OS 7.7.1.7**. Version **0.2.1** lowers the minimum to **Android 7.1/API 25** for Fire OS 6, including the first-generation Fire TV Stick 4K. Installation and playback on Fire OS 6 still need device confirmation.
 
 ## Watch in order
 

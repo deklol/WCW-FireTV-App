@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+
+- Lower minimum Android version to 7.1/API 25 for Fire OS 6 devices.
+- Verify update signing certificates with the legacy package API on Android 7.1 and 8.
+- Retain Home navigation, newest-discovery-first home rows and chronological playback.
+- Package the signed APK as WCW-FireTV-App.apk to preserve the existing Downloader URL.
+
 ## 0.2.0
 
 - Latest-found rows show newest discoveries first, while playback remains chronological.

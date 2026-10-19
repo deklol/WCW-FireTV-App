@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T23:58:00.485992",
+  "generatedAt": "2026-10-20T00:32:05.640075",
   "files": [
     {
       "path": ".editorconfig",
@@ -23,8 +23,8 @@
     },
     {
       "path": "app/build.gradle",
-      "bytes": 2238,
-      "sha256": "300fdd4dd52cdea4f30f85ac267938366067c9c252ef65b52028baada74f261c"
+      "bytes": 2239,
+      "sha256": "caaff1d7532a198a1a020f2eb4d859012eb50b856fa13b574c6a243a91de16d3"
     },
     {
       "path": "app/src/main/AndroidManifest.xml",
@@ -113,8 +113,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Updater.java",
-      "bytes": 7122,
-      "sha256": "b27c463a3ef2cac7f195f5f0173013ca4f742dc6fd5a151bf6fcfbacd989bc0b"
+      "bytes": 7742,
+      "sha256": "1cba4a06d072484fba384040dc7084e463cd2da3f37013445fa26ded0533aa2f"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/YoutubeDataSource.java",
@@ -158,8 +158,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 824,
-      "sha256": "b96348b60e9c715119c9bbbb6ccc8132eda221cfa8830476720426110cce7db9"
+      "bytes": 1166,
+      "sha256": "b3c486b0ee25a490db8714d13446055625e34ace3cee74d31f2e36db268280b9"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -173,8 +173,8 @@
     },
     {
       "path": "docs/BUILDING.md",
-      "bytes": 2955,
-      "sha256": "eaafc956ea0cdcfd4775f72c9c47320df0f7d3910641ef8b22be7084017c14d1"
+      "bytes": 2968,
+      "sha256": "87bac5614ce0aa4ca0abecd91628d6dbccde099be8b02e4e9c6870ae104e6f91"
     },
     {
       "path": "docs/screenshots/footer.png",
@@ -208,8 +208,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 2574,
-      "sha256": "fd843883bd77ed00a4ab5818322ceeb1de356d99a066678b80c1e5fc6904753d"
+      "bytes": 3247,
+      "sha256": "8d671a2e90a05fa4a45f7ceab3b532890e6edb9a2a3d3c42fedf4d917ab42a42"
     },
     {
       "path": "gradle/wrapper/gradle-wrapper.jar",
@@ -243,23 +243,28 @@
     },
     {
       "path": "README.md",
-      "bytes": 4305,
-      "sha256": "ff566436f60588366d2e24002fbeb478d56c27ccdc45ad75fb3fc74a548bb3a7"
+      "bytes": 4618,
+      "sha256": "852e0c3afe70e0a2b0f88fda7cbfc92231ae3f7b72e22d194cca6bf62ced8c64"
+    },
+    {
+      "path": "release/NOTES.md",
+      "bytes": 244,
+      "sha256": "d78f1cc3d699941c856af002395c920dc0c1e11e608d8e5a4d68b1baa028dc86"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "bytes": 92,
-      "sha256": "cc35a0386bc56404c90ceb26eb970c8784f081191852df39f7d1eeb26acdbba8"
+      "bytes": 86,
+      "sha256": "770824fc02beac68d6dcce922222d4007d6dce97e3d06b9e4abd5f5687611494"
     },
     {
-      "path": "release/update.json.example",
-      "bytes": 362,
-      "sha256": "2bc34377437a22c3320061730a8961dde09a31073b68686df5fd3f3c24ace904"
+      "path": "release/update.json",
+      "bytes": 389,
+      "sha256": "33cf1ae23192b030eea1b2d9d5b14a8946a19375db6770c998ccf071a4d4fa8e"
     },
     {
-      "path": "release/WCW-Chronology-0.2.0.apk",
-      "bytes": 14013861,
-      "sha256": "ac6ca622b6909d358344c273bf8bb50165cf47ba8d7a7a3cd74006dcf7b5108d"
+      "path": "release/WCW-FireTV-App.apk",
+      "bytes": 7044585,
+      "sha256": "7c8bb8018121b69bc5ba1bdef119577f48ae10da27c4c55b2050c2f7c77ac71c"
     },
     {
       "path": "scripts/check_sources.py",
@@ -285,6 +290,11 @@
       "path": "sources.schema.json",
       "bytes": 1634,
       "sha256": "b2ec0b91edf2cb54be847cb2fe02efbb07159c4afce7e727a8b5037b5283c89c"
+    },
+    {
+      "path": "START_HERE.md",
+      "bytes": 2444,
+      "sha256": "2b7a3a411e81913f58fe42c87bfaa5580119056d147388390ce3905605acf607"
     },
     {
       "path": "third_party/licenses/APACHE-2.0.txt",

@@ -1,4 +1,14 @@
-# Validation for 0.2.0
+# Validation
+
+## 0.2.1 compatibility update
+
+- Signed release build and all nine Java tests passed with minimum Android API 25.
+- Android lint: 0 errors, 20 warnings; no unguarded newer Android API calls reported.
+- APK signature verified explicitly for Android API 25; manifest reports minimum API 25, versionCode 3 and versionName 0.2.1.
+- Update verification uses Android's legacy signature API below API 28, while retaining package, version, checksum and complete signer-set checks.
+- Fire OS 6 installation and playback have not yet been tested on the user's second device. These checks establish build/API/package compatibility, not confirmed playback on that model.
+
+## 0.2.0 device tests
 
 Tested on Fire TV Stick HD **AFTSS / sheldon**, Fire OS **7.7.1.7**, on 19 October 2026.
 

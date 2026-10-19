@@ -4,6 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.content.pm.*;
 import android.net.Uri;
+import android.os.Build;
 import android.widget.Toast;
 import java.io.*;
 import java.net.*;
@@ -105,20 +106,16 @@ final class Updater {
                 if (!hash.toString().equalsIgnoreCase(expected))
                   throw new IOException("Update checksum mismatch");
                 PackageManager manager = activity.getPackageManager();
+                int signingFlags = Build.VERSION.SDK_INT >= 28
+                    ? PackageManager.GET_SIGNING_CERTIFICATES : PackageManager.GET_SIGNATURES;
                 PackageInfo installed =
-                    manager.getPackageInfo(
-                        activity.getPackageName(), PackageManager.GET_SIGNING_CERTIFICATES);
+                    manager.getPackageInfo(activity.getPackageName(), signingFlags);
                 PackageInfo archive =
-                    manager.getPackageArchiveInfo(
-                        apk.toString(), PackageManager.GET_SIGNING_CERTIFICATES);
+                    manager.getPackageArchiveInfo(apk.toString(), signingFlags);
                 if (archive == null
                     || !activity.getPackageName().equals(archive.packageName)
-                    || archive.getLongVersionCode() != version
-                    || archive.signingInfo == null
-                    || installed.signingInfo == null
-                    || !Arrays.equals(
-                        installed.signingInfo.getApkContentsSigners()[0].toByteArray(),
-                        archive.signingInfo.getApkContentsSigners()[0].toByteArray()))
+                    || (Build.VERSION.SDK_INT >= 28 ? archive.getLongVersionCode() : archive.versionCode) != version
+                    || !sameSigners(installed, archive))
                   throw new IOException("Update package or signing certificate mismatch");
                 activity.runOnUiThread(
                     () -> {
@@ -151,5 +148,22 @@ final class Updater {
             },
             "WCW-UpdateDownload")
         .start();
+  }
+
+  @SuppressWarnings("deprecation")
+  static boolean sameSigners(PackageInfo installed, PackageInfo archive) {
+    Signature[] current, update;
+    if (Build.VERSION.SDK_INT >= 28) {
+      if (installed.signingInfo == null || archive.signingInfo == null) return false;
+      current = installed.signingInfo.getApkContentsSigners();
+      update = archive.signingInfo.getApkContentsSigners();
+    } else {
+      current = installed.signatures;
+      update = archive.signatures;
+    }
+    if (current == null || update == null || current.length == 0 || current.length != update.length)
+      return false;
+    Set<Signature> currentSet = new HashSet<>(Arrays.asList(current));
+    return currentSet.equals(new HashSet<>(Arrays.asList(update)));
   }
 }
