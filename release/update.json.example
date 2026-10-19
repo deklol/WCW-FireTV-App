@@ -1,0 +1,7 @@
+{
+  "versionCode": 2,
+  "versionName": "0.2.0",
+  "apkUrl": "https://github.com/YOUR_NAME/YOUR_REPO/releases/download/v0.2.0/WCW-Chronology-0.2.0.apk",
+  "sha256": "ac6ca622b6909d358344c273bf8bb50165cf47ba8d7a7a3cd74006dcf7b5108d",
+  "notes": "WCW Chronology: chronological playback, English YouTube audio, automatic source discovery and TV home rows."
+}

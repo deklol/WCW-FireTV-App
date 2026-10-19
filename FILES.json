@@ -1,0 +1,320 @@
+{
+  "generatedAt": "2026-10-19T23:58:00.485992",
+  "files": [
+    {
+      "path": ".editorconfig",
+      "bytes": 173,
+      "sha256": "69b428ab5cbc731ec696ca9c5217bf316cf4c954b28c83bacc7fea88534cbdc4"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 117,
+      "sha256": "c40e421b238bba74d8b597df71e5fab338b83f5460cec2f9c2488e50646c93a7"
+    },
+    {
+      "path": ".github/workflows/build.yml",
+      "bytes": 842,
+      "sha256": "f2eb005485f10190628bb2c2144aae85d432655895b9b33f6cd962c01133d4b4"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 261,
+      "sha256": "9e6af8cd2d653c24de134859b66ebbb79b0df11e191799f936ccbe76019b6c84"
+    },
+    {
+      "path": "app/build.gradle",
+      "bytes": 2238,
+      "sha256": "300fdd4dd52cdea4f30f85ac267938366067c9c252ef65b52028baada74f261c"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "bytes": 1688,
+      "sha256": "1450b952c8a9198a814439ec69420bd6895eb28169ec432095edf0213bf0ce14"
+    },
+    {
+      "path": "app/src/main/assets/catalogue.json",
+      "bytes": 816268,
+      "sha256": "e4a94aeb643382509d93e87d35227ae7f1d385eb2917ae8a49533898d0fa3670"
+    },
+    {
+      "path": "app/src/main/assets/licenses/APACHE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "app/src/main/assets/licenses/GPL-3.0.txt",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "app/src/main/assets/licenses/THIRD_PARTY_NOTICES.txt",
+      "bytes": 2411,
+      "sha256": "7f65622aa74c364f151101ea9835e9f2842f2133d5855c81fe47333486f3c7c7"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/ArchiveSync.java",
+      "bytes": 10060,
+      "sha256": "1805dd9080ab0cff878382ce1cbb796cd05c1d7a2cffff358eb8424de9160111"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/Art.java",
+      "bytes": 3649,
+      "sha256": "02556a00146912b254fead50217d0a5a74697d9296ea0f5e805f08df22f2720c"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/Catalog.java",
+      "bytes": 8903,
+      "sha256": "987909b2a33c3bdc06e685e96a7e570e52b43e35365040517cc4251dc356ed70"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/CatalogSync.java",
+      "bytes": 22156,
+      "sha256": "e6ff540e8e96e6c330a58fe241e28b8a954a99afb332ba5d20c9bd649fc74180"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/LibraryJob.java",
+      "bytes": 1964,
+      "sha256": "ab3282b24483e54d85492a4fe45fc0eb7ea2c16cd8fb3c37c83395cec0df8506"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/MainActivity.java",
+      "bytes": 37544,
+      "sha256": "915b4c3c41d044ecb0e0e267cd331d4ff4942222ece30685055b9cc93ff6a9d8"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/MetadataCache.java",
+      "bytes": 3409,
+      "sha256": "62ad3d6776152b429db690a1fc84cd6ab437bfa34eb61195c93e12775911332a"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/PlayerActivity.java",
+      "bytes": 19473,
+      "sha256": "563e3913d442e1e306d9f66f0fbe06e1f326c01a25d933bb795bfbcac6463544"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/Resolver.java",
+      "bytes": 8363,
+      "sha256": "87d2a6b38832e0426d85c1a9a2970d3f7fdeeec65b8d967eddd4c6916f52225d"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/SourceConfig.java",
+      "bytes": 3918,
+      "sha256": "6384ead1efa9a4ea4dc26bf99a5324b2d60222d313d39b968acf5d8cc304dfb6"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/Ui.java",
+      "bytes": 3005,
+      "sha256": "ad13851eaee3e8a3526b7a74e4ca576c035b7e3d5bc2fc621d2f469d2c8741b4"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/UpdateProvider.java",
+      "bytes": 1739,
+      "sha256": "d30cffbb803a5840baacaecce489c95f70895f316d437c12ef7b0832c3bb697c"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/Updater.java",
+      "bytes": 7122,
+      "sha256": "b27c463a3ef2cac7f195f5f0173013ca4f742dc6fd5a151bf6fcfbacd989bc0b"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/YoutubeDataSource.java",
+      "bytes": 4088,
+      "sha256": "c149c5dc8a259ac0ef2f090ff70e0de3eaa1a7799276792c788e3fff7b27a0c4"
+    },
+    {
+      "path": "app/src/main/res/drawable/app_banner.xml",
+      "bytes": 323,
+      "sha256": "87da6eba6968661bdb1d83ac9556a3f44dd6882cd1f42098edaec954e43ad869"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/app_icon.jpg",
+      "bytes": 128719,
+      "sha256": "f8a83f1a3c91b525177e764e2516229d111181c41848cf14dc5b97e5259c5d2b"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/wcw_logo.jpg",
+      "bytes": 41599,
+      "sha256": "e64f7b43d41777ead6120a03bef393b5edb0db736ba026c0714624cd5486b245"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/wcw_opening.png",
+      "bytes": 1418281,
+      "sha256": "82856cdab84339b51f71a3d4e0d8e5b7361b97f133961d30920e00e0917873ce"
+    },
+    {
+      "path": "app/src/main/res/values/styles.xml",
+      "bytes": 526,
+      "sha256": "b3df7059f9aa0b1656956377cce9f8287b21fef3c80a2ad5af5a6fb93c41fbff"
+    },
+    {
+      "path": "app/src/test/java/uk/local/wcwvault/CatalogueTest.java",
+      "bytes": 9928,
+      "sha256": "f6b3708d07f4a93009d885b99a612e7304bcee227e1c2413684541bdcde661db"
+    },
+    {
+      "path": "build.gradle",
+      "bytes": 69,
+      "sha256": "a17900030e5094e7c68b9cdd4a833a63a16a8ba21eef8336f4a4b39f35b35d75"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 824,
+      "sha256": "b96348b60e9c715119c9bbbb6ccc8132eda221cfa8830476720426110cce7db9"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 1123,
+      "sha256": "26b5ef04717ae9e4b5cbea4e7b2f3cc5808dc682fe05e0cc67fe0a36b2b698af"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 3612,
+      "sha256": "3cfc0f89e7da638c9e4947da8a7b862164af0a74e8fd62c3c65965f010eaef0b"
+    },
+    {
+      "path": "docs/BUILDING.md",
+      "bytes": 2955,
+      "sha256": "eaafc956ea0cdcfd4775f72c9c47320df0f7d3910641ef8b22be7084017c14d1"
+    },
+    {
+      "path": "docs/screenshots/footer.png",
+      "bytes": 755881,
+      "sha256": "d025d347f696d12adc205d932c8d3d658806611f93f3454ed45b1d89a2c47423"
+    },
+    {
+      "path": "docs/screenshots/home.png",
+      "bytes": 1137690,
+      "sha256": "b9cd2266a3c39a8a9c3c613518508fa8f26dcc128e4bf9c560404493f248fec8"
+    },
+    {
+      "path": "docs/screenshots/latest-rows.png",
+      "bytes": 906365,
+      "sha256": "d68e518c4ab835c379cc5f87289a2a48ed98a29558233962a5299d969dd914a4"
+    },
+    {
+      "path": "docs/screenshots/ppvs.png",
+      "bytes": 1128959,
+      "sha256": "a20986936a8fe0127c228f8ef1745876bcabe7e4d73e280e495a8a1e44044388"
+    },
+    {
+      "path": "docs/SOURCES.md",
+      "bytes": 3880,
+      "sha256": "e52b729ecdbcf83c8d9683004bec164c9ed0d033010d4a860c9cadf995ca654c"
+    },
+    {
+      "path": "docs/UPDATING.md",
+      "bytes": 1768,
+      "sha256": "0ef557b27fd50928151b9ecb3f269ea4491788a26e80fcaefbc746d4148f926d"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 2574,
+      "sha256": "fd843883bd77ed00a4ab5818322ceeb1de356d99a066678b80c1e5fc6904753d"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "bytes": 43453,
+      "sha256": "cb0da6751c2b753a16ac168bb354870ebb1e162e9083f116729cec9c781156b8"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 337,
+      "sha256": "dd7a1ea9958ebb69a3b4b91854fbdb5ed746996a26ae32c5b1a051f7ce4b8613"
+    },
+    {
+      "path": "gradle.properties",
+      "bytes": 135,
+      "sha256": "3383a31c79eed32814c498d00979be95113ca289d1ad6ef8b5342296bb282be2"
+    },
+    {
+      "path": "gradlew",
+      "bytes": 8692,
+      "sha256": "fc977a94723af68aaffa4e5d60496fb4aeed1884b6b19e5e2f2fd7612673313d"
+    },
+    {
+      "path": "gradlew.bat",
+      "bytes": 2918,
+      "sha256": "bdecf875b6868cbcbd36a1f85eedf0832f358ff28092c5797ed645f7edce77d9"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4305,
+      "sha256": "ff566436f60588366d2e24002fbeb478d56c27ccdc45ad75fb3fc74a548bb3a7"
+    },
+    {
+      "path": "release/SHA256SUMS.txt",
+      "bytes": 92,
+      "sha256": "cc35a0386bc56404c90ceb26eb970c8784f081191852df39f7d1eeb26acdbba8"
+    },
+    {
+      "path": "release/update.json.example",
+      "bytes": 362,
+      "sha256": "2bc34377437a22c3320061730a8961dde09a31073b68686df5fd3f3c24ace904"
+    },
+    {
+      "path": "release/WCW-Chronology-0.2.0.apk",
+      "bytes": 14013861,
+      "sha256": "ac6ca622b6909d358344c273bf8bb50165cf47ba8d7a7a3cd74006dcf7b5108d"
+    },
+    {
+      "path": "scripts/check_sources.py",
+      "bytes": 2194,
+      "sha256": "122406fc69c5155630e56e522d7b1ae4a683b56d003ee1cffd88974bc4540b97"
+    },
+    {
+      "path": "scripts/make_update_manifest.py",
+      "bytes": 1121,
+      "sha256": "968f8730877310ecb9ee6299334b6b894ce983134fd359c549d97833747a92ec"
+    },
+    {
+      "path": "settings.gradle",
+      "bytes": 317,
+      "sha256": "165009f7eb766ee68198ab45e852ed3dbeb7db16fcd97e0b0208b5a5e05447b3"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 18775,
+      "sha256": "8f1a6421c9377e2760a98fb7abb4f8be2119b483e6da3825b004734674f89d03"
+    },
+    {
+      "path": "sources.schema.json",
+      "bytes": 1634,
+      "sha256": "b2ec0b91edf2cb54be847cb2fe02efbb07159c4afce7e727a8b5037b5283c89c"
+    },
+    {
+      "path": "third_party/licenses/APACHE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "third_party/NewPipeExtractor-v0.26.5-source.zip",
+      "bytes": 35604434,
+      "sha256": "59a67ac0391985f2881f9dff6c4973b9ac776b8fe9ae52eab667354c6019b293"
+    },
+    {
+      "path": "third_party/README.md",
+      "bytes": 820,
+      "sha256": "83fc57ccde72528b64444b8594489a09de777fe3962dc0dbc992a6d6e373014e"
+    },
+    {
+      "path": "third_party/rhino-1.8.1-sources.jar",
+      "bytes": 912671,
+      "sha256": "2303a0e5aa222faae0b95865c25442da89ec14c0fc81ac1608f2a6095e3d2459"
+    },
+    {
+      "path": "third_party/SHA256SUMS.txt",
+      "bytes": 194,
+      "sha256": "5250ef7364e3a14ecfd8d152726de142f7ade53a99ba6f5d124f6bec8fcfcde3"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 2411,
+      "sha256": "7f65622aa74c364f151101ea9835e9f2842f2133d5855c81fe47333486f3c7c7"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+package uk.local.wcwvault;
+
+import android.content.Context;
+import java.util.*;
+import org.json.*;
+
+/** The repository-root sources.json is copied into assets by Gradle. */
+final class SourceConfig {
+  static volatile int collectionsPerScan = 12;
+  static volatile String channelId = "UCbGG2hv4cWmIrBAIhGiCdSg";
+
+  static void load(Context context, JSONObject catalogue) throws Exception {
+    apply(catalogue, new JSONObject(Catalog.read(context.getAssets().open("sources.json"))));
+  }
+
+  static void apply(JSONObject catalogue, JSONObject config) throws Exception {
+    if (config.getInt("schemaVersion") != 1)
+      throw new JSONException("Unsupported sources.json version");
+    JSONObject youtube = config.getJSONObject("youtube"), archive = config.getJSONObject("archive");
+    channelId = youtube.getString("channelId");
+    if (!channelId.matches("UC[A-Za-z0-9_-]{22}"))
+      throw new JSONException("Invalid YouTube channel ID");
+    collectionsPerScan = Math.max(1, Math.min(50, archive.optInt("collectionsPerScan", 12)));
+    JSONArray playlists = new JSONArray(), identifiers = new JSONArray();
+    JSONObject hints = new JSONObject(), labels = new JSONObject();
+    Map<String, String> playlistForShow = new HashMap<>();
+    Set<String> activePlaylists = new HashSet<>(), activeItems = new HashSet<>();
+    JSONArray configured = youtube.getJSONArray("playlists");
+    if (youtube.optBoolean("enabled", true))
+      for (int i = 0; i < configured.length(); i++) {
+        JSONObject item = configured.getJSONObject(i);
+        if (!item.optBoolean("enabled", true)) continue;
+        String id = item.getString("id");
+        if (!id.matches("[A-Za-z0-9_-]{10,80}"))
+          throw new JSONException("Invalid YouTube playlist ID");
+        playlists.put(item);
+        activePlaylists.add(id);
+        playlistForShow.put(item.optString("show"), id);
+      }
+    configured = archive.getJSONArray("collections");
+    if (archive.optBoolean("enabled", true))
+      for (int i = 0; i < configured.length(); i++) {
+        JSONObject item = configured.getJSONObject(i);
+        if (!item.optBoolean("enabled", true)) continue;
+        String id = item.getString("id");
+        if (!id.matches("[A-Za-z0-9][A-Za-z0-9_.-]{0,99}"))
+          throw new JSONException("Invalid Archive collection ID");
+        identifiers.put(id);
+        activeItems.add(id);
+        labels.put(id, item.optString("name", id));
+        if (item.has("showHint")) hints.put(id, item.getString("showHint"));
+      }
+    JSONArray rows = catalogue.getJSONArray("episodes");
+    for (int i = rows.length() - 1; i >= 0; i--) {
+      JSONObject row = rows.getJSONObject(i);
+      JSONArray sources = row.getJSONArray("sources");
+      for (int j = sources.length() - 1; j >= 0; j--) {
+        JSONObject source = sources.getJSONObject(j);
+        boolean keep = true;
+        if (source.optString("type").equals("youtube")) {
+          String playlist =
+              source.optString(
+                  "playlistId", playlistForShow.getOrDefault(row.optString("show"), ""));
+          keep =
+              activePlaylists.contains(playlist) && channelId.equals(source.optString("channelId"));
+          if (keep) source.put("playlistId", playlist);
+        } else if (source.optString("type").equals("archive")) {
+          JSONArray parts = source.optJSONArray("urls");
+          if (parts == null)
+            keep = activeItems.contains(ArchiveSync.collection(source.optString("url")));
+          else
+            for (int k = 0; k < parts.length(); k++)
+              keep &= activeItems.contains(ArchiveSync.collection(parts.getString(k)));
+        }
+        if (!keep) sources.remove(j);
+      }
+      if (sources.length() == 0) rows.remove(i);
+    }
+    catalogue
+        .put("playlists", playlists)
+        .put("archiveItems", identifiers)
+        .put("archiveHints", hints)
+        .put("archiveLabels", labels);
+  }
+}

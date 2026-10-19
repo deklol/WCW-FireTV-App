@@ -1,0 +1,795 @@
+{
+  "$schema": "./sources.schema.json",
+  "schemaVersion": 1,
+  "description": "Edit this file to add, disable or remove public YouTube playlists and Archive collections. Rebuild the APK after changes. No accounts, cookies or API keys.",
+  "youtube": {
+    "enabled": true,
+    "channelId": "UCbGG2hv4cWmIrBAIhGiCdSg",
+    "playlists": [
+      {
+        "id": "PLqeI_ua6LQHHSKExkeTqIq2hhqCtFr9jf",
+        "name": "Clash of the Champions Full Events",
+        "enabled": true,
+        "show": "Clash of the Champions"
+      },
+      {
+        "id": "PLqeI_ua6LQHFBDB6i0rJTw4Z2SRUr_Fb4",
+        "name": "WCW Full Pay-Per-View Events",
+        "enabled": true,
+        "show": "PPV"
+      },
+      {
+        "id": "PLqeI_ua6LQHGoYBju-bkSXvpXbHr-FR49",
+        "name": "WCW Thunder Full Episodes",
+        "enabled": true,
+        "show": "Thunder"
+      },
+      {
+        "id": "PLqeI_ua6LQHFR45AlUQEPNjfig3o0W9zx",
+        "name": "WCW Monday Nitro Full Episodes",
+        "enabled": true,
+        "show": "Nitro"
+      }
+    ]
+  },
+  "archive": {
+    "enabled": true,
+    "collectionsPerScan": 12,
+    "collections": [
+      {
+        "id": "01-wcw-n-wo-souled-out-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "01.03.01_202301",
+        "name": "Thunder 2001",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "03-w-cw-greed-2001",
+        "name": "PPV 2001",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "06-wcw-n-wo-the-great-american-bash-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "06-wcw-the-great-american-bash-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "11-w-cw-mayhem-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "1997-09-01",
+        "name": "Nitro 1997",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "1998-01-08",
+        "name": "Thunder 1998",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "1998-09-14",
+        "name": "Nitro 1998",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "1999-01-07",
+        "name": "Thunder 1999",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "1999-09-27",
+        "name": "Nitro 1999",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "2000-02-14",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "2000.11.15",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "2001-01-23_202404",
+        "name": "Nitro 2001",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "Jan-01-2001-Mar-26-2001",
+        "name": "Nitro / PPV 2001",
+        "enabled": true
+      },
+      {
+        "id": "Jan-16-2000-Dec-17-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "Jan-17-1999-Dec-19-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "Jan-5-1998-Dec-28-1998-2",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "ORTIN-1997",
+        "name": "Nitro 1997",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "ORTIN-1998",
+        "name": "Nitro 1998",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "ORTIN-1999",
+        "name": "Nitro 1999",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "ORTIN-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "ORTIN-2001",
+        "name": "Nitro 2001",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "REDNUHT-1998",
+        "name": "Thunder 1998",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "REDNUHT-1999",
+        "name": "Thunder 1999",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "WCW-Millennium-Final",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "apr.-06-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "apr.-11-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "apr.-16-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "apr.-19-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "apr.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "aug--2000",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "aug.-08-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "aug.-09-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "aug.-13-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "aug.-14-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "aug.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "dec--2000",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "dec.-17-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-19-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-1997",
+        "name": "Nitro 1997",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "dec.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "dec.-27-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-28-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb--2001",
+        "name": "Thunder 2001",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "feb.-18-2001",
+        "name": "PPV 2001",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-20-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "feb.-2001",
+        "name": "Nitro 2001",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "feb.-21-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-22-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-23-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan--2001",
+        "name": "Thunder 2001",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "jan-06-1997-dec-29-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan-3-2000-dec-27-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jan.-14-2001",
+        "name": "PPV 2001",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan.-16-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan.-17-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan.-1997",
+        "name": "Nitro 1997",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jan.-1998",
+        "name": "Nitro 1998",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jan.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jan.-2001",
+        "name": "Nitro 2001",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jan.-24-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan.-25-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul-2000",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "jul.-09-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-11-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-12-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-13-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jun.-11-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-13-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-14-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-15-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-1997",
+        "name": "Nitro 1997",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jun.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "mar-2001",
+        "name": "Thunder 2001",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "mar.-14-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "mar.-15-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "mar.-16-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "mar.-18-2001",
+        "name": "PPV 2001",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "mar.-19-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "mar.-1997",
+        "name": "Nitro 1997",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "mar.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "mar.-2001",
+        "name": "Nitro 2001",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "may-07-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-09-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-17-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-18-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "may.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "nov--2000",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "nov.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "nov.-21-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-22-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-23-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-26-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct--2000",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "oct.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "oct.-24-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-25-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-26-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-29-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep--2000",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "sep.-12-1999",
+        "name": "PPV 1999",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-13-1998",
+        "name": "PPV 1998",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-14-1997",
+        "name": "PPV 1997",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-17-2000",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-2000",
+        "name": "Nitro 2000",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "wcw-1997-reupload-wwearchives",
+        "name": "Nitro / PPV 1997",
+        "enabled": true
+      },
+      {
+        "id": "wcw-payperview-preshows",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "wcw-worldwide-complete_202406",
+        "name": "Worldwide 1997",
+        "enabled": true,
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "wcw.-pro.-wrestling.-complete_20240612",
+        "name": "Pro 1997 / 1998",
+        "enabled": true,
+        "showHint": "Pro"
+      },
+      {
+        "id": "wcw.-saturday.-night.-complete_20240612",
+        "name": "Saturday Night 1997",
+        "enabled": true,
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "wcw.-saturday.-night.-complete_20240614",
+        "name": "Saturday Night 1998",
+        "enabled": true,
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "wcw.-saturday.-night.-incomplete_202406",
+        "name": "Saturday Night 2000",
+        "enabled": true,
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "wcw.-worldwide.-complete_202406",
+        "name": "Worldwide 1999",
+        "enabled": true,
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-1Xf_9r8pquE",
+        "name": "Thunder 1999",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-CU_ghTe_ygs",
+        "name": "Thunder 2001",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-GXgI7yXZH-I",
+        "name": "Thunder 1999",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-LE3ce79AbXk",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-MB5krxpFNfE",
+        "name": "PPV 2000",
+        "enabled": true,
+        "showHint": "PPV"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-_b0LE90V-s4",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-dYfgIdrkZgQ",
+        "name": "Nitro 2001",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-uOYemNhgpyM",
+        "name": "Thunder 2001",
+        "enabled": true,
+        "showHint": "Thunder"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-wh-16Qvc6YQ",
+        "name": "Nitro 1999",
+        "enabled": true,
+        "showHint": "Nitro"
+      },
+      {
+        "id": "wrestling-bios-reliving-the-war-youtube-zMAe7J1tkmI",
+        "name": "Thunder 2000",
+        "enabled": true,
+        "showHint": "Thunder"
+      }
+    ]
+  }
+}

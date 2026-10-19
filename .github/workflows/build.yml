@@ -1,0 +1,27 @@
+name: Build and test
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4.0.4
+      - run: sdkmanager "platforms;android-35" "build-tools;34.0.0"
+      - uses: gradle/actions/setup-gradle@v6.4.0
+      - run: python3 scripts/check_sources.py
+      - run: chmod +x gradlew && ./gradlew --no-daemon :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: WCW-Chronology-test-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
