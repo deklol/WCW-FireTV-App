@@ -17,6 +17,10 @@ A Fire TV app for watching the Monday Night era in order. Pick a year, press **P
 
 Created by [digitalm1nd](https://x.com/digitalm1nd).
 
+## Video sources and streaming
+
+I do not host any of the videos available through this app. Videos are sourced from the **official WCW YouTube channel** and **Archive.org collections**, and streamed directly from those providers. The app does not download or save video files to your device. This repository and its APK contain no episode video files.
+
 ![WCW Chronology home](docs/screenshots/home.png)
 
 ## Features
