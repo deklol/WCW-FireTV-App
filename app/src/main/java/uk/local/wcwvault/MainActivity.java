@@ -213,6 +213,9 @@ public final class MainActivity extends Activity {
               render();
             }));
     Ui.gap(nav, 10);
+    nav.addView(
+        Ui.button(this, "Years", page.equals("years") || page.equals("year"), this::openYears));
+    Ui.gap(nav, 10);
     for (String show : new String[] {"Nitro", "Thunder"}) {
       nav.addView(
           Ui.button(this, show, page.equals("show") && filter.equals(show), () -> openShow(show)));
@@ -232,6 +235,10 @@ public final class MainActivity extends Activity {
     nav.addView(Ui.button(this, "Search", false, this::search));
     Ui.gap(nav, 10);
     nav.addView(Ui.button(this, "Settings", false, this::settings));
+    for (int i = 0; i < nav.getChildCount(); i++) {
+      View child = nav.getChildAt(i);
+      if (child.isClickable()) child.setPadding(d(14), d(12), d(14), d(12));
+    }
     refreshStrip = Ui.vertical(this);
     refreshStrip.setPadding(d(6), d(7), d(6), d(4));
     refreshText = text("", 11, Ui.MUTED);
@@ -243,6 +250,7 @@ public final class MainActivity extends Activity {
     updateRefresh();
     Ui.gap(root, 14);
     if (page.equals("home")) home();
+    else if (page.equals("years")) years();
     else library();
   }
 
@@ -288,8 +296,7 @@ public final class MainActivity extends Activity {
     copy.setGravity(Gravity.CENTER_VERTICAL);
     copy.setPadding(d(10), d(12), 0, d(16));
     hero.addView(copy, new FrameLayout.LayoutParams(d(510), -1));
-    TextView kicker =
-        text(current == null ? "THE MONDAY NIGHT ERA" : "CONTINUE WATCHING", 11, Ui.RED);
+    TextView kicker = text(current == null ? "THE WCW ARCHIVE" : "CONTINUE WATCHING", 11, Ui.RED);
     kicker.setLetterSpacing(.2f);
     kicker.setTypeface(null, Typeface.BOLD);
     copy.addView(kicker);
@@ -312,7 +319,7 @@ public final class MainActivity extends Activity {
                   + (Catalog.displayDuration(this, current) > 0
                       ? "  ·  " + Catalog.displayDuration(this, current) / 60000 + " min"
                       : "")
-                    + (current.show.equals("PPV") ? "  ·  PPV" : ""),
+                  + (current.show.equals("PPV") ? "  ·  PPV" : ""),
               13,
               Ui.WHITE);
       copy.addView(meta);
@@ -321,7 +328,7 @@ public final class MainActivity extends Activity {
     TextView description =
         text(
             current == null
-                ? "Nitro, Thunder and the pay-per-views.\n"
+                ? "Classic WCW, Nitro, Thunder and the pay-per-views.\n"
                     + "One timeline. One player. Pick a year and let it roll."
                 : current.description.isEmpty() ? current.title : current.description,
             14,
@@ -369,54 +376,87 @@ public final class MainActivity extends Activity {
               "▶  Continue watching",
               true,
               () -> launch(resume, Catalog.forYear(resume.year, "All", extras()), null)));
-    } else actions.addView(Ui.button(this, "Explore 1997  ›", true, () -> openYear(1997)));
+    } else actions.addView(Ui.button(this, "Explore years  ›", true, this::openYears));
     Ui.gap(actions, 10);
     actions.addView(Ui.button(this, "Refresh library", false, () -> refresh(false)));
     recentRail(body, "LATEST FOUND NITRO", "Nitro");
     recentRail(body, "LATEST FOUND THUNDER", "Thunder");
     recentRail(body, "LATEST FOUND PPVs", "PPV");
     Ui.gap(body, 12);
-    TextView label = text("WATCH BY YEAR · NITRO, THUNDER + PPVs", 12, Ui.MUTED);
+    TextView label = text("WATCH BY YEAR · ALL AVAILABLE SHOWS", 12, Ui.MUTED);
     label.setLetterSpacing(.1f);
     body.addView(label);
     Ui.gap(body, 10);
-    HorizontalScrollView scroll = new HorizontalScrollView(this);
-    scroll.setHorizontalScrollBarEnabled(false);
-    scroll.setClipToPadding(false);
-    body.addView(scroll, Ui.lp(this, -1, 138));
-    LinearLayout years = Ui.horizontal(this);
-    scroll.addView(years);
-    TreeSet<Integer> values = new TreeSet<>();
-    for (Catalog.Episode item : Catalog.episodes) values.add(item.year);
-    for (int value : values) {
-      ArrayList<Catalog.Episode> list = Catalog.forYear(value, "All", extras());
-      if (list.isEmpty()) continue;
-      LinearLayout card = Ui.vertical(this);
-      card.setPadding(d(18), d(14), d(18), d(14));
-      card.setGravity(Gravity.CENTER_VERTICAL);
-      card.setBackground(Ui.focus(this, false));
-      card.setFocusable(true);
-      card.setClickable(true);
-      card.setOnClickListener(view -> openYear(value));
-      TextView number = text(Integer.toString(value), 31, Ui.WHITE);
-      number.setTypeface(null, Typeface.BOLD);
-      card.addView(number);
-      Ui.gap(card, 5);
-      card.addView(text(list.size() + " full shows  ›", 12, Ui.MUTED));
-      Ui.gap(card, 5);
-      long ppvCount = list.stream().filter(item -> item.show.equals("PPV")).count();
-      long nitroCount = list.stream().filter(item -> item.show.equals("Nitro")).count();
-      card.addView(text(nitroCount + " Nitro · " + ppvCount + " PPVs", 10, Ui.MUTED));
-      LinearLayout.LayoutParams params = Ui.lp(this, 168, 128);
-      params.rightMargin = d(12);
-      years.addView(card, params);
-    }
+    body.addView(Ui.button(this, "Browse all years  ›", false, this::openYears));
     Ui.gap(body, 10);
     body.addView(text("STREAMING ONLY   ·   Archive.org + official WCW on YouTube", 10, Ui.MUTED));
     Ui.gap(body, 22);
     TextView credit = text("x.com/digitalm1nd", 12, Ui.MUTED);
     credit.setGravity(Gravity.CENTER);
     body.addView(credit, Ui.lp(this, -1, 32));
+  }
+
+  void openYears() {
+    page = "years";
+    render();
+  }
+
+  void years() {
+    TextView heading = text("Choose a year", 32, Ui.WHITE);
+    heading.setTypeface(null, Typeface.BOLD);
+    root.addView(heading);
+    Ui.gap(root, 8);
+    root.addView(
+        text("Every available show and event, together in broadcast order.", 14, Ui.MUTED));
+    Ui.gap(root, 18);
+    ScrollView scroll = new ScrollView(this);
+    scroll.setClipToPadding(false);
+    root.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1));
+    LinearLayout body = Ui.vertical(this);
+    scroll.addView(body);
+    LinearLayout row = null;
+    int index = 0;
+    for (int value : Catalog.years().descendingSet()) {
+      ArrayList<Catalog.Episode> items = Catalog.forYear(value, "All", extras());
+      if (items.isEmpty()) continue;
+      if (index % 4 == 0) {
+        row = Ui.horizontal(this);
+        body.addView(row);
+      }
+      LinearLayout card = Ui.vertical(this);
+      card.setPadding(d(20), d(18), d(20), d(18));
+      card.setGravity(Gravity.CENTER_VERTICAL);
+      card.setBackground(Ui.focus(this, false));
+      card.setFocusable(true);
+      card.setClickable(true);
+      card.setOnClickListener(view -> openYear(value));
+      TextView number = text(Integer.toString(value), 36, Ui.WHITE);
+      number.setTypeface(null, Typeface.BOLD);
+      card.addView(number);
+      Ui.gap(card, 10);
+      card.addView(
+          text(
+              items.size() + (items.size() == 1 ? " show available" : " shows available"),
+              12,
+              Ui.MUTED));
+      LinkedHashSet<String> shows = new LinkedHashSet<>();
+      for (Catalog.Episode item : items) shows.add(Catalog.showLabel(item.show, value));
+      TextView formats = text(String.join(" · ", shows), 10, Ui.MUTED);
+      formats.setMaxLines(2);
+      formats.setEllipsize(TextUtils.TruncateAt.END);
+      Ui.gap(card, 7);
+      card.addView(formats);
+      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, d(158), 1);
+      params.setMargins(d(2), d(2), d(10), d(10));
+      row.addView(card, params);
+      index++;
+    }
+    while (index % 4 != 0) {
+      LinearLayout.LayoutParams spacer = new LinearLayout.LayoutParams(0, d(158), 1);
+      spacer.setMargins(d(2), d(2), d(10), d(10));
+      row.addView(new View(this), spacer);
+      index++;
+    }
   }
 
   static String playbackTime(long millis) {
@@ -483,7 +523,7 @@ public final class MainActivity extends Activity {
     ArrayList<Catalog.Episode> result = new ArrayList<>();
     String needle = query.toLowerCase(Locale.UK);
     for (Catalog.Episode item : Catalog.episodes)
-      if ((extras() || item.main())
+      if ((item.year < 1997 || extras() || item.main())
           && (item.title + " " + item.show + " " + item.date)
               .toLowerCase(Locale.UK)
               .contains(needle)) result.add(item);
@@ -524,13 +564,15 @@ public final class MainActivity extends Activity {
       root.addView(filterScroll, Ui.lp(this, -1, 52));
       LinearLayout chips = Ui.horizontal(this);
       filterScroll.addView(chips);
-      ArrayList<String> labels = new ArrayList<>(Arrays.asList("All", "Nitro", "Thunder", "PPV"));
-      if (extras()) labels.addAll(Arrays.asList("Saturday Night", "Worldwide", "Pro"));
+      ArrayList<String> labels = new ArrayList<>();
+      labels.add("All");
+      for (Catalog.Episode item : Catalog.forYear(year, "All", extras()))
+        if (!labels.contains(item.show)) labels.add(item.show);
       for (String choice : labels) {
         TextView chip =
             Ui.button(
                 this,
-                choice,
+                Catalog.showLabel(choice, year),
                 filter.equals(choice),
                 () -> {
                   filter = choice;
@@ -541,9 +583,16 @@ public final class MainActivity extends Activity {
       }
     }
     if (page.equals("ppv") || page.equals("show")) {
+      HorizontalScrollView yearScroll = new HorizontalScrollView(this);
+      yearScroll.setHorizontalScrollBarEnabled(false);
       LinearLayout years = Ui.horizontal(this);
-      root.addView(years, Ui.lp(this, -1, 48));
-      for (int value : new int[] {0, 1997, 1998, 1999, 2000, 2001}) {
+      yearScroll.addView(years);
+      root.addView(yearScroll, Ui.lp(this, -1, 48));
+      TreeSet<Integer> availableYears = new TreeSet<>();
+      availableYears.add(0);
+      for (Catalog.Episode item : Catalog.episodes)
+        if (item.show.equals(page.equals("ppv") ? "PPV" : filter)) availableYears.add(item.year);
+      for (int value : availableYears) {
         years.addView(
             Ui.button(
                 this,
@@ -1147,7 +1196,7 @@ public final class MainActivity extends Activity {
   @Override
   public void onBackPressed() {
     if (!page.equals("home")) {
-      page = "home";
+      page = page.equals("year") ? "years" : "home";
       render();
     } else super.onBackPressed();
   }

@@ -22,7 +22,7 @@ rows = data['episodes']
 assert len({row['id'] for row in rows}) == len(rows)
 assert [row['date'] for row in rows] == sorted(row['date'] for row in rows)
 for row in rows:
-    assert '1997-01-01' <= row['date'] <= '2001-03-26'
+    assert '1983-01-01' <= row['date'] <= '2001-03-26'
     assert row['sources']
     for source in row['sources']:
         if source['type'] == 'archive':
@@ -35,6 +35,6 @@ for row in rows:
             assert re.fullmatch(r'[A-Za-z0-9_-]{11}', source['videoId'])
             assert re.search(r'\bFULL (?:EPISODE|EVENT)\b', source['title'], re.I)
             assert not re.search(r'FULL MATCH|watch party|compilation', source['title'], re.I)
-            assert source['duration'] >= 2700
+            assert source['duration'] >= (1200 if 'FULL EPISODE' in source.get('title', '').upper() else 2700)
 print(f'Valid: {len(config["youtube"]["playlists"])} playlists, '
       f'{len(config["archive"]["collections"])} Archive collections, {len(rows)} seed episodes.')

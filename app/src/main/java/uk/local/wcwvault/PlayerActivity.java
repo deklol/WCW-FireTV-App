@@ -186,11 +186,12 @@ public final class PlayerActivity extends Activity {
       String choice = Catalog.prefs(this).getString("choice:" + item.id, "");
       String provider = Catalog.prefs(this).getString("provider:" + item.id, "");
       options.sort(
-          Comparator.comparingInt(
-              source ->
-                  Catalog.sourceKey(source).equals(choice)
-                      ? 0
-                      : source.optString("type").equals(provider) ? 1 : 2));
+          Comparator.comparingInt(SourcePolicy::languagePreference)
+              .thenComparingInt(
+                  source ->
+                      Catalog.sourceKey(source).equals(choice)
+                          ? 0
+                          : source.optString("type").equals(provider) ? 1 : 2));
     }
     Log.i(TAG, "OPEN id=" + item.id + " index=" + index + " options=" + options.size());
     tryOption(generation);

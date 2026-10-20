@@ -22,7 +22,7 @@ final class SourceConfig {
       throw new JSONException("Invalid YouTube channel ID");
     collectionsPerScan = Math.max(1, Math.min(50, archive.optInt("collectionsPerScan", 12)));
     JSONArray playlists = new JSONArray(), identifiers = new JSONArray();
-    JSONObject hints = new JSONObject(), labels = new JSONObject();
+    JSONObject hints = new JSONObject(), labels = new JSONObject(), dateOrders = new JSONObject();
     Map<String, String> playlistForShow = new HashMap<>();
     Set<String> activePlaylists = new HashSet<>(), activeItems = new HashSet<>();
     JSONArray configured = youtube.getJSONArray("playlists");
@@ -49,6 +49,12 @@ final class SourceConfig {
         activeItems.add(id);
         labels.put(id, item.optString("name", id));
         if (item.has("showHint")) hints.put(id, item.getString("showHint"));
+        if (item.has("dateOrder")) {
+          String order = item.getString("dateOrder");
+          if (!order.equals("MDY") && !order.equals("DMY"))
+            throw new JSONException("Invalid Archive dateOrder");
+          dateOrders.put(id, order);
+        }
       }
     JSONArray rows = catalogue.getJSONArray("episodes");
     for (int i = rows.length() - 1; i >= 0; i--) {
@@ -80,6 +86,7 @@ final class SourceConfig {
         .put("playlists", playlists)
         .put("archiveItems", identifiers)
         .put("archiveHints", hints)
+        .put("archiveDateOrders", dateOrders)
         .put("archiveLabels", labels);
   }
 }

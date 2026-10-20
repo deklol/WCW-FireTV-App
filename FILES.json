@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T06:52:04.898120",
+  "generatedAt": "2026-10-20T19:04:51.633844",
   "files": [
     {
       "path": ".editorconfig",
@@ -23,8 +23,8 @@
     },
     {
       "path": "app/build.gradle",
-      "bytes": 2239,
-      "sha256": "1b3c9f53b531f51c27f49ffd46849b3f6faf7da66d8595ccf49589f6c0d46460"
+      "bytes": 2240,
+      "sha256": "38f6f2a1f2e37d6e25b5386a45502709157c9657498c4ba953e9d6eac7e9c2ee"
     },
     {
       "path": "app/src/debug/AndroidManifest.xml",
@@ -43,8 +43,8 @@
     },
     {
       "path": "app/src/main/assets/catalogue.json",
-      "bytes": 823523,
-      "sha256": "346516b00adf6cc247ee3ee1349062bd1be3eabc28bf25f586a7cb95f4580973"
+      "bytes": 1607528,
+      "sha256": "4dfd168927be7e973110e8ad063bc04111e155687aa4be4b004584620e3ef64d"
     },
     {
       "path": "app/src/main/assets/licenses/APACHE-2.0.txt",
@@ -62,14 +62,19 @@
       "sha256": "7f65622aa74c364f151101ea9835e9f2842f2133d5855c81fe47333486f3c7c7"
     },
     {
+      "path": "app/src/main/java/uk/local/wcwvault/ArchiveIdentity.java",
+      "bytes": 4423,
+      "sha256": "a2db1bbdbd9aec4524d130279477c2fa8a702fb1d60b126ea80d6961b7e9a2f4"
+    },
+    {
       "path": "app/src/main/java/uk/local/wcwvault/ArchiveRecovery.java",
       "bytes": 1715,
       "sha256": "23e1ee25b104f8b80d4571ce1d95b8018bbbbdb5051d2754f799d22a5d4240ab"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/ArchiveSync.java",
-      "bytes": 10762,
-      "sha256": "8a5b28f28fc3b138dc69774ff65c15673abb087cad422526e69a3a5472410628"
+      "bytes": 14252,
+      "sha256": "522b1fa49cb13129e51196e47cae62c798e46e0fbc0a83bc8ef49d24ce7c89fc"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Art.java",
@@ -78,13 +83,13 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Catalog.java",
-      "bytes": 10388,
-      "sha256": "a1fbc67afe4689952dda9f222c07218657a20eb97271b13ba34402c6fce8e5a3"
+      "bytes": 12325,
+      "sha256": "a203a62798a022d56ee2e38a476a0aff406a99c304ad3a6df07a9c4f71319254"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/CatalogSync.java",
-      "bytes": 22156,
-      "sha256": "e6ff540e8e96e6c330a58fe241e28b8a954a99afb332ba5d20c9bd649fc74180"
+      "bytes": 23838,
+      "sha256": "cfc9b2738c33ec34b18099d872622ed92d10688568e7b8c1002e7f3564d26921"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/LibraryJob.java",
@@ -93,8 +98,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/MainActivity.java",
-      "bytes": 42850,
-      "sha256": "aaf0d07249a370c72447e6c96bd977a9342680a8bcf553338ac4b09ec7bae3c1"
+      "bytes": 45786,
+      "sha256": "122c75bfbafcfcc8093f47476eec1f776ebbd13b6a45563debed9bc1ccd27b2f"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/MetadataCache.java",
@@ -103,23 +108,23 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/PlayerActivity.java",
-      "bytes": 24012,
-      "sha256": "949fd634c2f65f0c61ca7d5ae01fa6102001ec9fd75bfb226fecbdca2fcaa583"
+      "bytes": 24094,
+      "sha256": "cf92ead3c09d06db8beda48ccd8373a2489f9ee1849cfaf9c269205de883bf39"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Resolver.java",
-      "bytes": 8464,
-      "sha256": "58bbefd034ceac83042c766874b2856e5c59efff54fc60b970f4f09b96f7ca7c"
+      "bytes": 8526,
+      "sha256": "1ce23b3e5f15f0ad6ddb637975fcae1f1fb6ad5431a870e54d4f1f8f96988792"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/SourceConfig.java",
-      "bytes": 3918,
-      "sha256": "6384ead1efa9a4ea4dc26bf99a5324b2d60222d313d39b968acf5d8cc304dfb6"
+      "bytes": 4259,
+      "sha256": "ce482e2369f25b891e09c549b2ddc2bd804ddc082ed00fdb00fa4e03a92eef58"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/SourcePolicy.java",
-      "bytes": 1248,
-      "sha256": "4db07d11d03f63d0b567cf8c9bde2f1157ac41b685d7eaeb221ea5540039dbf1"
+      "bytes": 2707,
+      "sha256": "32fdea93667e09b77086fe9ca939d404b2f676c17f7e56809b7cd81d34bcf938"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Ui.java",
@@ -172,24 +177,44 @@
       "sha256": "b3df7059f9aa0b1656956377cce9f8287b21fef3c80a2ad5af5a6fb93c41fbff"
     },
     {
+      "path": "app/src/test/java/uk/local/wcwvault/ArchiveIdentityTest.java",
+      "bytes": 7099,
+      "sha256": "d29e88a1390fce28384f22be8f72401aff278dbb9ee52fca54f658fd5fa5d485"
+    },
+    {
       "path": "app/src/test/java/uk/local/wcwvault/ArchiveRecoveryTest.java",
       "bytes": 2574,
       "sha256": "12cfa8a64644843c14ffbf39c21f414edcf914cf9e074c29c7bbe265260bc8b5"
     },
     {
       "path": "app/src/test/java/uk/local/wcwvault/CatalogueTest.java",
-      "bytes": 10744,
-      "sha256": "d2518c0f8f0801d3911fbd4a7ffc2594d8fc2ff449a3f4262ffc275d22ea0b9e"
+      "bytes": 11088,
+      "sha256": "e1fcd94b566a2f640fda5fc835b1e0e49a33636e703741bb1608a80e1cb11dd9"
     },
     {
       "path": "app/src/test/java/uk/local/wcwvault/PpvSourceTest.java",
-      "bytes": 3517,
-      "sha256": "da0f8b9752f35377690abc40c94feaa627bb643ff3d1393f3e98662f79323570"
+      "bytes": 3826,
+      "sha256": "df74e1972527c97d0b75d371ca6469705c7b40dbad07c10cb6449ab253e11cd9"
+    },
+    {
+      "path": "app/src/test/java/uk/local/wcwvault/Pre1997Test.java",
+      "bytes": 9721,
+      "sha256": "4767a1dcf458ed6ee1d7e71db616575fbd45e71a85157dfbd30f24b20745773e"
     },
     {
       "path": "app/src/test/java/uk/local/wcwvault/UpdateReleaseTest.java",
       "bytes": 3252,
       "sha256": "c6b6f47cc7c0151dccc35fdb6ece8f552f5440e7741278a1812b37079211936e"
+    },
+    {
+      "path": "app/src/test/resources/mixed-archive-items.json",
+      "bytes": 69148,
+      "sha256": "4462fdccb4f5b491f382f5b5d9bb857d6b807aad9143903c3b4db088f8586fb7"
+    },
+    {
+      "path": "app/src/test/resources/post1997-baseline.json",
+      "bytes": 208945,
+      "sha256": "bbd4c80b8df15cbe169fa242637847aefdfcbf4c4a6e0fe5f4336743c14a59a3"
     },
     {
       "path": "build.gradle",
@@ -198,8 +223,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 3560,
-      "sha256": "a630018c292985ffdc70af57433db09280e41f5b722a7410e02feded259e127f"
+      "bytes": 5792,
+      "sha256": "c63460e76c5f930655985cbbfe4f74da8cc3defc502809e8a445fcac12a6d912"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -208,8 +233,8 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "bytes": 6260,
-      "sha256": "da78b8ee8b50d116f13397e807027c6795e0fce7bb6924729c09f8b92825fa91"
+      "bytes": 6730,
+      "sha256": "e286f09565e2e54e46fe61035439006cfa9b1f84b68728d13f3c85554177604f"
     },
     {
       "path": "docs/BUILDING.md",
@@ -220,6 +245,16 @@
       "path": "docs/PPV_SOURCE_AUDIT.md",
       "bytes": 2706,
       "sha256": "f9a70522efe56b56b059351534e951fc7a6448e3626ef5a2f086bf4e4e14e4a1"
+    },
+    {
+      "path": "docs/PRE1997_LIBRARY.md",
+      "bytes": 5084,
+      "sha256": "865da5617b0eed86b19562be61a1a869f3864dfae1d0dbebc17c8722301d6508"
+    },
+    {
+      "path": "docs/PRE1997_SOURCES.csv",
+      "bytes": 194584,
+      "sha256": "fa2245e5ffa2010c20c19c68d7c696f88d9957afecc4afe697f071843e1ac91b"
     },
     {
       "path": "docs/screenshots/footer.png",
@@ -252,9 +287,14 @@
       "sha256": "a9525db62040ccd3735b9c66e1c07b21bb2f10b0885b21f53bd0d5b6f78f250b"
     },
     {
+      "path": "docs/screenshots/years.png",
+      "bytes": 157958,
+      "sha256": "a982ad965823da75fcc48bff5076872fb7b355c9f1e3c97b6dc64b908667da32"
+    },
+    {
       "path": "docs/SOURCES.md",
-      "bytes": 3880,
-      "sha256": "e52b729ecdbcf83c8d9683004bec164c9ed0d033010d4a860c9cadf995ca654c"
+      "bytes": 5022,
+      "sha256": "9917207bbe9107e364dba61d657cf2f73d5d63146e5752704be1b1ecaa4d897a"
     },
     {
       "path": "docs/UPDATING.md",
@@ -263,8 +303,13 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 8697,
-      "sha256": "6b588b4a67214a877a66c9a73ba655095e3d9f6a6f37373d24f752d9cbf1bed8"
+      "bytes": 13077,
+      "sha256": "a3c1bf55911c4ba70faea0450ac14e51129ec276783603f72b04f6dba9be11df"
+    },
+    {
+      "path": "docs/WEEKLY_SOURCE_AUDIT.md",
+      "bytes": 2709,
+      "sha256": "914de038f71208fe2aa4b3b33f055b0e9941805ad56de1696501e10c8daed0d3"
     },
     {
       "path": "gradle/wrapper/gradle-wrapper.jar",
@@ -298,33 +343,33 @@
     },
     {
       "path": "README.md",
-      "bytes": 5329,
-      "sha256": "e498bfdc0d98dd0189176397e9816028219c0e893d9abf191d7a07cf33dad836"
+      "bytes": 2186,
+      "sha256": "398851adebf82eabae390087b54ddeda919c5a30a6cbe1d786d01b7597132f75"
     },
     {
       "path": "release/NOTES.md",
-      "bytes": 459,
-      "sha256": "a2c8a51ef6564e564b0b3ba9b88dfecee37775ec1f5a5590dd9727c9a605f021"
+      "bytes": 504,
+      "sha256": "085526cd3e604ff2f15a5bb994e566fc3cb0020340129ba523d346b3ae1769a4"
     },
     {
       "path": "release/SHA256SUMS.txt",
       "bytes": 86,
-      "sha256": "87e3768989a6ed33685f81da5d145523aa13e8d4d5f437f065cd8b6310a49436"
+      "sha256": "269d3c1074093631eb49f06e546d44c424f988cce5b281dec8600d9f1777ae28"
     },
     {
       "path": "release/update.json",
-      "bytes": 604,
-      "sha256": "7dbb0077ac979276ce078c0dc5149b259bed2f5e49d2a97b77dda2e1bfc2f2e2"
+      "bytes": 650,
+      "sha256": "768fbe0597aa922d1ebff3f8199a01ba7159f615cd38166ac4a4263c7f4bd112"
     },
     {
       "path": "release/WCW-FireTV-App.apk",
-      "bytes": 7053901,
-      "sha256": "197ae64695d31cb2c15e0375613789e9833a6e405425f6a17defad31e2f6aa93"
+      "bytes": 7126965,
+      "sha256": "a0ecb1ada50baabb2c347800413c1c517ed784cc657239b6716e4bb5e67c67cf"
     },
     {
       "path": "scripts/check_sources.py",
-      "bytes": 2194,
-      "sha256": "122406fc69c5155630e56e522d7b1ae4a683b56d003ee1cffd88974bc4540b97"
+      "bytes": 2259,
+      "sha256": "91a33fc809bba17aa91162ea1c80fd005b7be258c26bc444d5ab6cb203113438"
     },
     {
       "path": "scripts/make_update_manifest.py",
@@ -338,18 +383,18 @@
     },
     {
       "path": "sources.json",
-      "bytes": 18775,
-      "sha256": "8f1a6421c9377e2760a98fb7abb4f8be2119b483e6da3825b004734674f89d03"
+      "bytes": 41997,
+      "sha256": "8b13bb9edee2a317dfa630655a1a1c303a2ac1b82769fa76b32352c54e932a97"
     },
     {
       "path": "sources.schema.json",
-      "bytes": 1634,
-      "sha256": "b2ec0b91edf2cb54be847cb2fe02efbb07159c4afce7e727a8b5037b5283c89c"
+      "bytes": 1733,
+      "sha256": "8b7f39d3a9eb9e292837dc35841f7bae7655b7879720161cc07d5a652ae50e7c"
     },
     {
       "path": "START_HERE.md",
-      "bytes": 3701,
-      "sha256": "9f78d1273e49ee25dab83378c8435e71f390e58d5c72b8b8dece15c499bc750e"
+      "bytes": 2491,
+      "sha256": "ce93d62fa402d9c8c3a36817105d61b4f531d2d7644791423e7e5367ce3f9a63"
     },
     {
       "path": "third_party/licenses/APACHE-2.0.txt",

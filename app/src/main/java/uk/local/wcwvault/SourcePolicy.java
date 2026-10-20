@@ -1,14 +1,16 @@
 package uk.local.wcwvault;
 
+import java.util.*;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
 
 /** Full-show eligibility is checked before resolution or file-size preferences. */
 final class SourcePolicy {
-  private static final Pattern EXTRA = Pattern.compile(
-      "(?i)\\b(?:countdown|pre[ ._-]*shows?|preshows?|highlights?|trailer|preview|sample|"
-          + "compilation|clips?|recap|review|reliving[ ._-]+the[ ._-]+war|"
-          + "full[ ._-]+match)\\b");
+  private static final Pattern EXTRA =
+      Pattern.compile(
+          "(?i)\\b(?:countdown|pre[ ._-]*shows?|preshows?|highlights?|trailer|preview|sample|"
+              + "compilation|clips?|recap|review|reliving[ ._-]+the[ ._-]+war|"
+              + "full[ ._-]+match)\\b");
 
   static boolean eligible(JSONObject source) {
     if (!"archive".equals(source.optString("type"))) return true;
@@ -17,13 +19,44 @@ final class SourcePolicy {
     // Multipart recordings must be judged by their combined runtime, not one segment.
     if (source.optJSONArray("urls") != null) return true;
     double duration = source.optDouble("duration", 0);
-    return duration <= 0 || duration >= 2700;
+    return duration <= 0 || duration >= minimumSeconds(source.optString("programme"));
+  }
+
+  static int minimumSeconds(String show) {
+    if (show.equals("Nitro")) return 2400;
+    if (show.equals("Worldwide")
+        || show.equals("Pro")
+        || show.equals("Power Hour")
+        || show.equals("Prime")) return 1800;
+    if (show.equals("Main Event")) return 1200;
+    return 2700;
+  }
+
+  static int languagePreference(JSONObject source) {
+    if (source.optString("type").equals("youtube"))
+      return 0; // Resolver selects English/original audio.
+    String language =
+        source.optString("audioLanguage", source.optString("language")).toLowerCase(Locale.UK);
+    String description =
+        (source.optString("filename") + " " + source.optString("label")).replace('_', ' ');
+    if (Pattern.compile("(?:^|[^a-z])(?:en|eng|english)(?:$|[^a-z])").matcher(language).find()
+        || Pattern.compile("(?i)\\bEnglish\\b").matcher(description).find()) return 0;
+    if (Pattern.compile(
+                "(?:^|[^a-z])(?:de|deu|ger|german|deutsch|fr|fra|fre|french|es|spa|spanish|ja|jpn|japanese|it|ita|italian|mul)(?:$|[^a-z])")
+            .matcher(language)
+            .find()
+        || Pattern.compile(
+                "(?i)\\b(?:german|deutsch|french|fran[cç]ais|spanish|espa[nñ]ol|japanese|italian|italiano)\\s*(?:commentary|audio|dub(?:bed)?|version)?\\b")
+            .matcher(description)
+            .find()) return 2;
+    return 1;
   }
 
   static int preference(JSONObject source) {
     return "archive".equals(source.optString("type"))
             && "Chasing That W".equalsIgnoreCase(source.optString("creator"))
             && source.optDouble("duration", 0) >= 5400
-        ? 0 : 1;
+        ? 0
+        : 1;
   }
 }

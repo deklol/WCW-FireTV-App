@@ -15,9 +15,9 @@ Add a playlist to `youtube.playlists`:
 }
 ```
 
-`show` is `Nitro`, `Thunder`, `PPV` or `Clash of the Champions`. The configured `channelId` identifies the source channel. The default is the official WCW channel, `UCbGG2hv4cWmIrBAIhGiCdSg`.
+`show` identifies the playlist's programme; the older full-episode playlist uses `Saturday Night`, with the historical World Championship Wrestling name displayed for earlier broadcasts. The configured `channelId` identifies the source channel. The default is the official WCW channel, `UCbGG2hv4cWmIrBAIhGiCdSg`.
 
-Only titles containing **FULL EPISODE** or **FULL EVENT**, at least 45 minutes long, with a confidently matched broadcast/event date from 1997-01-01 through 2001-03-26 are admitted. Full matches, highlights, live watch parties and compilations are excluded. `Thundercage` in a PPV title does not make that event a Thunder episode. Unknown or conflicting dates are skipped rather than guessed.
+Only titles containing **FULL EPISODE** or **FULL EVENT**, with a confidently matched broadcast/event date from 1983-01-01 through 2001-03-26 are admitted. The minimum listed duration is 20 minutes for full episodes and 45 minutes for full events. Full matches, highlights, live watch parties and compilations are excluded. `Thundercage` in a PPV title does not make that event a Thunder episode. Clash events are resolved by their Arabic/Roman event number when supplied. Unknown or conflicting dates are skipped rather than guessed.
 
 ## Archive.org
 
@@ -34,9 +34,11 @@ Add a collection under `archive.collections`:
 
 The identifier is the part after `/details/` in an Archive item URL. Supply an **item containing video files**, not a top-level Archive collection containing other items. `showHint` is optional; use it when date-only filenames need a show identity. Omit it for mixed Nitro/Thunder/PPV items. Broadcast dates must still be established independently.
 
-The scanner reads public metadata and accepts MP4/M4V files with recorded durations of at least 45 minutes. It rejects private files, clips, samples and explicitly incomplete parts. It preserves already supplied complete multipart sources. It maps dated files to existing episodes where possible, so a second quality option is an extra source, not a new episode.
+Use `"dateOrder": "MDY"` or `"dateOrder": "DMY"` only after checking the uploader's numeric filename convention. Otherwise ambiguous numeric dates are skipped. Explicit per-file show names and dated filename suffixes `N` (Nitro), `T` (Thunder), `SN` (Saturday Night), and `COTC` (Clash) take precedence over a collection hint. Mixed Nitro/Thunder collection titles cannot supply a single inherited show. Existing cached misclassifications are repaired on load, with source deduplication and progress transferred when an incorrect entry is completely merged into one correct entry.
 
-`collectionsPerScan` defaults to **12**, with a supported range of 1–50. Collections are checked in rotation, keeping each scan light. With the default 126 collections and a six-hour schedule, one complete Archive rotation takes approximately three days. Every scan checks all enabled YouTube playlists. The app does not search arbitrary new Archive accounts or collections automatically: add those item IDs to this file.
+The scanner reads public metadata and accepts MP4/M4V files with programme-specific minimum durations: Nitro 40 minutes; Worldwide, Pro, Power Hour and Prime 30 minutes; Main Event 20 minutes; other formats 45 minutes. These thresholds reject obvious short fragments without discarding full shorter weekly formats. They cannot prove that a recording is uncut. The scanner rejects private files, clips, samples and explicitly incomplete parts, preserves supplied complete multipart sources, and maps dated files to existing episodes where possible so a second encode is an extra source rather than a new episode.
+
+`collectionsPerScan` defaults to **12**, with a supported range of 1–50. Collections are checked in rotation, keeping each scan light. With the current 245 items and a six-hour schedule, one complete Archive rotation takes approximately five days, subject to OS scheduling and playback deferrals. Every scan checks all five enabled YouTube playlists. The app does not search arbitrary new Archive accounts or collections automatically: add those item IDs to this file.
 
 For an immediate complete pass, use **Settings → Full source scan**. This checks every enabled Archive item as well as all YouTube playlists; it can take longer than the normal quick refresh. A failed item is skipped with its reason while the remaining items continue.
 

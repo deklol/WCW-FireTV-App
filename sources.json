@@ -29,6 +29,12 @@
         "name": "WCW Monday Nitro Full Episodes",
         "enabled": true,
         "show": "Nitro"
+      },
+      {
+        "id": "PLqeI_ua6LQHF4w___rh980zXRn1ES83M0",
+        "name": "Full World Championship Wrestling Episodes",
+        "enabled": true,
+        "show": "Saturday Night"
       }
     ]
   },
@@ -122,8 +128,9 @@
       },
       {
         "id": "Jan-01-2001-Mar-26-2001",
-        "name": "Nitro / PPV 2001",
-        "enabled": true
+        "name": "Nitro, Thunder and PPV 2001",
+        "enabled": true,
+        "dateOrder": "MDY"
       },
       {
         "id": "Jan-16-2000-Dec-17-2000",
@@ -355,15 +362,15 @@
       },
       {
         "id": "jan-06-1997-dec-29-1997",
-        "name": "PPV 1997",
+        "name": "Nitro, Saturday Night and events 1997",
         "enabled": true,
-        "showHint": "PPV"
+        "dateOrder": "MDY"
       },
       {
         "id": "jan-3-2000-dec-27-2000",
-        "name": "Nitro 2000",
+        "name": "Nitro and Thunder 2000",
         "enabled": true,
-        "showHint": "Nitro"
+        "dateOrder": "MDY"
       },
       {
         "id": "jan.-14-2001",
@@ -789,6 +796,832 @@
         "name": "Thunder 2000",
         "enabled": true,
         "showHint": "Thunder"
+      },
+      {
+        "id": "11-07-92.-wcw-worldwide-complete",
+        "name": "Worldwide \u00b7 11-07-92.-wcw-worldwide-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "1984-vhs-wcw-pay-per-views",
+        "name": "PPV \u00b7 1984-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "1985-vhs-wcw-pay-per-views",
+        "name": "PPV \u00b7 1985-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "1987-vhs-wcw-pay-per-views",
+        "name": "PPV \u00b7 1987-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "1988-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions / PPV \u00b7 1988-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "1989-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions / PPV \u00b7 1989-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "1990-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions / PPV \u00b7 1990-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "1991-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions / PPV \u00b7 1991-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "1992-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions / PPV \u00b7 1992-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "1993-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions / PPV \u00b7 1993-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "1994-vhs-wcw-pay-per-views",
+        "name": "Clash of the Champions \u00b7 1994-vhs-wcw-pay-per-views",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Clash of the Champions"
+      },
+      {
+        "id": "Dec-27-1994",
+        "name": "Saturday Night \u00b7 Dec-27-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "apr.-17-1994",
+        "name": "PPV \u00b7 apr.-17-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "apr.-1996",
+        "name": "Nitro \u00b7 apr.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "aug.-10-1996",
+        "name": "PPV \u00b7 aug.-10-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "aug.-1996",
+        "name": "Nitro \u00b7 aug.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "dec.-13-1989",
+        "name": "PPV \u00b7 dec.-13-1989",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-16-1990",
+        "name": "PPV \u00b7 dec.-16-1990",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-1995",
+        "name": "Nitro \u00b7 dec.-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "dec.-1996",
+        "name": "Nitro \u00b7 dec.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "dec.-26-1988",
+        "name": "PPV \u00b7 dec.-26-1988",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-27-1993",
+        "name": "PPV \u00b7 dec.-27-1993",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-27-1994",
+        "name": "PPV \u00b7 dec.-27-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-27-1995",
+        "name": "PPV \u00b7 dec.-27-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-28-1992",
+        "name": "PPV \u00b7 dec.-28-1992",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-29-1991",
+        "name": "PPV \u00b7 dec.-29-1991",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "dec.-29-1996",
+        "name": "PPV \u00b7 dec.-29-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-11-1996",
+        "name": "PPV \u00b7 feb.-11-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-19-1995",
+        "name": "PPV \u00b7 feb.-19-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-1996",
+        "name": "Nitro \u00b7 feb.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "feb.-20-1989",
+        "name": "PPV \u00b7 feb.-20-1989",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-20-1994",
+        "name": "PPV \u00b7 feb.-20-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-21-1993",
+        "name": "PPV \u00b7 feb.-21-1993",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-24-1991",
+        "name": "PPV \u00b7 feb.-24-1991",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-25-1990",
+        "name": "PPV \u00b7 feb.-25-1990",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "feb.-29-1992",
+        "name": "PPV \u00b7 feb.-29-1992",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jan-01-1996-dec-30-1996",
+        "name": "Clash of the Champions / Nitro / Saturday Night \u00b7 jan-01-1996-dec-30-1996",
+        "enabled": true,
+        "dateOrder": "MDY"
+      },
+      {
+        "id": "jan.-1996",
+        "name": "Nitro \u00b7 jan.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jan.-24-1988",
+        "name": "PPV \u00b7 jan.-24-1988",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul-07-1996",
+        "name": "PPV \u00b7 jul-07-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-05-1986",
+        "name": "PPV \u00b7 jul.-05-1986",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-06-1985",
+        "name": "PPV \u00b7 jul.-06-1985",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-07-1990",
+        "name": "PPV \u00b7 jul.-07-1990",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-16-1988",
+        "name": "PPV \u00b7 jul.-16-1988",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-16-1995",
+        "name": "PPV \u00b7 jul.-16-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-17-1994",
+        "name": "PPV \u00b7 jul.-17-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-18-1993",
+        "name": "PPV \u00b7 jul.-18-1993",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jul.-1996",
+        "name": "Nitro \u00b7 jul.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "jul.-26-1986",
+        "name": "PPV \u00b7 jul.-26-1986",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-16-1996",
+        "name": "PPV \u00b7 jun.-16-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-18-1995",
+        "name": "PPV \u00b7 jun.-18-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "jun.-20-1992",
+        "name": "PPV \u00b7 jun.-20-1992",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "main-event-93-complete",
+        "name": "Main Event \u00b7 main-event-93-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Main Event"
+      },
+      {
+        "id": "main-event-complete",
+        "name": "Main Event \u00b7 main-event-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Main Event"
+      },
+      {
+        "id": "mar.-19-1995",
+        "name": "PPV \u00b7 mar.-19-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "mar.-1996",
+        "name": "Nitro \u00b7 mar.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "mar.-24-1996",
+        "name": "PPV \u00b7 mar.-24-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-17-1992",
+        "name": "PPV \u00b7 may-17-1992",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-19-1990",
+        "name": "PPV \u00b7 may-19-1990",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-19-1991",
+        "name": "PPV \u00b7 may-19-1991",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-19-1996",
+        "name": "PPV \u00b7 may-19-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-1996",
+        "name": "Nitro \u00b7 may-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "may-21-1995",
+        "name": "PPV \u00b7 may-21-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-22-1994",
+        "name": "PPV \u00b7 may-22-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "may-23-1993",
+        "name": "PPV \u00b7 may-23-1993",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-1995",
+        "name": "Nitro \u00b7 nov.-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "nov.-1996",
+        "name": "Nitro \u00b7 nov.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "nov.-20-1993",
+        "name": "PPV \u00b7 nov.-20-1993",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-24-1983",
+        "name": "PPV \u00b7 nov.-24-1983",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-24-1996",
+        "name": "PPV \u00b7 nov.-24-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-26-1987",
+        "name": "PPV \u00b7 nov.-26-1987",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-26-1995",
+        "name": "PPV \u00b7 nov.-26-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nov.-27-1986",
+        "name": "PPV \u00b7 nov.-27-1986",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nwa-clash-of-the-champions-9-new-york-knock-out-15-11-1989",
+        "name": "Clash of the Champions \u00b7 nwa-clash-of-the-champions-9-new-york-knock-out-15-11-1989",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Clash of the Champions"
+      },
+      {
+        "id": "nwa-crockett-cup-1986-19-04-1986",
+        "name": "PPV \u00b7 nwa-crockett-cup-1986-19-04-1986",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nwa-wcw-power-hour-complete",
+        "name": "Power Hour \u00b7 nwa-wcw-power-hour-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Power Hour"
+      },
+      {
+        "id": "nwa-wcwnjpw-wrestling-collision-in-korea-42895",
+        "name": "PPV \u00b7 nwa-wcwnjpw-wrestling-collision-in-korea-42895",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "nwa.-wcw-.worldwide_complete",
+        "name": "Worldwide \u00b7 nwa.-wcw-.worldwide_complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "oct.-1995",
+        "name": "Nitro \u00b7 oct.-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "oct.-1996",
+        "name": "Nitro \u00b7 oct.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "oct.-23-1994",
+        "name": "PPV \u00b7 oct.-23-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-24-1993",
+        "name": "PPV \u00b7 oct.-24-1993",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-25-1992",
+        "name": "PPV \u00b7 oct.-25-1992",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-27-1991",
+        "name": "PPV \u00b7 oct.-27-1991",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-27-1996",
+        "name": "PPV \u00b7 oct.-27-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-28-1989",
+        "name": "PPV \u00b7 oct.-28-1989",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "oct.-29-1995",
+        "name": "PPV \u00b7 oct.-29-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "prime-95-complete",
+        "name": "Prime \u00b7 prime-95-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Prime"
+      },
+      {
+        "id": "sep.-15-1996",
+        "name": "PPV \u00b7 sep.-15-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-17-1995",
+        "name": "PPV \u00b7 sep.-17-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-18-1994",
+        "name": "PPV \u00b7 sep.-18-1994",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "sep.-1995",
+        "name": "Nitro \u00b7 sep.-1995",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "sep.-1996",
+        "name": "Nitro \u00b7 sep.-1996",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Nitro"
+      },
+      {
+        "id": "wcw-all-nighter-94",
+        "name": "All Nighter \u00b7 wcw-all-nighter-94",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "All Nighter"
+      },
+      {
+        "id": "wcw-all-nighter-95",
+        "name": "All Nighter \u00b7 wcw-all-nighter-95",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "All Nighter"
+      },
+      {
+        "id": "wcw-njpw-collision-in-korea-complete-edition",
+        "name": "PPV \u00b7 wcw-njpw-collision-in-korea-complete-edition",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "wcw-njpw-starrcade-1991-in-tokyo-dome-21-03-1991",
+        "name": "PPV \u00b7 wcw-njpw-starrcade-1991-in-tokyo-dome-21-03-1991",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "wcw-powerhour-complete",
+        "name": "Power Hour \u00b7 wcw-powerhour-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Power Hour"
+      },
+      {
+        "id": "wcw-powerhour-incomplete",
+        "name": "Power Hour \u00b7 wcw-powerhour-incomplete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Power Hour"
+      },
+      {
+        "id": "wcw-pro-10-20-90_202404",
+        "name": "Pro \u00b7 wcw-pro-10-20-90_202404",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Pro"
+      },
+      {
+        "id": "wcw-pro-95-complete",
+        "name": "Pro \u00b7 wcw-pro-95-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Pro"
+      },
+      {
+        "id": "wcw-worldwide-1993-complete",
+        "name": "Worldwide \u00b7 wcw-worldwide-1993-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "wcw-worldwide-94-complete",
+        "name": "Worldwide \u00b7 wcw-worldwide-94-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "wcw-worldwide-95-incomplete",
+        "name": "Worldwide \u00b7 wcw-worldwide-95-incomplete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "wcw-x-njpw-collision-in-korea-2",
+        "name": "PPV \u00b7 wcw-x-njpw-collision-in-korea-2",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "wcw.-1988.06.-clash-of-the-champions-03-restored-2021-ch",
+        "name": "Clash of the Champions \u00b7 wcw.-1988.06.-clash-of-the-champions-03-restored-2021-ch",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Clash of the Champions"
+      },
+      {
+        "id": "wcw.-main.-event.-complete",
+        "name": "Main Event \u00b7 wcw.-main.-event.-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Main Event"
+      },
+      {
+        "id": "wcw.-me.-complete",
+        "name": "Main Event \u00b7 wcw.-me.-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Main Event"
+      },
+      {
+        "id": "wcw.-power.-hour-complete",
+        "name": "Power Hour \u00b7 wcw.-power.-hour-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Power Hour"
+      },
+      {
+        "id": "wcw.-power.-hour.-complete",
+        "name": "Power Hour \u00b7 wcw.-power.-hour.-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Power Hour"
+      },
+      {
+        "id": "wcw.-pro.-1991.complete",
+        "name": "Pro \u00b7 wcw.-pro.-1991.complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Pro"
+      },
+      {
+        "id": "wcw.-pro.-wrestling.-complete",
+        "name": "Pro \u00b7 wcw.-pro.-wrestling.-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Pro"
+      },
+      {
+        "id": "wcw.-pro.-wrestling.-complete_202406",
+        "name": "Pro \u00b7 wcw.-pro.-wrestling.-complete_202406",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Pro"
+      },
+      {
+        "id": "wcw.-saturday.-night.-1991.complete",
+        "name": "Saturday Night \u00b7 wcw.-saturday.-night.-1991.complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "wcw.-saturday.-night.-incomplete",
+        "name": "Saturday Night \u00b7 wcw.-saturday.-night.-incomplete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "wcw.-world.-championship.-wrestling.-complete",
+        "name": "Saturday Night \u00b7 wcw.-world.-championship.-wrestling.-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Saturday Night"
+      },
+      {
+        "id": "wcw.-worldwide.-complete",
+        "name": "Worldwide \u00b7 wcw.-worldwide.-complete",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
+      },
+      {
+        "id": "when-worlds-collide-1994-aaa-ppv-los-angeles-ca",
+        "name": "PPV \u00b7 when-worlds-collide-1994-aaa-ppv-los-angeles-ca",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "PPV"
+      },
+      {
+        "id": "world.-championship.-wrestling.-partial",
+        "name": "Saturday Night \u00b7 world.-championship.-wrestling.-partial",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Saturday Night"
       }
     ]
   }

@@ -37,7 +37,7 @@ public class CatalogueTest {
         .put(episode("2000-02-20", "PPV").put("title", "WCW SuperBrawl 2000"));
     String title = "FULL EVENT: WCW SuperBrawl IV – Flair vs. Vader inside Thundercage";
     assertEquals("PPV", CatalogSync.show(title));
-    assertNull(CatalogSync.date(title, data));
+    assertEquals("1994-02-20", CatalogSync.date(title, data));
     JSONObject bad = episode("2000-02-20", "Thunder");
     bad.getJSONArray("sources")
         .put(
@@ -79,21 +79,25 @@ public class CatalogueTest {
                     java.nio.file.Paths.get("src/main/assets/catalogue.json")),
                 java.nio.charset.StandardCharsets.UTF_8));
     int rows = data.getJSONArray("episodes").length(), sources = 0;
+    java.util.List<String> mismatches = new java.util.ArrayList<>();
     for (int i = 0; i < rows; i++) {
       JSONObject row = data.getJSONArray("episodes").getJSONObject(i);
       for (int j = 0; j < row.getJSONArray("sources").length(); j++) {
         JSONObject source = row.getJSONArray("sources").getJSONObject(j);
         if (!source.optString("type").equals("youtube")) continue;
-        assertEquals(
-            source.optString("title"),
-            row.getString("date"),
-            CatalogSync.date(source.optString("title"), data));
-        assertEquals(
-            source.optString("title"),
-            row.getString("show"),
-            CatalogSync.show(source.optString("title")));
+        if (!row.getString("date").equals(CatalogSync.date(source.optString("title"), data))
+            || !row.getString("show").equals(CatalogSync.show(source.optString("title"))))
+          mismatches.add(
+              row.getString("id")
+                  + ": "
+                  + source.optString("title")
+                  + " -> "
+                  + CatalogSync.date(source.optString("title"), data)
+                  + " / "
+                  + CatalogSync.show(source.optString("title")));
       }
     }
+    assertTrue(String.join("\n", mismatches), mismatches.isEmpty());
     for (int i = 0; i < rows; i++)
       sources += data.getJSONArray("episodes").getJSONObject(i).getJSONArray("sources").length();
     Catalog.normalizeYoutube(data);

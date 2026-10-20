@@ -13,7 +13,7 @@
 
 [Download the latest APK directly](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk)
 
-A Fire TV app for watching the Monday Night era in order. Pick a year, press **Play all**, and watch the available Nitro, Thunder and PPV broadcasts in one built-in player.
+A Fire TV app for watching WCW in broadcast order, with available programmes from 1983 through March 2001. Pick a year, press **Play all**, and watch its available shows and events in one built-in player.
 
 Created by [digitalm1nd](https://x.com/digitalm1nd).
 
@@ -25,13 +25,14 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Features
 
+- Version **0.3.0** expands the bundled catalogue to **1,933 broadcasts**, adding 1,273 pre-1997 shows and events and a dedicated **Years** selector. Includes 68 earlier Nitro dates and 33 earlier Clash events. See the [library inventory and coverage limits](docs/PRE1997_LIBRARY.md).
 - Version **0.2.6** corrects PPV sources that selected preshows or reviews, including Souled Out 2000 and SuperBrawl 2000. Corrections apply to existing catalogues while preserving viewing history. See the [PPV source audit](docs/PPV_SOURCE_AUDIT.md).
 - Version **0.2.5** adds automatic GitHub update checks with Update, Later and Skip this version options, verified APK installation and manual updates in Settings. The home hero shows your unfinished episode's artwork, details and saved progress. See [app updates](docs/UPDATING.md).
 - Version **0.2.4** adds six-second Archive.org stall recovery, episode progress bars and watched percentages, manual watched/unwatched controls, and source-aware resume. Clash of the Champions events are grouped under PPV.
 - Dark TV interface, artwork, event descriptions and remote-friendly cards.
-- Top navigation: **Home · Nitro · Thunder · PPV · Search · Settings**, with year filters in each show catalogue. Home returns to the homepage.
+- Top navigation: **Home · Years · Nitro · Thunder · PPV · Search · Settings**, with year filters in each show catalogue. Home returns to the homepage.
 - Separate **Latest found Nitro**, **Latest found Thunder** and **Latest found PPVs** rows, directly below the hero. Newest discoveries appear first; broadcasts discovered together use newest broadcast date first. Playback queues remain chronological.
-- Year queues covering 1997 through WCW's final broadcast in March 2001. Unavailable episodes are omitted.
+- Year queues cover available broadcasts from 1983 through WCW's final broadcast in March 2001. Early-year queues include every available programme. Unavailable episodes are omitted.
 - Automatic next episode, resume positions, watched markers, search and optional Saturday Night, Worldwide and Pro shows.
 - Direct streaming from public Archive collections and the official WCW YouTube playlists, without opening an external app.
 - Original English YouTube audio, H.264 video and a default 720p maximum suitable for the tested Fire Stick.
@@ -42,7 +43,7 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Install
 
-Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.2.6** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing 0.2.5 users can also check **Settings > Update app**.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.3.0** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing users with the in-app updater can also check **Settings > Update app**.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 

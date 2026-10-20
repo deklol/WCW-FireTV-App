@@ -35,11 +35,11 @@ release/                           Compiled APK, update manifest and checksum
 
 1. A year produces a list of sourced broadcasts sorted by air date and show order.
 2. The selected episode establishes the starting position in that list.
-3. The resolver tries the preferred provider, then other allowed options.
+3. The resolver ranks known English audio first, then the preferred provider, curated copies and resolution. Known foreign-language copies remain fallbacks; unknown audio is ranked between known English and known foreign audio.
 4. The built-in player streams the selected media and saves progress.
 5. When the final media part ends, autoplay advances to the next item in the same queue. Unavailable episodes can be skipped with a bounded failure limit.
 
-Homepage rows display newest discoveries first, with broadcast date descending as a tie-breaker. Clicking a card starts its year's full chronological timeline rather than limiting playback to that homepage row.
+The dedicated Years page lists the years present in the catalogue. Each pre-1997 year includes every available programme independently of the later-era extras preference. Programme filters are generated from that year's actual content; the top navigation retains the Nitro, Thunder and PPV shortcuts. Homepage rows display newest discoveries first, with broadcast date descending as a tie-breaker. Clicking a card starts its year's full chronological timeline rather than limiting playback to that homepage row.
 
 ## Archive playback recovery
 
@@ -47,7 +47,7 @@ While an Archive stream is supposed to be playing, the player samples its positi
 
 ## Viewing history
 
-Playback saves the current part/time every five seconds and when leaving the player. Episode cards show a red progress bar, watched percentage and completion tick from the same device-local history. The actual measured duration is saved when known; multipart offsets use observed previous-part lengths and the catalogue total until every part length is known. Without a known total the card shows elapsed minutes. Completing the final part marks the whole show watched; the detail panel can mark it watched or unwatched manually. Resume prioritises the saved source choice so changing provider defaults does not unnecessarily reset the playback position. Clear viewing history removes these progress records and source choices without clearing the catalogue or source-refresh settings.
+Playback saves the current part/time every five seconds and when leaving the player. Episode cards show a red progress bar, watched percentage and completion tick from the same device-local history. The actual measured duration is saved when known; multipart offsets use observed previous-part lengths and the catalogue total until every part length is known. Without a known total the card shows elapsed minutes. Completing the final part marks the whole show watched; the detail panel can mark it watched or unwatched manually. Resume prioritises the saved source within its language tier, so a saved German copy cannot outrank an available known English alternative. Clear viewing history removes these progress records and source choices without clearing the catalogue or source-refresh settings.
 
 ## Refresh flow
 

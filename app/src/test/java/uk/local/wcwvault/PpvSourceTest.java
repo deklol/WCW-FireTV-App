@@ -1,45 +1,63 @@
 package uk.local.wcwvault;
 
 import static org.junit.Assert.*;
+
 import java.nio.file.*;
 import org.json.*;
 import org.junit.Test;
 
 public class PpvSourceTest {
   private JSONObject seed() throws Exception {
-    return new JSONObject(new String(Files.readAllBytes(
-        Paths.get("src/main/assets/catalogue.json")), java.nio.charset.StandardCharsets.UTF_8));
+    return new JSONObject(
+        new String(
+            Files.readAllBytes(Paths.get("src/main/assets/catalogue.json")),
+            java.nio.charset.StandardCharsets.UTF_8));
   }
 
-  @Test public void rejectsPreshowAndReviewButKeepsMultipart() throws Exception {
-    for (String name : new String[] {"WCW Souled Out 2000 Countdown Show.ia.mp4",
-        "WCW SuperBrawl 2000 - The Reliving The War PPV.mp4",
-        "WCW Fall Brawl 1997 pre-show.mp4"}) {
-      assertFalse(SourcePolicy.eligible(new JSONObject().put("type", "archive")
-          .put("filename", name).put("duration", 6000)));
+  @Test
+  public void rejectsPreshowAndReviewButKeepsMultipart() throws Exception {
+    for (String name :
+        new String[] {
+          "WCW Souled Out 2000 Countdown Show.ia.mp4",
+          "WCW SuperBrawl 2000 - The Reliving The War PPV.mp4",
+          "WCW Fall Brawl 1997 pre-show.mp4"
+        }) {
+      assertFalse(
+          SourcePolicy.eligible(
+              new JSONObject().put("type", "archive").put("filename", name).put("duration", 6000)));
     }
-    assertFalse(SourcePolicy.eligible(new JSONObject().put("type", "archive").put("duration", 1800)));
-    assertTrue(SourcePolicy.eligible(new JSONObject().put("type", "archive")
-        .put("duration", 1800).put("urls", new JSONArray().put("part1").put("part2"))));
+    assertFalse(
+        SourcePolicy.eligible(new JSONObject().put("type", "archive").put("duration", 1800)));
+    assertTrue(
+        SourcePolicy.eligible(
+            new JSONObject()
+                .put("type", "archive")
+                .put("duration", 1800)
+                .put("urls", new JSONArray().put("part1").put("part2"))));
   }
 
-  @Test public void auditedCopiesWinAtDefault720pForAll51Events() throws Exception {
+  @Test
+  public void auditedCopiesWinAtDefault720pForAll51Events() throws Exception {
     JSONArray rows = seed().getJSONArray("episodes");
     int checked = 0;
     for (int i = 0; i < rows.length(); i++) {
       Catalog.Episode episode = new Catalog.Episode(rows.getJSONObject(i));
+      if (episode.year < 1997) continue;
       boolean curated = false;
       for (int j = 0; j < episode.sources.size(); j++)
         curated |= SourcePolicy.preference(episode.sources.get(j)) == 0;
       if (!curated) continue;
-      assertEquals(episode.title, "Chasing That W",
+      assertEquals(
+          episode.title,
+          "Chasing That W",
           Resolver.options(episode, 2, null, 720).get(0).optString("creator"));
       checked++;
     }
     assertEquals(51, checked);
   }
 
-  @Test public void existingCacheReceivesMetadataAndLosesInvalidOptions() throws Exception {
+  @Test
+  public void existingCacheReceivesMetadataAndLosesInvalidOptions() throws Exception {
     JSONObject seed = seed(), cache = new JSONObject(seed.toString());
     JSONArray rows = cache.getJSONArray("episodes");
     JSONObject target = null;
@@ -53,8 +71,12 @@ public class PpvSourceTest {
       }
     }
     assertNotNull(target);
-    target.getJSONArray("sources").put(new JSONObject().put("type", "archive")
-        .put("filename", "WCW Souled Out 2000 Countdown Show.ia.mp4"));
+    target
+        .getJSONArray("sources")
+        .put(
+            new JSONObject()
+                .put("type", "archive")
+                .put("filename", "WCW Souled Out 2000 Countdown Show.ia.mp4"));
     java.util.List<Catalog.Episode> oldEpisodes = Catalog.episodes;
     JSONObject oldRaw = Catalog.raw;
     try {
@@ -71,11 +93,14 @@ public class PpvSourceTest {
     }
   }
 
-  @Test public void refreshCannotReintroduceLongPreshowsOrReviews() throws Exception {
+  @Test
+  public void refreshCannotReintroduceLongPreshowsOrReviews() throws Exception {
     JSONObject data = seed();
-    JSONObject item = new JSONObject("{metadata:{title:'WCW PPV'},files:["
-        + "{name:'2000-01-16 Countdown.mp4',length:6000},"
-        + "{name:'2000-02-20 Reliving The War.mp4',length:6000}]}");
+    JSONObject item =
+        new JSONObject(
+            "{metadata:{title:'WCW PPV'},files:["
+                + "{name:'2000-01-16 Countdown.mp4',length:6000},"
+                + "{name:'2000-02-20 Reliving The War.mp4',length:6000}]}");
     assertEquals(0, ArchiveSync.merge(data, "test-ppv", item));
   }
 }

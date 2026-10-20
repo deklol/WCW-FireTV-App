@@ -20,13 +20,33 @@ final class ArchiveSync {
   }
 
   static String family(String title) {
-    String value = title.toLowerCase(Locale.UK);
-    if (value.contains("nitro")) return "Nitro";
-    if (value.contains("thunder")) return "Thunder";
+    String value = title.replace('_', ' ').replace('.', ' ').toLowerCase(Locale.UK);
+    // Anchored file markers, not letters occurring in a title or collection name.
+    Matcher marker =
+        Pattern.compile(
+                "(?i)^\\d{2}[ ._-]\\d{2}[ ._-]\\d{4}["
+                    + " ._-]+(N|T|SN|COTC\\d*)(?:\\.ia)?\\.(?:mp4|mkv|m4v)$")
+            .matcher(title);
+    if (marker.matches()) {
+      String code = marker.group(1).toUpperCase(Locale.UK);
+      if (code.equals("N")) return "Nitro";
+      if (code.equals("T")) return "Thunder";
+      if (code.equals("SN")) return "Saturday Night";
+      return "Clash of the Champions";
+    }
     if (value.contains("clash of")) return "Clash of the Champions";
+    boolean nitro = Pattern.compile("\\b(?:nitro|ortin)\\b").matcher(value).find();
+    boolean thunder = Pattern.compile("\\b(?:thunder|rednuht)\\b").matcher(value).find();
+    if (nitro && thunder) return null; // Mixed collection: never inherit one show's identity.
+    if (nitro) return "Nitro";
+    if (thunder) return "Thunder";
     if (value.contains("saturday night")) return "Saturday Night";
     if (value.matches(".*world[ ._-]*wide.*")) return "Worldwide";
     if (value.matches(".*\\b(?:wcw pro|pro wrestling)\\b.*")) return "Pro";
+    if (value.contains("power hour")) return "Power Hour";
+    if (value.contains("main event")) return "Main Event";
+    if (Pattern.compile("\\bprime\\b").matcher(value).find()) return "Prime";
+    if (value.contains("world championship wrestling")) return "Saturday Night";
     return null;
   }
 
@@ -53,6 +73,24 @@ final class ArchiveSync {
     return CatalogSync.date(clean, data);
   }
 
+  static String fileDate(String name, JSONObject data, String identifier) throws Exception {
+    JSONObject orders = data.optJSONObject("archiveDateOrders");
+    String order = orders == null ? "" : orders.optString(identifier);
+    if (Pattern.compile("\\b(?:19|20)\\d{2}[ ._-]\\d{2}[ ._-]\\d{2}\\b").matcher(name).find())
+      return fileDate(name, data);
+    Matcher date =
+        Pattern.compile("\\b(\\d{1,2})[ ._-](\\d{1,2})[ ._-](\\d{4}|\\d{2})\\b")
+            .matcher(name.replace('_', ' '));
+    if ((order.equals("MDY") || order.equals("DMY")) && date.find()) {
+      int first = Integer.parseInt(date.group(1)), second = Integer.parseInt(date.group(2));
+      int year = Integer.parseInt(date.group(3));
+      if (year < 100) year += year >= 80 ? 1900 : 2000;
+      return CatalogSync.validDate(
+          year, order.equals("MDY") ? first : second, order.equals("MDY") ? second : first);
+    }
+    return fileDate(name, data);
+  }
+
   static int merge(JSONObject data, String identifier, JSONObject item) throws Exception {
     JSONObject metadata = item.optJSONObject("metadata");
     if (item.optBoolean("is_dark") || metadata == null || metadata.optBoolean("access-restricted"))
@@ -77,7 +115,12 @@ final class ArchiveSync {
                 + file.optString("original"));
     }
     Collections.sort(signatures);
-    String fingerprint = MetadataCache.hash("parser-v3:" + metadata.optString("creator") + String.join("\n", signatures));
+    String fingerprint =
+        MetadataCache.hash(
+            "parser-v5:"
+                + data.optJSONObject("archiveDateOrders")
+                + metadata.optString("creator")
+                + String.join("\n", signatures));
     JSONObject hashes = data.optJSONObject("archiveHashes");
     if (hashes == null) {
       hashes = new JSONObject();
@@ -112,13 +155,23 @@ final class ArchiveSync {
             : families.size() == 1
                 ? families.iterator().next()
                 : family(metadata.optString("title"));
+    String collectionTitle = metadata.optString("title").toLowerCase(Locale.UK);
+    if ((collectionTitle.contains("ortin") || collectionTitle.contains("nitro"))
+        && (collectionTitle.contains("rednuht") || collectionTitle.contains("thunder")))
+      inherited = null;
     int added = 0;
     for (int i = 0; i < files.length(); i++) {
       JSONObject file = files.getJSONObject(i);
       String name = file.optString("name");
-      JSONObject candidate = new JSONObject()
-          .put("type", "archive").put("filename", name)
-          .put("duration", file.optDouble("length", 0));
+      JSONObject candidate =
+          new JSONObject()
+              .put("type", "archive")
+              .put("filename", name)
+              .put(
+                  "programme",
+                  Optional.ofNullable(family(name.replace('_', ' ')))
+                      .orElse(inherited == null ? "" : inherited))
+              .put("duration", file.optDouble("length", 0));
       if (!SourcePolicy.eligible(candidate)) continue;
       if (!name.matches("(?i).+\\.(?:mp4|m4v)$")
           || file.optBoolean("private")
@@ -128,27 +181,36 @@ final class ArchiveSync {
                       + " ._-]+match|part[ ._-]*\\d+)\\b")
               .matcher(name.replace('_', ' '))
               .find()) continue;
-      if (Pattern.compile("(?i)\\b(?:wwf|wwe|ecw|aew|njpw|roh)\\b")
+      if (Pattern.compile("(?i)\\b(?:wwf|wwe|ecw|aew|roh)\\b")
           .matcher(name.replace('_', ' '))
           .find()) continue;
+      // WCW/New Japan joint events belong in the library; unrelated NJPW recordings do not.
+      if (Pattern.compile("(?i)\\bnjpw\\b").matcher(name.replace('_', ' ')).find()
+          && !Pattern.compile("(?i)\\bwcw\\b").matcher(name.replace('_', ' ')).find()) continue;
       double duration = file.optDouble("length", 0);
-      if (duration < 2700) continue;
+      if (duration < SourcePolicy.minimumSeconds(candidate.optString("programme"))) continue;
       String url =
           "https://archive.org/download/"
               + identifier
               + "/"
               + URLEncoder.encode(name, "UTF-8").replace("+", "%20").replace("%2F", "/");
       if (urls.contains(url)) {
-        existingSources.get(url)
+        existingSources
+            .get(url)
             .put("duration", duration)
             .put("creator", metadata.optString("creator"))
+            .put("language", metadata.optString("language"))
             .put("height", file.optInt("height"));
         continue;
       }
-      String kind = family(name.replace('_', ' ')), when = fileDate(name, data);
+      String kind = family(name.replace('_', ' ')), when = fileDate(name, data, identifier);
       JSONObject selected = knownFiles.get(name);
       if (selected == null && !file.optString("original").isEmpty())
         selected = knownFiles.get(file.optString("original"));
+      // A stale cached mapping must not overrule the file's explicit show or date.
+      if (selected != null
+          && ((kind != null && !kind.equals(selected.optString("show")))
+              || (when != null && !when.equals(selected.optString("date"))))) selected = null;
       if (selected == null) {
         if (kind == null) kind = inherited;
         if (kind == null && when != null) {
@@ -216,8 +278,10 @@ final class ArchiveSync {
                   .put("type", "archive")
                   .put("url", url)
                   .put("filename", name)
+                  .put("programme", selected.optString("show"))
                   .put("duration", duration)
                   .put("creator", metadata.optString("creator"))
+                  .put("language", metadata.optString("language"))
                   .put("height", height)
                   .put("bytes", file.optLong("size"))
                   .put("label", "Internet Archive" + (height > 0 ? " " + height + "p" : "")));

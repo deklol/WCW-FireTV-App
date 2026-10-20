@@ -32,11 +32,12 @@ final class Resolver {
             ? override
             : preference == 2 ? "archive" : preference == 3 ? "youtube" : null;
     for (JSONObject source : episode.sources)
-      if (SourcePolicy.eligible(source)
-          && (only == null || only.equals(source.optString("type")))) result.add(source);
+      if (SourcePolicy.eligible(source) && (only == null || only.equals(source.optString("type"))))
+        result.add(source);
     boolean youtubeFirst = preference == 1 || "youtube".equals(override);
     result.sort(
-        Comparator.comparingInt(
+        Comparator.comparingInt(SourcePolicy::languagePreference)
+            .thenComparingInt(
                 (JSONObject source) ->
                     source.optString("type").equals(youtubeFirst ? "youtube" : "archive") ? 0 : 1)
             .thenComparingInt(SourcePolicy::preference)

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.3.0
+
+- Add 1,273 pre-1997 broadcasts, including all 68 Nitro dates in 1995–1996 and all 33 earlier Clash events, plus available older WCW TV, Saturday Night, Worldwide, Pro, Power Hour, Main Event, Prime and All Nighter specials.
+- Add a dedicated Years selector beside Home, ordered newest first from 2001; retain Nitro, Thunder, PPV, Search and Settings. Early-year libraries include all available programmes, with filters inside the year.
+- Use the historical World Championship Wrestling name before the Saturday Night rename. Extend discovery matching to 1983–2001, short weekly formats, two-digit filename years and numbered Clash events.
+- Expand the editable source list to five official WCW playlists and 245 Archive items. Keep per-source scan failures isolated and metadata caching enabled.
+- Prefer known English audio before provider/resolution and saved-source preferences. Retain other-language fallback recordings.
+- Correct one legacy duplicate of Clash XIII filed under January 2001, retaining its source and transferring saved history to November 1990. Recognise Thanksgiving Thunder as a Clash event.
+- Preserve the existing 1997–2001 source inventory and player features. No higher-quality public Millennium Final copy was confirmed; its existing fallback is retained.
+- Include the pre-1997 inventory, transport-check scope, source register and regression coverage in the public source bundle.
+
+## 0.2.7
+
+- Correct Nitro/Thunder classification in mixed Archive collections using each file's explicit show marker, before collection hints or cached mappings.
+- Repair existing incorrectly labelled entries by moving their sources into the matching show/date and deduplicating identical links.
+- Preserve existing correct entries and playable sources. Transfer progress from completely merged incorrect entries without overwriting progress already recorded on the correct episode.
+- Configure verified month/day/year conventions for three mixed collections; keep ambiguous dates unassigned elsewhere.
+- Add regression coverage for 19 and 26 January 2000, real mixed-collection scans, repeated scans and migration without losing source links.
+- Includes all 0.2.6 PPV source fixes.
+
 ## 0.2.6
 
 - Remove the Souled Out 2000 countdown preshow and two SuperBrawl 2000 review files from full-event playback, including existing cached catalogues.

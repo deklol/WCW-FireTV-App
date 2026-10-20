@@ -1,5 +1,5 @@
-WCW Chronology 0.2.6
+WCW Chronology 0.3.0
 
-Fixes Souled Out 2000 selecting its countdown preshow and SuperBrawl 2000 selecting a review. Audits PPV source runtimes and prioritises available Chasing That W full-event copies. Applies corrections to existing catalogues and rejects preshows, reviews and known short standalone recordings. Preserves viewing history and all existing updater features.
+Adds 1,273 pre-1997 WCW broadcasts and a dedicated Years selector. Retains Home, Nitro, Thunder, PPV, Search and Settings; early years include every available programme. Includes all 68 earlier Nitro dates and 33 earlier Clash events, English-source preference, corrected historic matching, viewing history and the existing in-app updater. See docs/PRE1997_LIBRARY.md for coverage and check limits.
 
 Minimum Android API: 25. Fire OS 6 device playback still needs confirmation.

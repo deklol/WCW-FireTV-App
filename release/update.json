@@ -1,7 +1,7 @@
 {
-  "versionCode": 8,
-  "versionName": "0.2.6",
-  "apkUrl": "https://github.com/deklol/WCW-FireTV-App/releases/download/v0.2.6/WCW-FireTV-App.apk",
-  "sha256": "197ae64695d31cb2c15e0375613789e9833a6e405425f6a17defad31e2f6aa93",
-  "notes": "Fixes Souled Out 2000 selecting its countdown preshow and SuperBrawl 2000 selecting a review. Audits PPV source runtimes and prioritises available Chasing That W full-event copies. Applies corrections to existing catalogues and rejects preshows, reviews and known short standalone recordings. Preserves viewing history and all existing updater features."
+  "versionCode": 10,
+  "versionName": "0.3.0",
+  "apkUrl": "https://github.com/deklol/WCW-FireTV-App/releases/download/v0.3.0/WCW-FireTV-App.apk",
+  "sha256": "a0ecb1ada50baabb2c347800413c1c517ed784cc657239b6716e4bb5e67c67cf",
+  "notes": "Adds 1,273 pre-1997 WCW broadcasts and a dedicated Years selector. Retains Home, Nitro, Thunder, PPV, Search and Settings; early years include every available programme. Includes all 68 earlier Nitro dates and 33 earlier Clash events, English-source preference, corrected historic matching, viewing history and the existing in-app updater. See docs/PRE1997_LIBRARY.md for coverage and check limits."
 }

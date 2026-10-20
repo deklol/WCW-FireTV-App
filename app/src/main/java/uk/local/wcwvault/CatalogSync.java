@@ -66,7 +66,7 @@ final class CatalogSync {
   static final long INTERVAL = 6 * 60 * 60 * 1000L;
   static final String CHANNEL = "UCbGG2hv4cWmIrBAIhGiCdSg";
   static final Pattern ALIAS = Pattern.compile("fall brawl\\s*[-:]?\\s*war\\s*games"),
-      NOISE = Pattern.compile("full (?:episode|event)|wcw|nwo|nwa|\\b(?:19|20)\\d{2}\\b"),
+      NOISE = Pattern.compile("full (?:episode|event)|wcw|nwo|nwa|\\bthe\\b|\\b(?:19|20)\\d{2}\\b"),
       NON_KEY = Pattern.compile("[^a-z0-9]");
   static final Map<String, String> keyCache =
       new LinkedHashMap<String, String>(1024, .75f, true) {
@@ -188,19 +188,45 @@ final class CatalogSync {
         ? "Nitro"
         : value.contains("thunder")
             ? "Thunder"
-            : value.contains("clash of") ? "Clash of the Champions" : "PPV";
+            : value.contains("clash of")
+                ? "Clash of the Champions"
+                : value.contains("full episode")
+                    ? Optional.ofNullable(ArchiveSync.family(title)).orElse("Saturday Night")
+                    : "PPV";
   }
 
   static String validDate(int year, int month, int day) {
     try {
       String date = LocalDate.of(year, month, day).toString();
-      return date.compareTo("1997-01-01") >= 0 && date.compareTo("2001-03-26") <= 0 ? date : null;
+      return date.compareTo("1983-01-01") >= 0 && date.compareTo("2001-03-26") <= 0 ? date : null;
     } catch (Exception ignored) {
       return null;
     }
   }
 
   static String date(String title, JSONObject catalogue) throws Exception {
+    Matcher clash =
+        Pattern.compile("(?i)clash of (?:the )?champions[ ._-]+([IVX]+|\\d{1,2})\\b")
+            .matcher(title);
+    if (clash.find()) {
+      String number = clash.group(1).toUpperCase(Locale.UK);
+      int value = 0;
+      if (number.matches("\\d+")) value = Integer.parseInt(number);
+      else
+        for (int i = 0; i < number.length(); i++) {
+          int digit = number.charAt(i) == 'X' ? 10 : number.charAt(i) == 'V' ? 5 : 1;
+          int next =
+              i + 1 < number.length()
+                  ? number.charAt(i + 1) == 'X' ? 10 : number.charAt(i + 1) == 'V' ? 5 : 1
+                  : 0;
+          value += digit < next ? -digit : digit;
+        }
+      JSONArray events = catalogue.optJSONArray("eventCalendar");
+      if (events != null)
+        for (int i = 0; i < events.length(); i++)
+          if (events.getJSONObject(i).optInt("clashNumber") == value)
+            return events.getJSONObject(i).optString("date");
+    }
     Matcher numeric =
         Pattern.compile("\\b(19\\d{2}|20\\d{2})[-.](\\d{2})[-.](\\d{2})\\b").matcher(title);
     if (numeric.find())
@@ -234,6 +260,17 @@ final class CatalogSync {
         String when = event.optString("date");
         if (year != null && !when.startsWith(year)) continue;
         String name = key(event.optString("name"));
+        if (year != null && !needle.contains(name)) {
+          JSONArray aliases = event.optJSONArray("aliases");
+          if (aliases != null)
+            for (int j = 0; j < aliases.length(); j++) {
+              String alias = key(aliases.getString(j));
+              if (alias.length() > 3 && needle.contains(alias)) {
+                name = alias;
+                break;
+              }
+            }
+        }
         if (name.length() < 3 || !needle.contains(name)) continue;
         if (name.length() > length) {
           length = name.length();
@@ -242,7 +279,7 @@ final class CatalogSync {
         } else if (name.length() == length && !when.equals(best)) ambiguous = true;
       }
     if (best != null && !ambiguous)
-      return best.compareTo("1997-01-01") >= 0 && best.compareTo("2001-03-26") <= 0 ? best : null;
+      return best.compareTo("1983-01-01") >= 0 && best.compareTo("2001-03-26") <= 0 ? best : null;
     JSONArray episodes = catalogue.getJSONArray("episodes");
     best = null;
     length = -1;
@@ -301,7 +338,7 @@ final class CatalogSync {
         return 0;
       }
     }
-    if (duration < 2700) return 0;
+    if (duration < (title.toLowerCase(Locale.UK).contains("full episode") ? 1200 : 2700)) return 0;
     String when = date(title, data);
     if (when == null) return 0;
     seen.add(id);
@@ -451,7 +488,7 @@ final class CatalogSync {
             if (identity != null) identities.add(identity);
           }
           Collections.sort(identities);
-          String fingerprint = MetadataCache.hash("parser-v4:" + String.join("\n", identities));
+          String fingerprint = MetadataCache.hash("parser-v5:" + String.join("\n", identities));
           JSONObject hashes = data.optJSONObject("playlistHashes");
           if (hashes == null) {
             hashes = new JSONObject();
@@ -480,6 +517,7 @@ final class CatalogSync {
               data,
               full ? data.getJSONArray("archiveItems").length() : SourceConfig.collectionsPerScan);
       available();
+      ArchiveIdentity.normalize(data);
       AtomicFile file = new AtomicFile(new File(context.getFilesDir(), "catalogue.json"));
       FileOutputStream output = file.startWrite();
       try {

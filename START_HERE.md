@@ -1,37 +1,33 @@
-# Publish the PPV source correction release from the authenticated PC
+# Publish WCW Chronology 0.3.0
 
-This is the complete WCW Chronology 0.2.6 source bundle and signed APK (versionCode 8, minimum Android API 25). It includes six-second Archive.org stall recovery, episode progress bars, watched/unwatched tracking, source-aware resume and the Fire OS 6 compatibility fix. Clash events now appear under PPV instead of a separate filter. The APK is ready to upload; no rebuild is needed. No private signing key or account credentials are included.
+This complete source bundle includes the signed 0.3.0 APK (versionCode 10, minimum Android API 25). It adds the pre-1997 library and a dedicated Years page, retains Home/Nitro/Thunder/PPV/Search/Settings, and preserves the player, progress tracking and updater. See docs/PRE1997_LIBRARY.md for coverage and verification limits and docs/VALIDATION.md for build/device checks.
 
-This app includes automatic GitHub update checks on launch, Update/Later/Skip this version choices, download progress and a manual **Settings → Update app** button that works even for skipped releases. Publish this release once using the steps below; future versions can then be installed from inside the app. Fire TV's own installer confirmation is still required.
-
-The homepage hero now shows the last unfinished episode's artwork, date, description and progress. Without an unfinished show, the heading reads **WCW, in order.**
-
-This release corrects the Souled Out countdown and SuperBrawl review sources, updates audited PPV metadata and prioritises Chasing That W full-event copies. It has not been installed on the test stick, so the user can test the GitHub update flow.
-
-Repository: https://github.com/deklol/WCW-FireTV-App
+No rebuild is needed to publish the supplied APK. No private signing key or account credentials are included.
 
 ## Keep the existing Downloader URL
 
-The asset must be named exactly **WCW-FireTV-App.apk**. Publish **v0.2.6** as the latest stable release. This keeps this exact URL working:
+Publish **v0.3.0** as the latest stable release, with the APK asset named exactly **WCW-FireTV-App.apk**. This preserves:
 
 https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk
 
-1. Extract this ZIP. Read `docs/VALIDATION.md` for the completed checks and the remaining Fire OS 6 device test.
-2. Copy this source tree into the existing repository checkout, preserving its `.git` folder. Review and commit the changes, then push to `main`. Do not copy private signing keys into the repository.
-3. Create a new GitHub release tagged **v0.2.6**, targeting that pushed commit. Use `release/NOTES.md` as the release notes.
-4. Attach `release/WCW-FireTV-App.apk`, `release/SHA256SUMS.txt` and `release/update.json` to the release. GitHub will generate source ZIP/TAR archives from the tagged commit.
-5. Publish it as the **latest release**, with draft and pre-release both off. Earlier releases can stay available.
-6. Download through the unchanged URL above and compare its SHA-256 with `release/SHA256SUMS.txt`.
-7. To test the in-app updater, leave the existing version installed on the Fire Stick. After publishing, open Settings > Update app, or fully close and reopen the app for its startup check. Accept the update and Fire TV installation confirmation. Verify version 0.2.6 in Settings and try Souled Out 2000. Do not sideload this APK first, because that would bypass the update test.
+1. Extract this ZIP and copy its source tree into the existing repository checkout, preserving the checkout's .git folder.
+2. Review, commit and push the changes to main on the authenticated PC.
+3. Create release **v0.3.0**, targeting that commit. Use release/NOTES.md as its notes.
+4. Attach release/WCW-FireTV-App.apk, release/SHA256SUMS.txt and release/update.json.
+5. Publish as the latest release, with draft and pre-release off. Earlier releases can remain.
+6. Download through the unchanged link above and compare its SHA-256 with release/SHA256SUMS.txt.
+7. Devices on an older version can use Settings > Update app, or close and reopen the app for its startup check. Accept the update and Fire TV's installer confirmation. Skipped releases remain available through the manual settings action.
 
-The prebuilt APK has the same signer and package name as the existing app, so installing it as an update preserves viewing progress. The private signing key remains on the original development PC; rebuilding on another PC with a different key will produce an APK that cannot update the existing installation.
+The development stick was authorised for direct installation; once it has 0.3.0, it will not offer that same version as an update. Other devices running an earlier version can test the updater after publication.
 
-## Optional GitHub CLI release command
+The prebuilt APK uses the existing package and signer, so an in-place update preserves data. The private signing key stays on the original development PC. A build signed with another key cannot update that existing installation.
 
-After committing and pushing the source, run this from the repository root on the authenticated PC:
+## Optional GitHub CLI command
+
+After committing and pushing, run from the repository root:
 
 ```powershell
-gh release create v0.2.6 release/WCW-FireTV-App.apk release/SHA256SUMS.txt release/update.json --repo deklol/WCW-FireTV-App --target main --title "WCW Chronology 0.2.6 - PPV source corrections" --notes-file release/NOTES.md --latest
+gh release create v0.3.0 release/WCW-FireTV-App.apk release/SHA256SUMS.txt release/update.json --repo deklol/WCW-FireTV-App --target main --title "WCW Chronology 0.3.0 - The earlier years" --notes-file release/NOTES.md --latest
 ```
 
-If a v0.2.6 tag or release already exists, inspect it before replacing any asset. This bundle does not publish anything automatically.
+Inspect an existing v0.3.0 release before replacing any assets. This bundle does not publish automatically.

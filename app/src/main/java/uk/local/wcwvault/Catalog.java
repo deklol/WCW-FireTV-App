@@ -22,19 +22,37 @@ final class Catalog {
     JSONObject seed = new JSONObject(read(context.getAssets().open("catalogue.json")));
     if (raw == null || !raw.has("episodes")) raw = seed;
     else mergeSeed(raw, seed);
-    if (raw.optInt("sourceValidation") < 4) {
-      normalizeYoutube(raw);
-      raw.put("sourceValidation", 4);
+    Map<String, String> moves = new HashMap<>();
+    if (raw.optInt("sourceValidation") < 5) {
+      moves.putAll(normalizeYoutube(raw));
+      raw.put("sourceValidation", 5);
     }
     SourceConfig.load(context, raw);
+    moves.putAll(ArchiveIdentity.normalize(raw));
+    if (!moves.isEmpty()) {
+      SharedPreferences preferences = prefs(context);
+      SharedPreferences.Editor editor = preferences.edit();
+      Map<String, ?> saved = preferences.getAll();
+      for (Map.Entry<String, Object> entry :
+          ArchiveIdentity.historyChanges(saved, moves).entrySet()) {
+        Object value = entry.getValue();
+        if (value instanceof String) editor.putString(entry.getKey(), (String) value);
+        else if (value instanceof Long) editor.putLong(entry.getKey(), (Long) value);
+        else if (value instanceof Integer) editor.putInt(entry.getKey(), (Integer) value);
+        else if (value instanceof Boolean) editor.putBoolean(entry.getKey(), (Boolean) value);
+      }
+      editor.apply();
+    }
     replace(raw);
   }
 
-  static void normalizeYoutube(JSONObject data) throws Exception {
+  static Map<String, String> normalizeYoutube(JSONObject data) throws Exception {
+    Map<String, String> moves = new HashMap<>();
     JSONArray rows = data.getJSONArray("episodes");
     for (int i = rows.length() - 1; i >= 0; i--) {
       JSONObject row = rows.getJSONObject(i);
       JSONArray sources = row.getJSONArray("sources");
+      Set<String> movedTo = new HashSet<>();
       for (int j = sources.length() - 1; j >= 0; j--) {
         JSONObject source = sources.getJSONObject(j);
         if (!source.optString("type").equals("youtube")) continue;
@@ -50,13 +68,18 @@ final class Catalog {
               for (int n = 0; n < options.length(); n++)
                 exists |= sourceKey(options.getJSONObject(n)).equals(sourceKey(source));
               if (!exists) options.put(source);
+              movedTo.add(target.getString("id"));
               break;
             }
           }
         sources.remove(j);
       }
-      if (sources.length() == 0) rows.remove(i);
+      if (sources.length() == 0) {
+        if (movedTo.size() == 1) moves.put(row.getString("id"), movedTo.iterator().next());
+        rows.remove(i);
+      }
     }
+    return moves;
   }
 
   static void mergeSeed(JSONObject cache, JSONObject seed) throws JSONException {
@@ -88,8 +111,10 @@ final class Catalog {
       for (int j = 0; j < newSources.length(); j++) {
         JSONObject source = newSources.getJSONObject(j), old = byKey.get(sourceKey(source));
         if (old != null)
-          for (String field : new String[] {"duration", "creator", "height", "label"})
-            if (source.has(field)) old.put(field, source.get(field));
+          for (String field :
+              new String[] {
+                "duration", "creator", "height", "label", "programme", "language", "audioLanguage"
+              }) if (source.has(field)) old.put(field, source.get(field));
       }
       for (int j = 0; j < newSources.length(); j++)
         if (keys.add(sourceKey(newSources.getJSONObject(j))))
@@ -118,6 +143,7 @@ final class Catalog {
   }
 
   static synchronized void replace(JSONObject data) throws Exception {
+    ArchiveIdentity.normalize(data);
     ArrayList<Episode> next = new ArrayList<>();
     JSONArray rows = data.getJSONArray("episodes");
     for (int i = 0; i < rows.length(); i++) {
@@ -125,7 +151,7 @@ final class Catalog {
       for (int j = sources.length() - 1; j >= 0; j--)
         if (!SourcePolicy.eligible(sources.getJSONObject(j))) sources.remove(j);
       Episode item = new Episode(rows.getJSONObject(i));
-      if (item.date.compareTo("1997-01-01") >= 0
+      if (item.date.compareTo("1983-01-01") >= 0
           && item.date.compareTo("2001-03-26") <= 0
           && !item.sources.isEmpty()) next.add(item);
     }
@@ -139,9 +165,13 @@ final class Catalog {
 
   static int showOrder(String show) {
     return Arrays.asList(
+            "All Nighter",
             "Saturday Night",
             "Worldwide",
             "Pro",
+            "Power Hour",
+            "Main Event",
+            "Prime",
             "Nitro",
             "Thunder",
             "Clash of the Champions",
@@ -153,9 +183,23 @@ final class Catalog {
     ArrayList<Episode> result = new ArrayList<>();
     for (Episode item : episodes)
       if (item.year == year
-          && (extras || item.main())
+          && (year < 1997 || extras || item.main())
           && (filter.equals("All") || filter.equals(item.show))) result.add(item);
     return result;
+  }
+
+  static TreeSet<Integer> years() {
+    TreeSet<Integer> result = new TreeSet<>();
+    for (Episode item : episodes) result.add(item.year);
+    return result;
+  }
+
+  static String showLabel(String show, int year) {
+    if (show.equals("Saturday Night")) {
+      if (year > 0 && year < 1992) return "World Championship Wrestling";
+      if (year == 1992) return "WCW TV / Saturday Night";
+    }
+    return show;
   }
 
   static synchronized Episode find(String id) {
@@ -267,7 +311,11 @@ final class Catalog {
     }
 
     String heading() {
-      return show.equals("PPV") ? title : show;
+      return show.equals("PPV")
+          ? title
+          : show.equals("Saturday Night") && date.compareTo("1992-04-04") < 0
+              ? "World Championship Wrestling"
+              : show;
     }
   }
 }

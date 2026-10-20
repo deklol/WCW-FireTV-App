@@ -1,5 +1,29 @@
 # Validation
 
+## 0.3.0 earlier library and Years navigation
+
+- Signed release build and all 38 Java tests pass; Android lint reports 0 errors and 22 warnings. Minimum API remains 25, versionCode 10, versionName 0.3.0.
+- Seven new regression tests cover the 1,273-entry expansion, every original source reference, early-year all-programme queues with extras disabled, historical titles/dates, short full weekly formats, English preference, the incorrectly dated Clash/history repair, and refreshed WCW/New Japan joint events. The 68 pre-1997 Nitro and 33 earlier Clash counts are asserted.
+- The original 660 correctly dated entries keep their IDs, dates and source references. The duplicate Clash XIII incorrectly dated January 2001 is merged into November 1990, preserving the source and eligible saved history. All 1,933 seed assignments survive Archive normalization unchanged.
+- Source-manifest validation passes with five playlists and 245 Archive items. Per-broadcast transport verification and its limits are documented in [PRE1997_LIBRARY.md](PRE1997_LIBRARY.md); this is not a claim of complete visual viewing or unedited recordings.
+- On the AFTSS Fire OS 7 stick, an in-place 0.3.0 update retained application data. The earlier APK was backed up before installation. All seven top-menu items fit, including Years and the retained Nitro, Thunder and PPV shortcuts.
+- The dedicated Years grid and the 1985 library were inspected on the TV. That year contains 11 available shows with both PPV and World Championship Wrestling included; the historical name displays correctly. Year-card totals include events, avoiding an apparent zero count for PPV-only years.
+- The final count labels were checked after installation: PPV-only years display "1 show available" instead of "0 episodes". Remote D-pad navigation scrolled to 1996 and opened its 155-show library, with Nitro, Saturday Night, Pro and PPV filters. Back returned to the dedicated Years page.
+- The Years page was subsequently reordered newest first and checked on the installed build: its first row is 2001, 2000, 1999, 1998, followed by 1997, 1996, 1995, 1994. The source bundle includes the updated screenshot and APK.
+- The official YouTube episode dated 2 November 1985 reached its first frame in the built-in player; logs confirmed original English audio (`en_US`, ORIGINAL), and the media session reported active playback. The Archive Pro episode dated 24 November 1990 reached its first frame and reported active playback. No external player was used.
+- API 25 signature validation uses the same signer as prior releases. Installation/playback on a Fire OS 6 device remains unconfirmed; no Fire OS 6 device was connected for this release.
+- Millennium Final retains the existing fallback recording because no better public Chasing That W copy was confirmed. There is no new claim of English or higher-quality playback for that event.
+- GitHub publication is performed from the maintainer's authenticated PC. This bundle does not publish or overwrite a remote release; older devices can obtain 0.3.0 through the existing updater after publication.
+
+## 0.2.7 Nitro/Thunder identity repair
+
+- Signed release build and all 31 Java tests pass; Android lint reports 0 errors and 22 warnings.
+- Five additional tests cover both reported January 2000 duplicates, unchanged seed assignments, real mixed-source scans, date/marker parsing and history migration.
+- All 661 existing bundled episodes remain unchanged by normalization. Scanning the three mixed snapshots retains every one of the 2,202 existing source links, yielding 666 episodes and 2,464 distinct links. Repeated scans and migrations do not create duplicates.
+- Every eligible explicitly marked Nitro/Thunder file in the real metadata fixtures is checked against its expected show and date. See [WEEKLY_SOURCE_AUDIT.md](WEEKLY_SOURCE_AUDIT.md).
+- API 25 APK signature verification passes. Version 0.2.7/code 9 was installed in place on the AFTSS stick, with its previous APK backed up and application data retained. MainActivity launch was verified.
+- The automated TV search check did not complete: the expected search confirmation was no longer visible. The two corrected dates are verified in migration/scan regression tests; the user should check them in their installed catalogue. No playback sample was started during that UI check.
+
 ## 0.2.6 PPV source corrections
 
 - Signed release build and all 26 Java tests pass; Android lint reports 0 errors and 22 warnings.
