@@ -4,6 +4,7 @@ date,programme,title,provider,url,runtime_seconds,known_audio,stream_checked
 1983-07-02,World Championship Wrestling,World Championship Wrestling,youtube,https://www.youtube.com/watch?v=WtaXKcZSCpg,2842,unknown,yes
 1983-11-24,PPV,Starrcade '83: A Flare for the Gold,archive,https://archive.org/download/nov.-24-1983/NOV.%2024%2C%201983.mp4,10652.27,unknown,yes
 1984-11-22,PPV,Starrcade '84: The Million Dollar Challenge,archive,https://archive.org/download/1984-vhs-wcw-pay-per-views/11.22%20-%20Starrcade%20%28The%20Million%20Dollar%20Challenge%29.mp4,11574.54,unknown,yes
+1985-04-20,Worldwide,Worldwide,archive,https://archive.org/download/04-20-1985-nwa-worldwide-wrestling/04-20-1985%20NWA%20Worldwide%20Wrestling.mp4,3146.37,unknown,yes
 1985-07-06,PPV,The Great American Bash 1985,archive,https://archive.org/download/jul.-06-1985/JUL.%2006%2C%201985.mp4,8429.87,unknown,yes
 1985-11-02,World Championship Wrestling,World Championship Wrestling,youtube,https://www.youtube.com/watch?v=6pfUSqvqrGY,4419,en,yes
 1985-11-09,World Championship Wrestling,World Championship Wrestling,youtube,https://www.youtube.com/watch?v=6baE2YfS8TA,4686,en,yes
@@ -1111,8 +1112,8 @@ date,programme,title,provider,url,runtime_seconds,known_audio,stream_checked
 1995-07-29,Pro,Pro,archive,https://archive.org/download/wcw-pro-95-complete/07-29-95.mp4,3598.05,unknown,yes
 1995-07-31,Prime,Prime,archive,https://archive.org/download/prime-95-complete/07-31-95-Prime.mp4,3600.07,unknown,yes
 1995-08-04,PPV,Collision in Korea,archive,https://archive.org/download/nwa-wcwnjpw-wrestling-collision-in-korea-42895/NWA%20WCWNJPW%20Wrestling%20Collision%20In%20Korea%2042895.mp4,6843.04,en,yes
-1995-08-04,PPV,Collision in Korea,archive,https://archive.org/download/wcw-x-njpw-collision-in-korea-2/WCW%20x%20NJPW%20Collision%20in%20Korea%202.mp4,6843.02,en,yes
 1995-08-04,PPV,Collision in Korea,archive,https://archive.org/download/wcw-njpw-collision-in-korea-complete-edition/WCW-NJPW%20Collision%20In%20Korea%20%28Complete%20Edition%29.mp4,11572.74,mul,yes
+1995-08-04,PPV,Collision in Korea,archive,https://archive.org/download/wcw-x-njpw-collision-in-korea-2/WCW%20x%20NJPW%20Collision%20in%20Korea%202.mp4,6843.02,en,yes
 1995-08-05,Pro,Pro,archive,https://archive.org/download/wcw-pro-95-complete/08-05-95.mp4,3282.04,unknown,yes
 1995-08-06,Clash of the Champions,Clash of the Champions 31,youtube,https://www.youtube.com/watch?v=45IVRLBOCBU,5430,en,yes
 1995-08-07,Prime,Prime,archive,https://archive.org/download/prime-95-complete/08-07-95-Prime.mp4,3599.08,unknown,yes

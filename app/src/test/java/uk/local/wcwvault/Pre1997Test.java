@@ -68,7 +68,7 @@ public class Pre1997Test {
         if (row.getString("show").equals("Clash of the Champions")) clash++;
       }
     }
-    assertEquals(1277, pre);
+    assertEquals(1278, pre);
     assertEquals(68, nitro);
     assertEquals(33, clash);
     for (int i = 0; i < baseline.length(); i++) {
@@ -80,9 +80,12 @@ public class Pre1997Test {
         assertNull(rows.get(old.getString("id")));
         continue;
       }
-      JSONObject row = rows.get(old.getString("id"));
+      String corrected =
+          data.getJSONObject("historyMigrations")
+              .optString(old.getString("id"), old.getString("id"));
+      JSONObject row = rows.get(corrected);
       assertNotNull(row);
-      assertEquals(old.getString("date"), row.getString("date"));
+      assertEquals(corrected.substring(0, 10), row.getString("date"));
       assertEquals(old.getString("show"), row.getString("show"));
       JSONArray expected = old.getJSONArray("sources"), actual = row.getJSONArray("sources");
       assertTrue(actual.length() >= expected.length());
@@ -182,7 +185,7 @@ public class Pre1997Test {
     Map<String, Object> changes = ArchiveIdentity.historyChanges(saved, moves);
     assertEquals(123000L, changes.get("pos:1990-11-20:clashofthechampions"));
     assertEquals("1990-11-20:clashofthechampions", changes.get("last"));
-    assertEquals(1937, data.getJSONArray("episodes").length());
+    assertEquals(1950, data.getJSONArray("episodes").length());
     assertTrue(Catalog.normalizeYoutube(data).isEmpty());
   }
 

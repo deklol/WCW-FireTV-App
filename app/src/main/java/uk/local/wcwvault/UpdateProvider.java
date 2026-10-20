@@ -14,8 +14,11 @@ public final class UpdateProvider extends ContentProvider {
   }
 
   File file(Uri uri) throws FileNotFoundException {
-    if (!"/package.apk".equals(uri.getPath())) throw new FileNotFoundException();
-    return new File(getContext().getCacheDir(), "update.apk");
+    if ("/package.apk".equals(uri.getPath()))
+      return new File(getContext().getCacheDir(), "update.apk");
+    if ("/wrestling-chronology.apk".equals(uri.getPath()))
+      return new File(getContext().getCacheDir(), "wrestling-chronology.apk");
+    throw new FileNotFoundException();
   }
 
   @Override
@@ -35,7 +38,13 @@ public final class UpdateProvider extends ContentProvider {
       File file = file(uri);
       MatrixCursor result =
           new MatrixCursor(new String[] {OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE});
-      result.addRow(new Object[] {"wcw-chronology-update.apk", file.length()});
+      result.addRow(
+          new Object[] {
+            "/wrestling-chronology.apk".equals(uri.getPath())
+                ? "Wrestling-Chronology.apk"
+                : "wcw-chronology-update.apk",
+            file.length()
+          });
       return result;
     } catch (Exception error) {
       return null;

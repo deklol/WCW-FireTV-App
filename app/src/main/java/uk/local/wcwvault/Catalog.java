@@ -29,6 +29,7 @@ final class Catalog {
     }
     SourceConfig.load(context, raw);
     moves.putAll(ArchiveIdentity.normalize(raw));
+    moves.putAll(ArchiveIdentity.configuredMoves(raw));
     if (!moves.isEmpty()) {
       SharedPreferences preferences = prefs(context);
       SharedPreferences.Editor editor = preferences.edit();
@@ -124,6 +125,8 @@ final class Catalog {
     cache.put("eventCalendar", seed.getJSONArray("eventCalendar"));
     cache.put("playlists", seed.getJSONArray("playlists"));
     cache.put("archiveItems", seed.getJSONArray("archiveItems"));
+    if (seed.has("historyMigrations"))
+      cache.put("historyMigrations", seed.getJSONObject("historyMigrations"));
   }
 
   static String sourceKey(JSONObject source) {
@@ -148,7 +151,11 @@ final class Catalog {
     ArrayList<Episode> next = new ArrayList<>();
     JSONArray rows = data.getJSONArray("episodes");
     for (int i = 0; i < rows.length(); i++) {
-      JSONArray sources = rows.getJSONObject(i).getJSONArray("sources");
+      JSONObject row = rows.getJSONObject(i);
+      JSONArray sources = row.getJSONArray("sources");
+      for (int j = 0; j < sources.length(); j++)
+        if (sources.getJSONObject(j).optString("type").equals("archive"))
+          sources.getJSONObject(j).put("programme", row.getString("show"));
       for (int j = sources.length() - 1; j >= 0; j--)
         if (!SourcePolicy.eligible(sources.getJSONObject(j))) sources.remove(j);
       Episode item = new Episode(rows.getJSONObject(i));
@@ -184,7 +191,7 @@ final class Catalog {
     ArrayList<Episode> result = new ArrayList<>();
     for (Episode item : episodes)
       if (item.year == year
-          && (year < 1997 || extras || item.main())
+          && (!filter.equals("All") || year < 1997 || extras || item.main())
           && (filter.equals("All") || filter.equals(item.show))) result.add(item);
     return result;
   }

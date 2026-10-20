@@ -779,7 +779,8 @@
         "id": "wcw-worldwide-complete_202406",
         "name": "Worldwide 1997",
         "enabled": true,
-        "showHint": "Worldwide"
+        "showHint": "Worldwide",
+        "dateOrder": "MDY"
       },
       {
         "id": "wcw.-pro.-wrestling.-complete_20240612",
@@ -809,7 +810,8 @@
         "id": "wcw.-worldwide.-complete_202406",
         "name": "Worldwide 1999",
         "enabled": true,
-        "showHint": "Worldwide"
+        "showHint": "Worldwide",
+        "dateOrder": "MDY"
       },
       {
         "id": "wrestling-bios-reliving-the-war-youtube-1Xf_9r8pquE",
@@ -1696,6 +1698,13 @@
         "enabled": true,
         "dateOrder": "MDY",
         "showHint": "Saturday Night"
+      },
+      {
+        "id": "04-20-1985-nwa-worldwide-wrestling",
+        "name": "NWA Worldwide - 20 April 1985",
+        "enabled": true,
+        "dateOrder": "MDY",
+        "showHint": "Worldwide"
       }
     ]
   }

@@ -1,33 +1,27 @@
-# Publish WCW Chronology 0.3.1
+# Publish WCW Chronology 0.3.3
 
-This complete source bundle includes the signed 0.3.1 APK (versionCode 11, minimum Android API 25). It adds the six requested WWE Vault uploads alongside the pre-1997 library and dedicated Years page, retains Home/Nitro/Thunder/PPV/Search/Settings, and preserves the player, progress tracking and updater. See docs/PRE1997_LIBRARY.md for library coverage.
+This bundle includes the signed 0.3.3 APK (versionCode 13, minimum Android API 25), complete source and update manifest. It adds the optional Wrestling Chronology launch notice, persistent dismissal, Settings download entry and Downloader code 2909774. See docs/WRESTLING_CHRONOLOGY.md for the new app.
 
-No rebuild is needed to publish the supplied APK. No private signing key or account credentials are included.
+No rebuild is required to publish the included APK. No private signing keys or account credentials are included.
 
-## Keep the existing Downloader URL
+## Publish from the authenticated PC
 
-Publish **v0.3.1** as the latest stable release, with the APK asset named exactly **WCW-FireTV-App.apk**. This preserves:
+1. Extract this ZIP and copy the source tree into the existing WCW-FireTV-App checkout, preserving its .git folder.
+2. Review, commit and push to main.
+3. Create stable release **v0.3.3**, targeting that commit; use release/NOTES.md for its notes.
+4. Attach **release/WCW-FireTV-App.apk**, **release/SHA256SUMS.txt** and **release/update.json**.
+5. Publish as the latest release, with draft and pre-release off.
+
+Keep the APK asset named exactly **WCW-FireTV-App.apk** so the existing Downloader link remains:
 
 https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk
 
-1. Extract this ZIP and copy its source tree into the existing repository checkout, preserving the checkout's .git folder.
-2. Review, commit and push the changes to main on the authenticated PC.
-3. Create release **v0.3.1**, targeting that commit. Use release/NOTES.md as its notes.
-4. Attach release/WCW-FireTV-App.apk, release/SHA256SUMS.txt and release/update.json.
-5. Publish as the latest release, with draft and pre-release off. Earlier releases can remain.
-6. Download through the unchanged link above and compare its SHA-256 with release/SHA256SUMS.txt.
-7. Devices on an older version can use Settings > Update app, or close and reopen the app for its startup check. Accept the update and Fire TV's installer confirmation. Skipped releases remain available through the manual settings action.
+Users of an earlier WCW version can use Settings > Update app after publication. The included APK retains the current package and signing certificate, preserving app data during an in-place update. Keep the signing key private and use it for future releases.
 
-The development stick was authorised for direct installation; once it has 0.3.1, it will not offer that same version as an update. Other devices running an earlier version can test the updater after publication.
+## New app link
 
-The prebuilt APK uses the existing package and signer, so an in-place update preserves data. The private signing key stays on the original development PC. A build signed with another key cannot update that existing installation.
+The introduction downloads Wrestling Chronology from its separate live GitHub repository. The supplied Downloader code **2909774** resolves to:
 
-## Optional GitHub CLI command
+https://github.com/deklol/Wrestling-Chronology/releases/latest/download/Wrestling-Chronology.apk
 
-After committing and pushing, run from the repository root:
-
-```powershell
-gh release create v0.3.1 release/WCW-FireTV-App.apk release/SHA256SUMS.txt release/update.json --repo deklol/WCW-FireTV-App --target main --title "WCW Chronology 0.3.1 - WWE Vault sources" --notes-file release/NOTES.md --latest
-```
-
-Inspect an existing v0.3.1 release before replacing any assets. This bundle does not publish automatically.
+The new app need not be rebuilt or republished to release this WCW notice update. This bundle does not push or publish either repository automatically.

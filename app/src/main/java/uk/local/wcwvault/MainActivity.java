@@ -15,10 +15,11 @@ import java.util.concurrent.*;
 public final class MainActivity extends Activity {
   final ExecutorService work = Executors.newSingleThreadExecutor();
   final Updater updater = new Updater(this);
+  final WrestlingApp wrestlingApp = new WrestlingApp(this);
   LinearLayout root;
   int year = 1997;
   String page = "home", filter = "All", query = "";
-  boolean ready;
+  boolean ready, splashVisible;
   final Handler uiHandler = new Handler(Looper.getMainLooper());
   LinearLayout refreshStrip;
   ProgressBar refreshBar;
@@ -28,6 +29,7 @@ public final class MainActivity extends Activity {
       new Runnable() {
         public void run() {
           if (ready) {
+            if (!splashVisible) wrestlingApp.offerStartup();
             updater.offer();
             updateRefresh();
             if (CatalogSync.busy) refreshWasBusy = true;
@@ -53,6 +55,8 @@ public final class MainActivity extends Activity {
   @Override
   public void onCreate(Bundle state) {
     super.onCreate(state);
+    wrestlingApp.startupAllowed = state == null && !getIntent().hasExtra("play_id");
+    updater.offersAllowed = () -> ready && !splashVisible && !wrestlingApp.busy();
     immersive();
     if (state != null) {
       year = state.getInt("year", 1997);
@@ -98,6 +102,7 @@ public final class MainActivity extends Activity {
   protected void onResume() {
     super.onResume();
     immersive();
+    wrestlingApp.onResume();
     updater.onResume();
     if (ready) {
       render();
@@ -109,6 +114,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onPause() {
+    wrestlingApp.onPause();
     updater.onPause();
     uiHandler.removeCallbacks(libraryTick);
     super.onPause();
@@ -149,6 +155,7 @@ public final class MainActivity extends Activity {
   }
 
   void splash() {
+    splashVisible = true;
     FrameLayout host = findViewById(android.R.id.content);
     FrameLayout overlay = new FrameLayout(this);
     overlay.setBackgroundColor(Color.BLACK);
@@ -166,6 +173,7 @@ public final class MainActivity extends Activity {
         new Runnable() {
           public void run() {
             if (isFinishing() || isDestroyed()) {
+              splashVisible = false;
               host.removeView(overlay);
               image.setImageDrawable(null);
               return;
@@ -177,6 +185,8 @@ public final class MainActivity extends Activity {
             else {
               host.removeView(overlay);
               image.setImageDrawable(null);
+              splashVisible = false;
+              wrestlingApp.offerStartup();
               return;
             }
             handler.postDelayed(this, 16);
@@ -276,14 +286,12 @@ public final class MainActivity extends Activity {
     backdrop.setScaleType(ImageView.ScaleType.CENTER);
     backdrop.setImageResource(R.drawable.wcw_opening);
     if (current != null) {
-      String artwork = !current.thumbnail.isEmpty() ? current.thumbnail : current.poster;
-      if (!artwork.isEmpty()) {
-        backdrop.setScaleType(
-            current.thumbnail.isEmpty()
-                ? ImageView.ScaleType.FIT_CENTER
-                : ImageView.ScaleType.CENTER_CROP);
-        Art.load(backdrop, artwork);
-      }
+      String artwork = Art.episodeUrl(current, false);
+      backdrop.setScaleType(
+          current.thumbnail.isEmpty()
+              ? ImageView.ScaleType.FIT_CENTER
+              : ImageView.ScaleType.CENTER_CROP);
+      Art.load(backdrop, artwork);
     }
     FrameLayout.LayoutParams photo = new FrameLayout.LayoutParams(d(580), -1, Gravity.RIGHT);
     hero.addView(backdrop, photo);
@@ -566,7 +574,7 @@ public final class MainActivity extends Activity {
       filterScroll.addView(chips);
       ArrayList<String> labels = new ArrayList<>();
       labels.add("All");
-      for (Catalog.Episode item : Catalog.forYear(year, "All", extras()))
+      for (Catalog.Episode item : Catalog.forYear(year, "All", true))
         if (!labels.contains(item.show)) labels.add(item.show);
       for (String choice : labels) {
         TextView chip =
@@ -693,7 +701,7 @@ public final class MainActivity extends Activity {
     @Override
     public void onBindViewHolder(Holder holder, int position) {
       Catalog.Episode item = items.get(position);
-      Art.load(holder.image, portrait && !item.poster.isEmpty() ? item.poster : item.thumbnail);
+      Art.load(holder.image, Art.episodeUrl(item, portrait));
       boolean watched = Catalog.watched(MainActivity.this, item);
       long viewed = Catalog.displayPosition(MainActivity.this, item);
       long duration = Catalog.displayDuration(MainActivity.this, item);
@@ -740,7 +748,7 @@ public final class MainActivity extends Activity {
     ImageView image = new ImageView(this);
     image.setScaleType(ImageView.ScaleType.CENTER_CROP);
     top.addView(image, Ui.lp(this, 310, 177));
-    Art.load(image, item.thumbnail);
+    Art.load(image, Art.episodeUrl(item, false));
     Ui.gap(top, 22);
     LinearLayout info = Ui.vertical(this);
     top.addView(info, new LinearLayout.LayoutParams(0, -2, 1));
@@ -887,6 +895,14 @@ public final class MainActivity extends Activity {
     scroll.addView(options);
     content.addView(scroll, Ui.lp(this, -1, 330));
     Dialog dialog = panel(content, 680);
+    setting(
+        options,
+        "Wrestling Chronology",
+        wrestlingApp.installed() ? "Open new app" : "Download new app",
+        () -> {
+          dialog.dismiss();
+          wrestlingApp.show(false);
+        });
     setting(
         options,
         "Autoplay next episode",
@@ -1204,6 +1220,7 @@ public final class MainActivity extends Activity {
   @Override
   protected void onDestroy() {
     updater.destroy();
+    wrestlingApp.destroy();
     uiHandler.removeCallbacksAndMessages(null);
     super.onDestroy();
     work.shutdownNow();

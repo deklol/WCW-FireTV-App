@@ -13,6 +13,8 @@ import java.net.*;
 import java.security.MessageDigest;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 import org.json.*;
 
 /** Optional startup checks; installation always goes through the Fire TV installer. */
@@ -22,6 +24,9 @@ final class Updater {
   final Activity activity;
   final String targetPackage, currentVersion;
   final int currentCode;
+  final boolean companion;
+  BooleanSupplier offersAllowed = () -> true;
+  Consumer<String> failure = this::toast;
   boolean resumed, checked, checking, pendingAutomatic, installPending;
   volatile boolean cancelled, destroyed;
   UpdateRelease pending, verified;
@@ -32,10 +37,20 @@ final class Updater {
   }
 
   Updater(Activity activity, String targetPackage, int currentCode, String currentVersion) {
+    this(activity, targetPackage, currentCode, currentVersion, false);
+  }
+
+  Updater(
+      Activity activity,
+      String targetPackage,
+      int currentCode,
+      String currentVersion,
+      boolean companion) {
     this.activity = activity;
     this.targetPackage = targetPackage;
     this.currentCode = currentCode;
     this.currentVersion = currentVersion;
+    this.companion = companion;
   }
 
   void onResume() {
@@ -68,15 +83,23 @@ final class Updater {
       return;
     }
     checking = true;
-    if (!automatic) toast("Checking GitHub for app updates…");
+    if (!automatic)
+      toast(
+          companion
+              ? "Finding Wrestling Chronology on GitHub…"
+              : "Checking GitHub for app updates…");
     new Thread(
             () -> {
               try {
-                String feed = Catalog.prefs(activity).getString("update_feed", "").trim();
+                String feed =
+                    companion ? "" : Catalog.prefs(activity).getString("update_feed", "").trim();
                 UpdateRelease release;
                 if (feed.isEmpty()) {
-                  JSONObject github = new JSONObject(metadata(GITHUB));
-                  UpdateRelease asset = UpdateRelease.github(github);
+                  JSONObject github =
+                      new JSONObject(metadata(companion ? WrestlingApp.RELEASE_API : GITHUB));
+                  UpdateRelease asset =
+                      UpdateRelease.github(
+                          github, companion ? WrestlingApp.APK_NAME : "WCW-FireTV-App.apk");
                   release = asset;
                   JSONArray assets = github.getJSONArray("assets");
                   for (int i = 0; i < assets.length(); i++) {
@@ -96,6 +119,10 @@ final class Updater {
                     () -> {
                       checking = false;
                       if (destroyed) return;
+                      if (companion) {
+                        download(result);
+                        return;
+                      }
                       Log.i(
                           "WCWUpdate",
                           "CHECK version=" + result.version + " automatic=" + automatic);
@@ -111,7 +138,8 @@ final class Updater {
                 activity.runOnUiThread(
                     () -> {
                       checking = false;
-                      if (!automatic) toast("Couldn't check for updates. " + error.getMessage());
+                      if (!automatic)
+                        failure.accept("Couldn't check GitHub. " + error.getMessage());
                       Log.i("WCWUpdate", "CHECK_FAILED " + error.getClass().getSimpleName());
                     });
               }
@@ -124,6 +152,8 @@ final class Updater {
     if (!resumed
         || destroyed
         || activity.isFinishing()
+        || !offersAllowed.getAsBoolean()
+        || DOWNLOAD.get()
         || PlayerActivity.playbackActive
         || pending == null) return;
     UpdateRelease release = pending;
@@ -195,7 +225,7 @@ final class Updater {
     if (!DOWNLOAD.compareAndSet(false, true)) return;
     cancelled = false;
     progress = new ProgressDialog(activity);
-    progress.setTitle("Updating WCW Chronology");
+    progress.setTitle(companion ? "Installing Wrestling Chronology" : "Updating WCW Chronology");
     progress.setMessage("Downloading version " + release.version);
     progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     progress.setMax(100);
@@ -208,7 +238,10 @@ final class Updater {
     new Thread(
             () -> {
               HttpURLConnection connection = null;
-              File temporary = new File(activity.getCacheDir(), "update-download.apk");
+              File temporary =
+                  new File(
+                      activity.getCacheDir(),
+                      companion ? "wrestling-download.apk" : "update-download.apk");
               try {
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
                 connection = connect(release.url);
@@ -246,7 +279,10 @@ final class Updater {
                 if (!hash.toString().equals(release.hash))
                   throw new IOException("APK checksum mismatch");
                 verify(temporary, release);
-                File apk = new File(activity.getCacheDir(), "update.apk");
+                File apk =
+                    new File(
+                        activity.getCacheDir(),
+                        companion ? "wrestling-chronology.apk" : "update.apk");
                 if (!temporary.renameTo(apk))
                   throw new IOException("Couldn't save verified update");
                 Log.i("WCWUpdate", "VERIFIED version=" + release.version);
@@ -272,7 +308,12 @@ final class Updater {
                 activity.runOnUiThread(
                     () -> {
                       if (progress != null) progress.dismiss();
-                      if (!cancelled) toast("Update wasn't installed. " + error.getMessage());
+                      if (!cancelled && !destroyed)
+                        failure.accept(
+                            (companion
+                                    ? "Wrestling Chronology wasn't installed. "
+                                    : "Update wasn't installed. ")
+                                + error.getMessage());
                     });
               } finally {
                 if (connection != null) connection.disconnect();
@@ -290,7 +331,12 @@ final class Updater {
         Build.VERSION.SDK_INT >= 28
             ? PackageManager.GET_SIGNING_CERTIFICATES | PackageManager.GET_SIGNATURES
             : PackageManager.GET_SIGNATURES;
-    PackageInfo installed = manager.getPackageInfo(targetPackage, flags);
+    PackageInfo installed = null;
+    try {
+      installed = manager.getPackageInfo(targetPackage, flags);
+    } catch (PackageManager.NameNotFoundException error) {
+      if (!companion) throw error;
+    }
     PackageInfo archive = manager.getPackageArchiveInfo(apk.toString(), flags);
     long code =
         archive == null
@@ -307,17 +353,32 @@ final class Updater {
     if (archive.applicationInfo == null
         || archive.applicationInfo.minSdkVersion > Build.VERSION.SDK_INT)
       throw new IOException("APK requires a newer Android version");
-    if (!sameSigners(installed, archive)) throw new IOException("APK signing certificate mismatch");
+    if (installed != null) {
+      if (companion) {
+        long installedCode =
+            Build.VERSION.SDK_INT >= 28 ? installed.getLongVersionCode() : installed.versionCode;
+        if (code < installedCode)
+          throw new IOException("A newer Wrestling Chronology is already installed");
+      }
+      if (!sameSigners(installed, archive))
+        throw new IOException("APK signing certificate mismatch");
+    }
   }
 
   void install() {
     if (destroyed || verified == null || !resumed) return;
     if (Build.VERSION.SDK_INT >= 26 && !activity.getPackageManager().canRequestPackageInstalls()) {
       new AlertDialog.Builder(activity)
-          .setTitle("Allow WCW Chronology to install updates")
+          .setTitle(
+              companion
+                  ? "Allow WCW Chronology to install apps"
+                  : "Allow WCW Chronology to install updates")
           .setMessage(
               "Enable installation for WCW Chronology in Fire TV settings, then return to finish"
-                  + " the update.")
+                  + (companion
+                      ? " installing Wrestling Chronology. You can also use GitHub or Downloader"
+                            + " code 2909774."
+                      : " the update."))
           .setPositiveButton(
               "Open settings",
               (dialog, which) -> {
@@ -331,7 +392,10 @@ final class Updater {
                   installPending = false;
                   toast(
                       "Enable Apps from Unknown Sources for WCW Chronology in Fire TV settings,"
-                          + " then use Update app again.");
+                          + (companion
+                              ? " then use Wrestling Chronology in Settings again. Or use"
+                                    + " Downloader code 2909774."
+                              : " then use Update app again."));
                 }
               })
           .setNegativeButton("Later", null)
@@ -339,15 +403,25 @@ final class Updater {
       return;
     }
     try {
-      Uri uri = Uri.parse("content://" + activity.getPackageName() + ".updates/package.apk");
+      Uri uri =
+          Uri.parse(
+              "content://"
+                  + activity.getPackageName()
+                  + ".updates/"
+                  + (companion ? "wrestling-chronology.apk" : "package.apk"));
       Intent install =
           new Intent(Intent.ACTION_INSTALL_PACKAGE)
               .setDataAndType(uri, "application/vnd.android.package-archive")
               .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      install.setClipData(ClipData.newRawUri("WCW update", uri));
+      install.setClipData(
+          ClipData.newRawUri(companion ? "Wrestling Chronology" : "WCW update", uri));
       activity.startActivity(install);
     } catch (Exception error) {
-      toast("Fire TV couldn't open its package installer. Your current app is unchanged.");
+      failure.accept(
+          companion
+              ? "Fire TV couldn't open its installer. Enable install permission, or use GitHub or"
+                    + " Downloader code 2909774."
+              : "Fire TV couldn't open its package installer. Your current app is unchanged.");
     }
   }
 

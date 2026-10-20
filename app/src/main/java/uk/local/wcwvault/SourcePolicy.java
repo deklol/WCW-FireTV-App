@@ -9,11 +9,15 @@ final class SourcePolicy {
   private static final Pattern EXTRA =
       Pattern.compile(
           "(?i)\\b(?:countdown|pre[ ._-]*shows?|preshows?|highlights?|trailer|preview|sample|"
-              + "compilation|clips?|recap|review|reliving[ ._-]+the[ ._-]+war|"
+              + "compilation|clips?|segments?|recap|review|reliving[ ._-]+the[ ._-]+war|"
               + "full[ ._-]+match)\\b");
 
   static boolean eligible(JSONObject source) {
     if (!"archive".equals(source.optString("type"))) return true;
+    // An incomplete year collection can contain complete episodes: inspect the file only.
+    String filename = ArchiveIdentity.filename(source).replace('_', ' ');
+    if (Pattern.compile("(?i)\\b(?:inc|incomplete|partial)\\b").matcher(filename).find())
+      return false;
     String name = source.optString("filename") + " " + source.optString("url");
     if (EXTRA.matcher(name.replace("%20", " ").replace('_', ' ')).find()) return false;
     // Multipart recordings must be judged by their combined runtime, not one segment.

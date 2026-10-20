@@ -117,7 +117,7 @@ final class ArchiveSync {
     Collections.sort(signatures);
     String fingerprint =
         MetadataCache.hash(
-            "parser-v5:"
+            "parser-v6:"
                 + data.optJSONObject("archiveDateOrders")
                 + metadata.optString("creator")
                 + String.join("\n", signatures));

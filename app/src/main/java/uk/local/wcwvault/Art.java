@@ -2,6 +2,7 @@ package uk.local.wcwvault;
 
 import android.content.Context;
 import android.graphics.*;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.*;
 import android.util.LruCache;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import java.io.*;
 import java.net.*;
 import java.security.MessageDigest;
 import java.util.concurrent.*;
+import org.json.JSONObject;
 
 final class Art {
   static final ExecutorService work = Executors.newFixedThreadPool(2);
@@ -20,10 +22,49 @@ final class Art {
         }
       };
 
+  static String episodeUrl(Catalog.Episode item, boolean portrait) {
+    String[] candidates =
+        portrait
+            ? new String[] {item.poster, item.thumbnail}
+            : new String[] {item.thumbnail, item.poster};
+    for (String url : candidates) if (usable(url)) return url;
+    for (JSONObject source : item.sources)
+      if (source.optString("type").equals("youtube")
+          && source.optString("videoId").matches("[A-Za-z0-9_-]{11}"))
+        return "https://i.ytimg.com/vi/" + source.optString("videoId") + "/hqdefault.jpg";
+    return "";
+  }
+
+  static boolean usable(String url) {
+    // The add-on's explicit missing-image URLs contain the magnifying-glass graphic.
+    // Archive item thumbnails are real artwork and must remain eligible.
+    return url != null
+        && url.startsWith("https://")
+        && !url.startsWith("https://aiometadata.elfhosted.com/missing_");
+  }
+
+  static void placeholder(ImageView view) {
+    String key = "local:wcw-placeholder";
+    Bitmap bitmap = cache.get(key);
+    if (bitmap == null) {
+      BitmapFactory.Options options = new BitmapFactory.Options();
+      options.inSampleSize = 2;
+      options.inPreferredConfig = Bitmap.Config.RGB_565;
+      bitmap = BitmapFactory.decodeResource(view.getResources(), R.drawable.app_icon, options);
+      cache.put(key, bitmap);
+    }
+    BitmapDrawable drawable = new BitmapDrawable(view.getResources(), bitmap);
+    // Render the supplied black-on-white WCW icon as white-on-black in the dark UI.
+    drawable.setColorFilter(
+        new ColorMatrixColorFilter(
+            new float[] {-1, 0, 0, 0, 255, 0, -1, 0, 0, 255, 0, 0, -1, 0, 255, 0, 0, 0, 1, 0}));
+    view.setImageDrawable(drawable);
+  }
+
   static void load(ImageView view, String url) {
     view.setTag(url);
-    view.setImageDrawable(null);
-    if (url == null || !url.startsWith("https://")) return;
+    placeholder(view);
+    if (!usable(url)) return;
     Bitmap ready = cache.get(url);
     if (ready != null) {
       view.setImageBitmap(ready);

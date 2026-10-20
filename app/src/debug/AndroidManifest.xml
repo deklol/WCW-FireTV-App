@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
+        <activity android:name=".WrestlingAppTestActivity" android:exported="true"
+            android:label="Wrestling Installation Test" android:screenOrientation="landscape" />
         <activity android:name=".UpdaterTestActivity" android:exported="true"
             android:label="WCW Updater Test" android:screenOrientation="landscape" />
     </application>

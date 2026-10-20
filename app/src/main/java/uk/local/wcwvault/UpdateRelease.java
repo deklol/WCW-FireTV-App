@@ -46,12 +46,16 @@ final class UpdateRelease {
   }
 
   static UpdateRelease github(JSONObject data) throws Exception {
+    return github(data, "WCW-FireTV-App.apk");
+  }
+
+  static UpdateRelease github(JSONObject data, String apkName) throws Exception {
     if (data.optBoolean("draft") || data.optBoolean("prerelease"))
       throw new IOException("No stable release available");
     JSONArray assets = data.getJSONArray("assets");
     for (int i = 0; i < assets.length(); i++) {
       JSONObject asset = assets.getJSONObject(i);
-      if ("WCW-FireTV-App.apk".equals(asset.optString("name"))) {
+      if (apkName.equals(asset.optString("name"))) {
         String digest = asset.optString("digest");
         if (!digest.startsWith("sha256:")) throw new IOException("Release has no SHA-256 digest");
         return new UpdateRelease(
@@ -62,7 +66,7 @@ final class UpdateRelease {
             data.optString("body", "A new WCW Chronology update is available."));
       }
     }
-    throw new IOException("Release has no WCW-FireTV-App.apk asset");
+    throw new IOException("Release has no " + apkName + " asset");
   }
 
   boolean newerThan(int installedCode, String installedVersion) {

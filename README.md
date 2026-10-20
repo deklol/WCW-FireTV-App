@@ -1,5 +1,7 @@
 # WCW Chronology
 
+> **Looking for more wrestling companies?** The new [Wrestling Chronology app](https://github.com/deklol/Wrestling-Chronology) includes **WWF/WWE, WCW, ECW and TNA/Impact** in separate libraries. Install it through Downloader using code **`2909774`** or [aftv.news/2909774](https://aftv.news/2909774). WCW Chronology users can also find it in Settings.
+
 ## Install with Downloader on Fire TV
 
 **Downloader code: `7990024`**
@@ -60,7 +62,7 @@ Availability depends on the source providers, and automatic scans can discover a
 
 ## Install
 
-Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.3.1** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing users with the in-app updater can also check **Settings > Update app**.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.3.3** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing users with the in-app updater can also check **Settings > Update app**.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 

@@ -60,7 +60,7 @@ Use `"dateOrder": "MDY"` or `"dateOrder": "DMY"` only after checking the uploade
 
 The scanner reads public metadata and accepts MP4/M4V files with programme-specific minimum durations: Nitro 40 minutes; Worldwide, Pro, Power Hour and Prime 30 minutes; Main Event 20 minutes; other formats 45 minutes. These thresholds reject obvious short fragments without discarding full shorter weekly formats. They cannot prove that a recording is uncut. The scanner rejects private files, clips, samples and explicitly incomplete parts, preserves supplied complete multipart sources, and maps dated files to existing episodes where possible so a second encode is an extra source rather than a new episode.
 
-`collectionsPerScan` defaults to **12**, with a supported range of 1–50. Collections are checked in rotation, keeping each scan light. With the current 245 items and a six-hour schedule, one complete Archive rotation takes approximately five days, subject to OS scheduling and playback deferrals. Every scan checks all five enabled YouTube playlists. The app does not search arbitrary new Archive accounts or collections automatically: add those item IDs to this file.
+`collectionsPerScan` defaults to **12**, with a supported range of 1–50. Collections are checked in rotation, keeping each scan light. With the current 246 items and a six-hour schedule, one complete Archive rotation takes approximately five days, subject to OS scheduling and playback deferrals. Every scan checks all five enabled YouTube playlists. The app does not search arbitrary new Archive accounts or collections automatically: add those item IDs to this file.
 
 For an immediate complete pass, use **Settings → Full source scan**. This checks every enabled Archive item as well as all YouTube playlists; it can take longer than the normal quick refresh. A failed item is skipped with its reason while the remaining items continue.
 
@@ -78,3 +78,5 @@ Set an entry's `enabled` to `false`, delete the entry, or disable an entire prov
 - “New episode” means a previously unlisted broadcast. Another link or encode for an existing broadcast is counted separately and does not reorder the latest-episode rows.
 
 After editing, run `python scripts/check_sources.py` and build/test the app as described in [BUILDING.md](BUILDING.md).
+
+Worldwide uses a 30-minute eligibility floor after the canonical programme is attached to older cached sources. Runtime is only a screening check. Explicit `INC`, `incomplete`, `partial`, clip and segment filenames are rejected. An incomplete *year collection* can contain complete individual episodes, so its collection name alone does not reject them. Month-only compilations without individual broadcast dates are not imported. See [Worldwide source audit](WORLDWIDE_SOURCE_AUDIT.md).

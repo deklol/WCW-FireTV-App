@@ -1,6 +1,6 @@
-# Pre-1997 library in 0.3.1
+# Pre-1997 library in 0.3.2
 
-Inventory checked on 20 October 2026. The seed adds **1,277 distinct pre-1997 broadcasts**, for **1,937 total entries**. Early-year coverage is uneven; a year card means some material exists, not that every show from that year is available.
+Inventory checked on 20 October 2026. The seed adds **1,278 distinct pre-1997 broadcasts**, for **1,950 total entries**. Early-year coverage is uneven; a year card means some material exists, not that every show from that year is available.
 
 ## Year totals
 
@@ -8,7 +8,7 @@ Inventory checked on 20 October 2026. The seed adds **1,277 distinct pre-1997 br
 | --- | ---: |
 | 1983 | 4 |
 | 1984 | 1 |
-| 1985 | 11 |
+| 1985 | 12 |
 | 1986 | 42 |
 | 1987 | 39 |
 | 1988 | 8 |
@@ -34,13 +34,15 @@ Inventory checked on 20 October 2026. The seed adds **1,277 distinct pre-1997 br
 | Prime | 42 |
 | Pro | 219 |
 | Saturday Night | 274 |
-| Worldwide | 192 |
+| Worldwide | 193 |
 
 World Championship Wrestling and Saturday Night share the same internal programme family. The earlier name is displayed before the 4 April 1992 rename. Clash events are grouped under PPV in the interface while keeping their event titles.
 
 The 68 pre-1997 Nitro dates match the independent TVmaze episode guide: 17 in 1995 and 51 in 1996, with no missing or unexpected dates. All 33 pre-1997 Clash dates are represented. A separate audit paginated the official WCW channel's 716 listed uploads and all 12 playlists; the configured fifth playlist supplies older World Championship Wrestling episodes. The WCW-channel early weekly uploads identified in that audit date from 1985-1987. The separate WWE Vault additions now supply World Championship Wrestling episodes from 18 June, 25 June and 2 July 1983. Those Georgia Championship Wrestling broadcasts appear under the historical World Championship Wrestling name. The 1983 and 1984 Starrcade events remain included from Archive.org.
 
 Sources include separate Great American Bash tour editions, Crockett Cup 1986, When Worlds Collide 1994, the 1991 WCW/New Japan Supershow, Collision in Korea and both All Nighter specials. Collision in Korea is dated by its US PPV broadcast on 4 August 1995; it was recorded on 28-29 April. Its English broadcast edit and longer mixed/Japanese versions are alternatives for the same event.
+
+The full-length Worldwide broadcast dated 20 April 1985 is also included and passed bounded delivery/runtime checks.
 
 ## What was verified
 
@@ -55,7 +57,7 @@ The [public source register](PRE1997_SOURCES.csv) lists each imported source, it
 
 ## Existing library and Millennium Final
 
-The 660 correctly dated existing entries keep their IDs, dates and source references. One legacy duplicate of Clash XIII, incorrectly filed as 14 January 2001, is merged into 20 November 1990 without losing its YouTube link. Existing cached history is transferred when no independent progress already exists on the correct entry.
+Existing source references are retained. Four legacy 1999 Worldwide dates are corrected in 0.3.2 with saved-progress recovery; see [the Worldwide audit](WORLDWIDE_SOURCE_AUDIT.md). One legacy duplicate of Clash XIII, incorrectly filed as 14 January 2001, is merged into 20 November 1990 without losing its YouTube link. Existing cached history is transferred when no independent progress already exists on the correct entry.
 
 No better public Chasing That W copy of Millennium Final was confirmed. The creator/title index and 50 relevant 2000 items containing 129 video files were checked, including date-only uploads. The two existing links appear to be the same 240p recording with German commentary. They remain available as fallback sources rather than being replaced with unrelated matches or an invented quality upgrade. Known English copies take priority whenever available.
 

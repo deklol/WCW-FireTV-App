@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.3
+
+- Introduce Wrestling Chronology on launch, covering WCW, ECW, WWF/WWE and TNA/Impact, with Download and install, Not now and Don't show again choices.
+- Keep Wrestling Chronology available at the top of Settings, including GitHub and Downloader code **2909774** as alternative installation routes. Devices with the new app installed can open it from there and do not receive the launch install notice.
+- Download the new app's current GitHub release directly, check its SHA-256, package, version and Android requirement, then request normal system installation. Existing copies must have a compatible signing certificate and cannot be downgraded.
+- Keep the new app's download separate from WCW self-updates. Explain install permissions and provide recovery instructions when direct installation is unavailable.
+
+## 0.3.2
+
+- Replace the add-on's explicit missing-image search icon with a local white-on-black WCW placeholder. Retain genuine Archive and other episode thumbnails, event posters and YouTube thumbnails in cards, details and the resume hero; failed artwork requests retain the placeholder.
+- Keep complete Worldwide episodes after metadata refresh by applying the programme-specific runtime rule to older cached sources.
+- Add 13 dated full-length Worldwide broadcasts: 20 April 1985, 7 December 1997 and 11 missing 1999 dates. Total: 1,950 broadcasts, including 294 Worldwide.
+- Correct four reversed month/day dates in 1999 without dropping existing source URLs; recover saved progress even if an earlier refresh had removed the old entry.
+- Show all available programme filters inside a year. Explicit Worldwide selection works with optional shows disabled; the All autoplay preference is retained.
+- Reject explicit partial/incomplete recordings and segments, without rejecting complete episodes merely because a year collection is incomplete.
+- No complete 2000-2001 Worldwide episodes were confirmed. New 1999 transport checks were blocked by Archive server failures; these records are supported by dated full-length metadata, not a claim of successful playback verification.
+
 ## 0.3.1
 
 - Add six requested WWE Vault uploads through readable individual-video entries in sources.json.

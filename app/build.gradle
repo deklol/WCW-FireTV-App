@@ -10,8 +10,8 @@ android {
         applicationId 'uk.local.wcwvault'
         minSdk 25
         targetSdk 28
-        versionCode 11
-        versionName '0.3.1'
+        versionCode 13
+        versionName '0.3.3'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
