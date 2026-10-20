@@ -23,13 +23,29 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ![WCW Chronology home](docs/screenshots/home.png)
 
+## What's included
+
+**1,933 available broadcasts and events from 1983–2001:**
+
+- Nitro: **291**
+- Thunder: **160**
+- World Championship Wrestling / Saturday Night: **379**
+- Worldwide: **281**
+- Pro: **247**
+- Power Hour: **189**
+- Main Event: **186**
+- Prime: **42**
+- PPVs and events, including Clash of the Champions: **156**
+- All Nighter specials: **2**
+
+Availability depends on the source providers, and automatic scans can discover additional broadcasts and alternative copies.
+
 ## Features
 
-- Version **0.3.1** brings the bundled catalogue to **1,937 broadcasts**, adding individual WWE Vault uploads, including three 1983 weekly shows and WCW Live in England (1993), plus additional copies of existing events.
-- Version **0.3.0** expands the bundled catalogue to **1,933 broadcasts**, adding 1,273 pre-1997 shows and events and a dedicated **Years** selector. Includes 68 earlier Nitro dates and 33 earlier Clash events. See the [library inventory and coverage limits](docs/PRE1997_LIBRARY.md).
-- Version **0.2.6** corrects PPV sources that selected preshows or reviews, including Souled Out 2000 and SuperBrawl 2000. Corrections apply to existing catalogues while preserving viewing history.
-- Version **0.2.5** adds automatic GitHub update checks with Update, Later and Skip this version options, verified APK installation and manual updates in Settings. The home hero shows your unfinished episode's artwork, details and saved progress. See [app updates](docs/UPDATING.md).
-- Version **0.2.4** adds six-second Archive.org stall recovery, episode progress bars and watched percentages, manual watched/unwatched controls, and source-aware resume. Clash of the Champions events are grouped under PPV.
+- Continue watching from the home hero, with episode artwork, details and saved progress.
+- Episode progress bars, watched percentages and manual watched/unwatched controls.
+- Source-aware resume and automatic recovery for stalled Archive.org streams.
+- Automatic GitHub update checks with Update, Later and Skip this version options, plus manual updates in Settings.
 - Dark TV interface, artwork, event descriptions and remote-friendly cards.
 - Top navigation: **Home · Years · Nitro · Thunder · PPV · Search · Settings**, with year filters in each show catalogue. Home returns to the homepage.
 - Separate **Latest found Nitro**, **Latest found Thunder** and **Latest found PPVs** rows, directly below the hero. Newest discoveries appear first; broadcasts discovered together use newest broadcast date first. Playback queues remain chronological.
