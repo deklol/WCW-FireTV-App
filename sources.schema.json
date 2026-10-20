@@ -12,7 +12,8 @@
       "properties": {
         "enabled": {"type": "boolean"},
         "channelId": {"type": "string", "pattern": "^UC[A-Za-z0-9_-]{22}$"},
-        "playlists": {"type": "array", "items": {"$ref": "#/$defs/playlist"}}
+        "playlists": {"type": "array", "items": {"$ref": "#/$defs/playlist"}},
+        "videos": {"type": "array", "items": {"$ref": "#/$defs/video"}}
       }
     },
     "archive": {
@@ -26,6 +27,19 @@
     }
   },
   "$defs": {
+    "video": {
+      "type": "object",
+      "required": ["id", "name", "channelId", "authorUrl", "date", "show", "title", "duration"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{11}$"},
+        "name": {"type": "string"}, "enabled": {"type": "boolean"},
+        "channelId": {"type": "string", "pattern": "^UC[A-Za-z0-9_-]{22}$"},
+        "authorUrl": {"type": "string", "pattern": "^https://www\\.youtube\\.com/@[A-Za-z0-9_.-]+$"},
+        "date": {"type": "string", "format": "date"},
+        "show": {"$ref": "#/$defs/show"}, "title": {"type": "string"},
+        "duration": {"type": "integer", "minimum": 1200}, "description": {"type": "string"}
+      }
+    },
     "show": {"enum": ["Nitro", "Thunder", "PPV", "Clash of the Champions", "Saturday Night", "Worldwide", "Pro", "Power Hour", "Main Event", "Prime", "All Nighter"]},
     "playlist": {
       "type": "object", "required": ["id", "name", "show"],

@@ -1,4 +1,7 @@
 date,programme,title,provider,url,runtime_seconds,known_audio,stream_checked
+1983-06-18,World Championship Wrestling,World Championship Wrestling,youtube,https://www.youtube.com/watch?v=oTJaQ0PVMz8,4274,unknown,yes
+1983-06-25,World Championship Wrestling,World Championship Wrestling,youtube,https://www.youtube.com/watch?v=m8sXxm05j_g,2828,unknown,yes
+1983-07-02,World Championship Wrestling,World Championship Wrestling,youtube,https://www.youtube.com/watch?v=WtaXKcZSCpg,2842,unknown,yes
 1983-11-24,PPV,Starrcade '83: A Flare for the Gold,archive,https://archive.org/download/nov.-24-1983/NOV.%2024%2C%201983.mp4,10652.27,unknown,yes
 1984-11-22,PPV,Starrcade '84: The Million Dollar Challenge,archive,https://archive.org/download/1984-vhs-wcw-pay-per-views/11.22%20-%20Starrcade%20%28The%20Million%20Dollar%20Challenge%29.mp4,11574.54,unknown,yes
 1985-07-06,PPV,The Great American Bash 1985,archive,https://archive.org/download/jul.-06-1985/JUL.%2006%2C%201985.mp4,8429.87,unknown,yes
@@ -803,6 +806,7 @@ date,programme,title,provider,url,runtime_seconds,known_audio,stream_checked
 1993-03-04,Power Hour,Power Hour,archive,https://archive.org/download/wcw-powerhour-complete/power%20hour%203-4-93.mp4,3602.14,unknown,yes
 1993-03-07,Main Event,Main Event,archive,https://archive.org/download/main-event-93-complete/MAIN%20EVENT%203-7-93.mp4,2533.07,unknown,yes
 1993-03-07,Power Hour,Power Hour,archive,https://archive.org/download/wcw-powerhour-complete/3-7-93.mp4,3592.56,unknown,yes
+1993-03-13,PPV,WCW Live in England,youtube,https://www.youtube.com/watch?v=2mykcQhMIcM,8278,unknown,yes
 1993-03-13,Power Hour,Power Hour,archive,https://archive.org/download/wcw-powerhour-complete/power%20hour%2013-3-93.mp4,3591.63,unknown,yes
 1993-03-13,Worldwide,Worldwide,archive,https://archive.org/download/wcw-worldwide-1993-complete/WCW%20Worldwide%201993-03-13.mp4,1930.9,unknown,yes
 1993-03-14,Main Event,Main Event,archive,https://archive.org/download/main-event-93-complete/MAIN%20EVENT%203-14-93.mp4,2808.34,unknown,yes
@@ -986,6 +990,7 @@ date,programme,title,provider,url,runtime_seconds,known_audio,stream_checked
 1994-08-24,Clash of the Champions,Clash of the Champions 28,archive,https://archive.org/download/1994-vhs-wcw-pay-per-views/08.28%20-%20Clash%20of%20the%20Champions%20XXVIII.mp4,6880.18,unknown,yes
 1994-08-24,Clash of the Champions,Clash of the Champions 28,youtube,https://www.youtube.com/watch?v=M9_18Vc-BrQ,6527,unknown,not individually checked
 1994-08-27,Saturday Night,Saturday Night,archive,https://archive.org/download/Dec-27-1994/08%2027%201994%20SN.mp4,7201.14,unknown,yes
+1994-08-27,Saturday Night,Saturday Night,youtube,https://www.youtube.com/watch?v=tNjIClDfm4o,5312,unknown,yes
 1994-08-27,Worldwide,Worldwide,archive,https://archive.org/download/wcw-worldwide-94-complete/08-27-94.mp4,3538.05,unknown,yes
 1994-09-03,Saturday Night,Saturday Night,archive,https://archive.org/download/Dec-27-1994/09%2003%201994%20SN.mp4,7196.13,unknown,yes
 1994-09-03,Worldwide,Worldwide,archive,https://archive.org/download/wcw-worldwide-94-complete/09-03-94.mp4,3598.05,unknown,yes

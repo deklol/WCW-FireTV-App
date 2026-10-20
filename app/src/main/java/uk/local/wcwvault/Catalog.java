@@ -56,6 +56,7 @@ final class Catalog {
       for (int j = sources.length() - 1; j >= 0; j--) {
         JSONObject source = sources.getJSONObject(j);
         if (!source.optString("type").equals("youtube")) continue;
+        if (source.optBoolean("direct")) continue; // Explicit source-manifest broadcast identity.
         String date = CatalogSync.date(source.optString("title"), data),
             show = CatalogSync.show(source.optString("title"));
         if (row.optString("date").equals(date) && row.optString("show").equals(show)) continue;
@@ -307,7 +308,7 @@ final class Catalog {
       }
       return archive && youtube
           ? "Archive + YouTube"
-          : youtube ? "Official WCW · YouTube" : "Internet Archive";
+          : youtube ? "Official YouTube" : "Internet Archive";
     }
 
     String heading() {

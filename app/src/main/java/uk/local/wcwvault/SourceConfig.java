@@ -21,7 +21,22 @@ final class SourceConfig {
     if (!channelId.matches("UC[A-Za-z0-9_-]{22}"))
       throw new JSONException("Invalid YouTube channel ID");
     collectionsPerScan = Math.max(1, Math.min(50, archive.optInt("collectionsPerScan", 12)));
-    JSONArray playlists = new JSONArray(), identifiers = new JSONArray();
+    JSONArray playlists = new JSONArray(), identifiers = new JSONArray(), videos = new JSONArray();
+    Map<String, String> directChannels = new HashMap<>();
+    Set<String> listedVideos = new HashSet<>();
+    JSONArray direct = youtube.optJSONArray("videos");
+    if (direct != null)
+      for (int i = 0; i < direct.length(); i++) {
+        JSONObject item = direct.getJSONObject(i);
+        DirectYoutube.validate(item);
+        if (!listedVideos.add(item.getString("id")))
+          throw new JSONException("Duplicate YouTube video ID");
+        if (youtube.optBoolean("enabled", true) && item.optBoolean("enabled", true)) {
+          videos.put(item);
+          directChannels.put(item.getString("id"), item.getString("channelId"));
+        }
+      }
+    DirectYoutube.channels = Collections.unmodifiableMap(directChannels);
     JSONObject hints = new JSONObject(), labels = new JSONObject(), dateOrders = new JSONObject();
     Map<String, String> playlistForShow = new HashMap<>();
     Set<String> activePlaylists = new HashSet<>(), activeItems = new HashSet<>();
@@ -64,12 +79,19 @@ final class SourceConfig {
         JSONObject source = sources.getJSONObject(j);
         boolean keep = true;
         if (source.optString("type").equals("youtube")) {
-          String playlist =
-              source.optString(
-                  "playlistId", playlistForShow.getOrDefault(row.optString("show"), ""));
-          keep =
-              activePlaylists.contains(playlist) && channelId.equals(source.optString("channelId"));
-          if (keep) source.put("playlistId", playlist);
+          String video = source.optString("videoId");
+          if (source.optBoolean("direct") || listedVideos.contains(video)) {
+            keep = DirectYoutube.allowed(video, source.optString("channelId"));
+            if (keep) source.put("direct", true);
+          } else {
+            String playlist =
+                source.optString(
+                    "playlistId", playlistForShow.getOrDefault(row.optString("show"), ""));
+            keep =
+                activePlaylists.contains(playlist)
+                    && channelId.equals(source.optString("channelId"));
+            if (keep) source.put("playlistId", playlist);
+          }
         } else if (source.optString("type").equals("archive")) {
           JSONArray parts = source.optJSONArray("urls");
           if (parts == null)
@@ -84,6 +106,7 @@ final class SourceConfig {
     }
     catalogue
         .put("playlists", playlists)
+        .put("youtubeVideos", videos)
         .put("archiveItems", identifiers)
         .put("archiveHints", hints)
         .put("archiveDateOrders", dateOrders)

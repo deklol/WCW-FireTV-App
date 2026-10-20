@@ -36,6 +36,80 @@
         "enabled": true,
         "show": "Saturday Night"
       }
+    ],
+    "videos": [
+      {
+        "id": "kJRzqQwZ7po",
+        "name": "WWE Vault - WCW/nWo Halloween Havoc 1998 - 1998-10-25",
+        "enabled": true,
+        "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+        "authorUrl": "https://www.youtube.com/@WWEVault",
+        "date": "1998-10-25",
+        "show": "PPV",
+        "title": "WCW/nWo Halloween Havoc 1998",
+        "duration": 11286,
+        "description": ""
+      },
+      {
+        "id": "2mykcQhMIcM",
+        "name": "WWE Vault - WCW Live in England - 1993-03-13",
+        "enabled": true,
+        "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+        "authorUrl": "https://www.youtube.com/@WWEVault",
+        "date": "1993-03-13",
+        "show": "PPV",
+        "title": "WCW Live in England",
+        "duration": 8278,
+        "description": "Sting faces Paul Orndorff and Cactus Jack meets Vader at the G-Mex in Manchester. Also featuring Davey Boy Smith, Johnny B. Badd, Rick Rude and Barry Windham."
+      },
+      {
+        "id": "oTJaQ0PVMz8",
+        "name": "WWE Vault - World Championship Wrestling - 1983-06-18",
+        "enabled": true,
+        "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+        "authorUrl": "https://www.youtube.com/@WWEVault",
+        "date": "1983-06-18",
+        "show": "Saturday Night",
+        "title": "World Championship Wrestling",
+        "duration": 4274,
+        "description": "Tommy Rich and Buzz Sawyer prepare for their next confrontation. Rick Rude faces Larry Zbyszko, and Ole Anderson responds to Paul Ellering. A Georgia Championship Wrestling broadcast."
+      },
+      {
+        "id": "WtaXKcZSCpg",
+        "name": "WWE Vault - World Championship Wrestling - 1983-07-02",
+        "enabled": true,
+        "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+        "authorUrl": "https://www.youtube.com/@WWEVault",
+        "date": "1983-07-02",
+        "show": "Saturday Night",
+        "title": "World Championship Wrestling",
+        "duration": 2842,
+        "description": "Rich and Sawyer exchange words. Mr. Wrestling II and Pez Whatley face Larry Zbyszko and Tully Blanchard in an elimination tag match. A Georgia Championship Wrestling broadcast."
+      },
+      {
+        "id": "m8sXxm05j_g",
+        "name": "WWE Vault - World Championship Wrestling - 1983-06-25",
+        "enabled": true,
+        "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+        "authorUrl": "https://www.youtube.com/@WWEVault",
+        "date": "1983-06-25",
+        "show": "Saturday Night",
+        "title": "World Championship Wrestling",
+        "duration": 2828,
+        "description": "Larry Zbyszko introduces Killer Brooks as an official. Ron Garvin faces Buzz Sawyer, with The Road Warriors and The Iron Sheik also featured. A Georgia Championship Wrestling broadcast."
+      },
+      {
+        "id": "tNjIClDfm4o",
+        "name": "WWE Vault - Saturday Night - 1994-08-27",
+        "enabled": true,
+        "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+        "authorUrl": "https://www.youtube.com/@WWEVault",
+        "date": "1994-08-27",
+        "show": "Saturday Night",
+        "title": "Saturday Night",
+        "duration": 5312,
+        "description": "Steve Austin, Lord Steven Regal, Vader and Harlem Heat feature in this Saturday Night broadcast."
+      }
     ]
   },
   "archive": {

@@ -301,8 +301,8 @@ final class ArchiveSync {
       CatalogSync.available();
       String identifier = identifiers.getString((cursor + i) % identifiers.length());
       CatalogSync.progress(
-          data.getJSONArray("playlists").length() + i,
-          data.getJSONArray("playlists").length() + count,
+          data.getJSONArray("playlists").length() + DirectYoutube.count(data) + i,
+          data.getJSONArray("playlists").length() + DirectYoutube.count(data) + count,
           "Archive.org · " + identifier + " · " + (i + 1) + " / " + count);
       if (!identifier.matches("[A-Za-z0-9][A-Za-z0-9_.-]{0,99}")) continue;
       try {

@@ -421,6 +421,7 @@ final class CatalogSync {
       progress(
           0,
           playlists.length()
+              + DirectYoutube.count(data)
               + (full
                   ? data.getJSONArray("archiveItems").length()
                   : Math.min(
@@ -511,6 +512,7 @@ final class CatalogSync {
       }
       if (playlists.length() > 0 && seen.isEmpty())
         warning("YouTube · no full shows returned; existing sources kept");
+      added += DirectYoutube.refresh(context, data);
       added +=
           ArchiveSync.refresh(
               context,

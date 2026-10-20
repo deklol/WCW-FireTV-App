@@ -9,6 +9,7 @@ app/src/main/assets/catalogue.json Initial public catalogue, metadata and chrono
 app/src/main/java/uk/local/wcwvault/
   MainActivity.java                Home rows, years, search, details and settings
   SourceConfig.java                Loads sources.json and filters disabled sources
+  DirectYoutube.java               Named uploads, explicit dates, hashes and uploader checks
   Catalog.java                     Catalogue model, merging and viewing progress
   CatalogSync.java                 YouTube discovery, progress and scan reports
   ArchiveSync.java                 Archive metadata discovery and file matching

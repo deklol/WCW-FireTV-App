@@ -1,12 +1,12 @@
-# Pre-1997 library in 0.3.0
+# Pre-1997 library in 0.3.1
 
-Inventory checked on 20 October 2026. The seed adds **1,273 distinct pre-1997 broadcasts**, for **1,933 total entries**. Early-year coverage is uneven; a year card means some material exists, not that every show from that year is available.
+Inventory checked on 20 October 2026. The seed adds **1,277 distinct pre-1997 broadcasts**, for **1,937 total entries**. Early-year coverage is uneven; a year card means some material exists, not that every show from that year is available.
 
 ## Year totals
 
 | Year | Broadcasts/events |
 | --- | ---: |
-| 1983 | 1 |
+| 1983 | 4 |
 | 1984 | 1 |
 | 1985 | 11 |
 | 1986 | 42 |
@@ -16,7 +16,7 @@ Inventory checked on 20 October 2026. The seed adds **1,273 distinct pre-1997 br
 | 1990 | 203 |
 | 1991 | 245 |
 | 1992 | 191 |
-| 1993 | 104 |
+| 1993 | 105 |
 | 1994 | 128 |
 | 1995 | 135 |
 | 1996 | 155 |
@@ -29,16 +29,16 @@ Inventory checked on 20 October 2026. The seed adds **1,273 distinct pre-1997 br
 | Clash of the Champions | 33 |
 | Main Event | 186 |
 | Nitro | 68 |
-| PPV | 71 |
+| PPV | 72 |
 | Power Hour | 189 |
 | Prime | 42 |
 | Pro | 219 |
-| Saturday Night | 271 |
+| Saturday Night | 274 |
 | Worldwide | 192 |
 
 World Championship Wrestling and Saturday Night share the same internal programme family. The earlier name is displayed before the 4 April 1992 rename. Clash events are grouped under PPV in the interface while keeping their event titles.
 
-The 68 pre-1997 Nitro dates match the independent TVmaze episode guide: 17 in 1995 and 51 in 1996, with no missing or unexpected dates. All 33 pre-1997 Clash dates are represented. A separate audit paginated the official WCW channel's 716 listed uploads and all 12 playlists; the configured fifth playlist supplies older World Championship Wrestling episodes. The official early weekly uploads identified here date from 1985-1987; the sparse 1983-1984 entries are events from Archive.org.
+The 68 pre-1997 Nitro dates match the independent TVmaze episode guide: 17 in 1995 and 51 in 1996, with no missing or unexpected dates. All 33 pre-1997 Clash dates are represented. A separate audit paginated the official WCW channel's 716 listed uploads and all 12 playlists; the configured fifth playlist supplies older World Championship Wrestling episodes. The WCW-channel early weekly uploads identified in that audit date from 1985-1987. The separate WWE Vault additions now supply World Championship Wrestling episodes from 18 June, 25 June and 2 July 1983. Those Georgia Championship Wrestling broadcasts appear under the historical World Championship Wrestling name. The 1983 and 1984 Starrcade events remain included from Archive.org.
 
 Sources include separate Great American Bash tour editions, Crockett Cup 1986, When Worlds Collide 1994, the 1991 WCW/New Japan Supershow, Collision in Korea and both All Nighter specials. Collision in Korea is dated by its US PPV broadcast on 4 August 1995; it was recorded on 28-29 April. Its English broadcast edit and longer mixed/Japanese versions are alternatives for the same event.
 
@@ -48,6 +48,7 @@ Sources include separate Great American Bash tour editions, Crockett Cup 1986, W
 - Archive checks fetched bounded beginning/end byte ranges, confirmed media-container delivery and independently parsed the MP4 runtime. Full media files were not downloaded or stored.
 - The 86 YouTube-only entries were resolved with the same NewPipeExtractor version used by the app. Checks confirmed the official WCW channel, compatible H.264 video, English/original audio, and actual partial video/audio delivery.
 - Eleven additional curated events/specials also passed Archive delivery/runtime checks. Every imported broadcast therefore has at least one checked delivery source. An untested YouTube alternative may also be present when a checked Archive source exists.
+- Six individually registered WWE Vault uploads also passed compatible 720p H.264 and actual partial video/audio delivery checks with the app's extractor version. Four add broadcasts; two add source options. Their legacy audio tracks have no language metadata, so these checks do not assert a language tag that the host does not provide. See [WWE_VAULT.md](WWE_VAULT.md).
 - These are transport, identity and runtime checks, not complete end-to-end viewings. They cannot establish that every recording is unedited, high quality or permanently available. Some Archive copies are VHS-derived; short/explicitly partial candidates were excluded by programme-specific rules.
 
 The [public source register](PRE1997_SOURCES.csv) lists each imported source, its broadcast identity, runtime and whether that particular source was stream-checked. The editable runtime manifest is the root [sources.json](../sources.json).

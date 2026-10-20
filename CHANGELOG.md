@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1
+
+- Add six requested WWE Vault uploads through readable individual-video entries in sources.json.
+- Add World Championship Wrestling episodes dated 18 June, 25 June and 2 July 1983, plus WCW Live in England from Manchester on 13 March 1993.
+- Add official YouTube alternatives for Halloween Havoc 1998 and Saturday Night on 27 August 1994, preserving their existing entries and Archive sources.
+- Include individual uploads in quick/full refresh progress, metadata caching, stable fingerprints and per-source failure reports. Verify the configured uploader identity during playback.
+- Keep Years ordered newest first. The bundled catalogue now contains 1,937 broadcasts, including 1,277 before 1997.
+
 ## 0.3.0
 
 - Add 1,273 pre-1997 broadcasts, including all 68 Nitro dates in 1995–1996 and all 33 earlier Clash events, plus available older WCW TV, Saturday Night, Worldwide, Pro, Power Hour, Main Event, Prime and All Nighter specials.

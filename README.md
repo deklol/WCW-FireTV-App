@@ -19,14 +19,15 @@ Created by [digitalm1nd](https://x.com/digitalm1nd).
 
 ## Video sources and streaming
 
-I do not host any of the videos available through this app. Videos are sourced from the **official WCW YouTube channel** and **Archive.org collections**, and streamed directly from those providers. The app does not download or save video files to your device. This repository and its APK contain no episode video files.
+I do not host any of the videos available through this app. Videos are sourced from the **official WCW and WWE Vault YouTube channels** and **Archive.org collections**, and streamed directly from those providers. The app does not download or save video files to your device. This repository and its APK contain no episode video files.
 
 ![WCW Chronology home](docs/screenshots/home.png)
 
 ## Features
 
+- Version **0.3.1** brings the bundled catalogue to **1,937 broadcasts**, adding individual WWE Vault uploads, including three 1983 weekly shows and WCW Live in England (1993), plus additional copies of existing events.
 - Version **0.3.0** expands the bundled catalogue to **1,933 broadcasts**, adding 1,273 pre-1997 shows and events and a dedicated **Years** selector. Includes 68 earlier Nitro dates and 33 earlier Clash events. See the [library inventory and coverage limits](docs/PRE1997_LIBRARY.md).
-- Version **0.2.6** corrects PPV sources that selected preshows or reviews, including Souled Out 2000 and SuperBrawl 2000. Corrections apply to existing catalogues while preserving viewing history. See the [PPV source audit](docs/PPV_SOURCE_AUDIT.md).
+- Version **0.2.6** corrects PPV sources that selected preshows or reviews, including Souled Out 2000 and SuperBrawl 2000. Corrections apply to existing catalogues while preserving viewing history.
 - Version **0.2.5** adds automatic GitHub update checks with Update, Later and Skip this version options, verified APK installation and manual updates in Settings. The home hero shows your unfinished episode's artwork, details and saved progress. See [app updates](docs/UPDATING.md).
 - Version **0.2.4** adds six-second Archive.org stall recovery, episode progress bars and watched percentages, manual watched/unwatched controls, and source-aware resume. Clash of the Champions events are grouped under PPV.
 - Dark TV interface, artwork, event descriptions and remote-friendly cards.
@@ -43,11 +44,11 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Install
 
-Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.3.0** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing users with the in-app updater can also check **Settings > Update app**.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.3.1** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing users with the in-app updater can also check **Settings > Update app**.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 
-The playback-tested device is **Fire TV Stick HD, AFTSS (sheldon), Fire OS 7.7.1.7**. The minimum is **Android 7.1/API 25** for Fire OS 6, including the first-generation Fire TV Stick 4K. The user confirmed the 0.2.1 compatibility fix worked on their Fire Stick. The supplied 0.2.5 validation report records an in-place installation and launch on the AFTSS stick, preserving viewing history; see [validation](docs/VALIDATION.md).
+The playback-tested device is **Fire TV Stick HD, AFTSS (sheldon), Fire OS 7.7.1.7**. The minimum is **Android 7.1/API 25** for Fire OS 6, including the first-generation Fire TV Stick 4K. Install updates over the existing app to preserve viewing history.
 
 ## Watch in order
 

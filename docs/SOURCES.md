@@ -19,7 +19,29 @@ Add a playlist to `youtube.playlists`:
 
 Only titles containing **FULL EPISODE** or **FULL EVENT**, with a confidently matched broadcast/event date from 1983-01-01 through 2001-03-26 are admitted. The minimum listed duration is 20 minutes for full episodes and 45 minutes for full events. Full matches, highlights, live watch parties and compilations are excluded. `Thundercage` in a PPV title does not make that event a Thunder episode. Clash events are resolved by their Arabic/Roman event number when supplied. Unknown or conflicting dates are skipped rather than guessed.
 
-## Archive.org
+## Individual YouTube uploads
+
+Individual uploads can also be registered under `youtube.videos`, independently of the five WCW playlists. The six included WWE Vault entries use explicit historical dates and uploader identities:
+
+```json
+{
+  "id": "2mykcQhMIcM",
+  "name": "WWE Vault - WCW Live in England - 1993-03-13",
+  "enabled": true,
+  "channelId": "UCNSnSemXKDc9UEZ7m31wY9Q",
+  "authorUrl": "https://www.youtube.com/@WWEVault",
+  "date": "1993-03-13",
+  "show": "PPV",
+  "title": "WCW Live in England",
+  "duration": 8278
+}
+```
+
+`duration` is in seconds. Use the broadcast/event date, not the YouTube upload date. Verify the actual uploader channel ID and full-show runtime before adding an entry. Each quick/full scan checks these named uploads through YouTube metadata, uses stable fingerprints to recognise unchanged results, and reports individual failures without cancelling other checks. Existing known sources are retained on a temporary failure. A second upload for the same date/programme becomes an alternative source rather than a second show.
+
+Playback also checks the extractor's actual uploader ID. Only the explicitly registered WWE Vault video IDs are accepted; the app does not crawl that entire channel. Disable/remove an entry and rebuild to filter that source out on startup.
+
+## Archive.org collections
 
 Add a collection under `archive.collections`:
 

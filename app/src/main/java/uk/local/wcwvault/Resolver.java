@@ -109,12 +109,15 @@ final class Resolver {
           throw new IOException("Unexpected Archive source");
       return result;
     }
-    if (!source.optString("channelId").equals(SourceConfig.channelId))
+    if (!source.optString("channelId").equals(SourceConfig.channelId)
+        && !DirectYoutube.allowed(source.optString("videoId"), source.optString("channelId")))
       throw new IOException("YouTube source is not in the official WCW catalogue");
     init();
     String id = source.getString("videoId");
     if (!id.matches("[A-Za-z0-9_-]{11}")) throw new IOException("Invalid video identity");
     StreamInfo info = StreamInfo.getInfo("https://www.youtube.com/watch?v=" + id);
+    if (!info.getUploaderUrl().endsWith("/" + source.getString("channelId")))
+      throw new IOException("YouTube uploader identity does not match the configured source");
     ArrayList<AudioStream> audio = new ArrayList<>(info.getAudioStreams());
     audio.removeIf(
         stream -> !stream.isUrl() || stream.getFormat() == null || audioRank(stream) >= 1000);
