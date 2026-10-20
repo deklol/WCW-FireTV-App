@@ -14,6 +14,7 @@ import java.util.concurrent.*;
 
 public final class MainActivity extends Activity {
   final ExecutorService work = Executors.newSingleThreadExecutor();
+  final Updater updater = new Updater(this);
   LinearLayout root;
   int year = 1997;
   String page = "home", filter = "All", query = "";
@@ -27,6 +28,7 @@ public final class MainActivity extends Activity {
       new Runnable() {
         public void run() {
           if (ready) {
+            updater.offer();
             updateRefresh();
             if (CatalogSync.busy) refreshWasBusy = true;
             else if (refreshWasBusy) {
@@ -75,6 +77,7 @@ public final class MainActivity extends Activity {
                   LibraryJob.schedule(this);
                   checkRefresh();
                   notifyFound(false);
+                  updater.startup();
                 });
           } catch (Exception error) {
             runOnUiThread(
@@ -95,6 +98,7 @@ public final class MainActivity extends Activity {
   protected void onResume() {
     super.onResume();
     immersive();
+    updater.onResume();
     if (ready) {
       render();
       notifyFound(false);
@@ -105,6 +109,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onPause() {
+    updater.onPause();
     uiHandler.removeCallbacks(libraryTick);
     super.onPause();
   }
@@ -253,18 +258,25 @@ public final class MainActivity extends Activity {
     LinearLayout body = Ui.vertical(this);
     pageScroll.addView(body);
     Catalog.Episode current = Catalog.find(Catalog.prefs(this).getString("last", ""));
-    Catalog.Episode featured = current;
-    if (featured == null)
-      for (Catalog.Episode item : Catalog.episodes)
-        if (item.show.equals("Nitro")) {
-          featured = item;
-          break;
-        }
+    if (current != null
+        && (Catalog.watched(this, current)
+            || (Catalog.position(this, current) <= 0
+                && Catalog.prefs(this).getInt("part:" + current.id, 0) == 0))) current = null;
     FrameLayout hero = new FrameLayout(this);
-    body.addView(hero, Ui.lp(this, -1, 260));
+    body.addView(hero, Ui.lp(this, -1, current == null ? 260 : 300));
     ImageView backdrop = new ImageView(this);
     backdrop.setScaleType(ImageView.ScaleType.CENTER);
     backdrop.setImageResource(R.drawable.wcw_opening);
+    if (current != null) {
+      String artwork = !current.thumbnail.isEmpty() ? current.thumbnail : current.poster;
+      if (!artwork.isEmpty()) {
+        backdrop.setScaleType(
+            current.thumbnail.isEmpty()
+                ? ImageView.ScaleType.FIT_CENTER
+                : ImageView.ScaleType.CENTER_CROP);
+        Art.load(backdrop, artwork);
+      }
+    }
     FrameLayout.LayoutParams photo = new FrameLayout.LayoutParams(d(580), -1, Gravity.RIGHT);
     hero.addView(backdrop, photo);
     View shade = new View(this);
@@ -276,24 +288,76 @@ public final class MainActivity extends Activity {
     copy.setGravity(Gravity.CENTER_VERTICAL);
     copy.setPadding(d(10), d(12), 0, d(16));
     hero.addView(copy, new FrameLayout.LayoutParams(d(510), -1));
-    TextView kicker = text("THE MONDAY NIGHT ERA", 11, Ui.RED);
+    TextView kicker =
+        text(current == null ? "THE MONDAY NIGHT ERA" : "CONTINUE WATCHING", 11, Ui.RED);
     kicker.setLetterSpacing(.2f);
     kicker.setTypeface(null, Typeface.BOLD);
     copy.addView(kicker);
     Ui.gap(copy, 10);
-    TextView title = text("Your WCW.\nIn order.", 44, Ui.WHITE);
+    TextView title =
+        text(
+            current == null ? "WCW,\nin order." : current.heading(),
+            current == null ? 44 : 34,
+            Ui.WHITE);
+    title.setMaxLines(2);
+    title.setEllipsize(TextUtils.TruncateAt.END);
     title.setTypeface(Typeface.create("sans-serif-black", Typeface.BOLD));
     title.setLineSpacing(0, .96f);
     copy.addView(title);
     Ui.gap(copy, 12);
+    if (current != null) {
+      TextView meta =
+          text(
+              Catalog.dateLabel(current.date)
+                  + (Catalog.displayDuration(this, current) > 0
+                      ? "  ·  " + Catalog.displayDuration(this, current) / 60000 + " min"
+                      : "")
+                    + (current.show.equals("PPV") ? "  ·  PPV" : ""),
+              13,
+              Ui.WHITE);
+      copy.addView(meta);
+      Ui.gap(copy, 9);
+    }
     TextView description =
         text(
-            "Nitro, Thunder and the pay-per-views.\n"
-                + "One timeline. One player. Pick a year and let it roll.",
+            current == null
+                ? "Nitro, Thunder and the pay-per-views.\n"
+                    + "One timeline. One player. Pick a year and let it roll."
+                : current.description.isEmpty() ? current.title : current.description,
             14,
             Ui.MUTED);
     description.setLineSpacing(d(4), 1);
+    description.setMaxLines(2);
+    description.setEllipsize(TextUtils.TruncateAt.END);
     copy.addView(description);
+    if (current != null) {
+      long position = Catalog.displayPosition(this, current),
+          duration = Catalog.displayDuration(this, current);
+      Ui.gap(copy, 12);
+      if (duration > 0) {
+        ProgressBar progress =
+            new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        progress.setProgressTintList(android.content.res.ColorStateList.valueOf(Ui.RED));
+        progress.setProgressBackgroundTintList(
+            android.content.res.ColorStateList.valueOf(0xff3a3d47));
+        progress.setMax(100);
+        progress.setProgress(Catalog.progressPercent(position, duration, false));
+        copy.addView(progress, Ui.lp(this, 350, 4));
+        Ui.gap(copy, 7);
+      }
+      copy.addView(
+          text(
+              playbackTime(position)
+                  + (duration > 0
+                      ? " / "
+                          + playbackTime(duration)
+                          + "  ·  "
+                          + Catalog.progressPercent(position, duration, false)
+                          + "% watched"
+                      : " watched"),
+              12,
+              Ui.MUTED));
+    }
     Ui.gap(copy, 18);
     LinearLayout actions = Ui.horizontal(this);
     copy.addView(actions);
@@ -353,6 +417,13 @@ public final class MainActivity extends Activity {
     TextView credit = text("x.com/digitalm1nd", 12, Ui.MUTED);
     credit.setGravity(Gravity.CENTER);
     body.addView(credit, Ui.lp(this, -1, 32));
+  }
+
+  static String playbackTime(long millis) {
+    long seconds = Math.max(0, millis) / 1000;
+    return seconds >= 3600
+        ? String.format(Locale.UK, "%d:%02d:%02d", seconds / 3600, seconds / 60 % 60, seconds % 60)
+        : String.format(Locale.UK, "%d:%02d", seconds / 60, seconds % 60);
   }
 
   void recentRail(LinearLayout body, String heading, String show) {
@@ -860,21 +931,33 @@ public final class MainActivity extends Activity {
         });
     setting(
         options,
-        "Check for app updates",
+        "Update app",
         "v" + BuildConfig.VERSION_NAME,
         () -> {
           dialog.dismiss();
-          Updater.check(this);
+          updater.check(false);
+        });
+    setting(
+        options,
+        "Check for updates on launch",
+        prefs.getBoolean("auto_update_check", true) ? "On" : "Off",
+        () -> {
+          prefs
+              .edit()
+              .putBoolean("auto_update_check", !prefs.getBoolean("auto_update_check", true))
+              .apply();
+          dialog.dismiss();
+          settings();
         });
     setting(
         options,
         "Update feed",
-        prefs.getString("update_feed", "").isEmpty() ? "Not connected" : "Configured",
+        prefs.getString("update_feed", "").isEmpty() ? "GitHub releases" : "Custom feed",
         () -> {
           EditText input = new EditText(this);
           input.setSingleLine(true);
           input.setText(prefs.getString("update_feed", ""));
-          input.setHint("HTTPS release-manifest URL");
+          input.setHint("Leave empty for official GitHub releases");
           new AlertDialog.Builder(this)
               .setTitle("App update feed")
               .setView(input)
@@ -1071,6 +1154,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onDestroy() {
+    updater.destroy();
     uiHandler.removeCallbacksAndMessages(null);
     super.onDestroy();
     work.shutdownNow();

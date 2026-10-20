@@ -21,6 +21,7 @@ app/src/main/java/uk/local/wcwvault/
   Art.java                         Bounded artwork cache
   Ui.java                          Shared native UI styles
   Updater.java                     Release check, checksum and signing verification
+  UpdateRelease.java               Release metadata, numeric versions and skip policy
   UpdateProvider.java              Read-only URI for Fire TV's APK installer
 app/src/test/                      Catalogue, language, migration and source-manifest tests
 docs/                              Build, source and update documentation
@@ -57,3 +58,7 @@ Only genuinely new broadcasts receive a discovery timestamp. New encodes/hosts f
 ## Storage
 
 Viewing progress is stored in app preferences. The catalogue is stored in the app's files directory. Artwork has an 8 MiB memory cache and a bounded disk cache; validated HTTP metadata has a separate bounded cache. Playback buffers media in RAM and does not create video files on the stick. An explicitly accepted app update downloads an APK separately from media playback.
+
+## APK updates
+
+Startup checks query the official GitHub latest stable release and cross-check its optional update manifest against the APK asset digest and URL. Newer releases can be accepted, deferred or skipped. Manual Settings updates bypass the skipped-version preference. Prompts wait until the library is in the foreground, and downloads show progress and cancellation. APKs are staged in the app cache, verified by SHA-256, package/version, minimum Android API and matching signer set, then shared read-only with the native package installer. API 28+ requests both signing-certificate and legacy signature fields for Fire OS archive-parser compatibility, preferring current signers whenever available. The debug-only test activity can host the same updater independently; it is excluded from release APKs.

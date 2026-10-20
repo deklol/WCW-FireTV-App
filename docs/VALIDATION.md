@@ -1,5 +1,17 @@
 # Validation
 
+## 0.2.5 in-app updater
+
+- Signed release build and 22 Java tests pass; Android lint has 0 errors and 22 warnings (including the debug-only test host).
+- Six updater tests cover persistent version skipping with manual override, later versions after a skip, downgrade/same-version rejection, numeric version comparison, stable GitHub asset selection, SHA-256 metadata and HTTPS validation.
+- On the AFTSS Fire OS 7 stick, a separate debug-only test host used the production updater against the real published v0.2.4 release. The automatic prompt appeared, Skip persisted across force-stop/relaunch, and the manual Update app action offered that skipped release again.
+- The updater downloaded the real 7,048,221-byte APK, verified SHA-256 `91cdf051d79238fab443e675466530f34db847d8cab478048ed30c83c6b9d625`, checked package/version/Android compatibility and compared signing certificates with the existing WCW installation.
+- The native Fire TV installer opened and completed installation with **App installed.** Production viewing data was retained. Installation permission was granted only to the disposable test host, which was then uninstalled; the production app's installation permission was not changed.
+- Fire OS required requesting the legacy signature field alongside API 28 signing information when parsing the APK archive. Both signing paths retain strict matching signer-set checks.
+- Test APKs and device records are excluded from the public bundle. The test activity and manifest exist only in the debug source set and are absent from release APKs.
+- The final 0.2.5 release (versionCode 7) was installed in place on the AFTSS stick and its MainActivity launch was verified, preserving viewing history.
+- The updated hero was visually checked with the user's existing unfinished Nitro: episode artwork, title, 3 January 2000 broadcast date, available description, measured duration, saved time and 67% progress were displayed. With no unfinished episode the default copy is "WCW, in order." No viewing history was cleared for this check.
+
 ## 0.2.4 progress and faster recovery update
 
 - Signed release build and all 16 Java tests passed; Android lint reports 0 errors and 21 warnings.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.5
+
+- Show the unfinished episode's artwork, title, date, description and progress in the home hero. Use "WCW, in order." when there is nothing to resume.
+- Check the official GitHub latest stable release automatically on launch.
+- Offer Update, Later and persistent Skip this version; Settings → Update app can still install a skipped version.
+- Show download progress and cancellation, verify the APK's SHA-256, package, version, Android compatibility and signer, and use Fire TV's native install confirmation.
+- Allow disabling automatic checks or configuring a custom release manifest. Defer update prompts during playback.
+
 ## 0.2.4
 
 - Reconnect stalled Archive.org streams after six seconds without progress instead of twelve.

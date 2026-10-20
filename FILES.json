@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T00:56:11.421333",
+  "generatedAt": "2026-10-20T01:24:18.899948",
   "files": [
     {
       "path": ".editorconfig",
@@ -24,12 +24,22 @@
     {
       "path": "app/build.gradle",
       "bytes": 2239,
-      "sha256": "59b8b01b129b989a4b8f44fc00e781927c6422d20133d3ae79dfa096cb530239"
+      "sha256": "dc5e7317e10dab38c89248399e2775808223fb2cb8b3a7c3b223edef0da2d140"
+    },
+    {
+      "path": "app/src/debug/AndroidManifest.xml",
+      "bytes": 283,
+      "sha256": "6066d5617a1f6af7dfd0e7524d5d5a3e6b64e5ee017b06a549d10ae4708cf484"
+    },
+    {
+      "path": "app/src/debug/java/uk/local/wcwvault/UpdaterTestActivity.java",
+      "bytes": 1056,
+      "sha256": "c06e50bbc64a3b9b67625e7ca49f5dbf1b12635cb4d13d7b19b6992fe6858c8a"
     },
     {
       "path": "app/src/main/AndroidManifest.xml",
-      "bytes": 1688,
-      "sha256": "1450b952c8a9198a814439ec69420bd6895eb28169ec432095edf0213bf0ce14"
+      "bytes": 1687,
+      "sha256": "77e9b6e6083fc2d9bb98f3f78ef3d47746481e50b838c8f98b5e539d58cb6136"
     },
     {
       "path": "app/src/main/assets/catalogue.json",
@@ -83,8 +93,8 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/MainActivity.java",
-      "bytes": 39545,
-      "sha256": "714f04ced20e278e05466f4f7e4a9458463d689da468515610f9c53749c81d4b"
+      "bytes": 42850,
+      "sha256": "aaf0d07249a370c72447e6c96bd977a9342680a8bcf553338ac4b09ec7bae3c1"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/MetadataCache.java",
@@ -118,8 +128,13 @@
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/Updater.java",
-      "bytes": 7850,
-      "sha256": "210f25a89477157acfded06530a80a514182107be3b3a95d4f878fcca79e6927"
+      "bytes": 16004,
+      "sha256": "f2f9bc229a788f6c0e4eebfcc1a8087b0a510bdd766608da2a74890297e4336a"
+    },
+    {
+      "path": "app/src/main/java/uk/local/wcwvault/UpdateRelease.java",
+      "bytes": 3201,
+      "sha256": "b2dc9d909275525b46c2bd079f019ee3e9c0335309ef28f6113d4896b007b68e"
     },
     {
       "path": "app/src/main/java/uk/local/wcwvault/YoutubeDataSource.java",
@@ -162,14 +177,19 @@
       "sha256": "d2518c0f8f0801d3911fbd4a7ffc2594d8fc2ff449a3f4262ffc275d22ea0b9e"
     },
     {
+      "path": "app/src/test/java/uk/local/wcwvault/UpdateReleaseTest.java",
+      "bytes": 3252,
+      "sha256": "c6b6f47cc7c0151dccc35fdb6ece8f552f5440e7741278a1812b37079211936e"
+    },
+    {
       "path": "build.gradle",
       "bytes": 69,
       "sha256": "a17900030e5094e7c68b9cdd4a833a63a16a8ba21eef8336f4a4b39f35b35d75"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 2214,
-      "sha256": "68bacaf665a17189ed796ed57d17daaa1e119e5b466e7001a20f81ce9a089533"
+      "bytes": 2859,
+      "sha256": "20cd13c89f0ebf08874e92123b5302c3d5e5c308c4aa198c3c5408a2e48253ec"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -178,8 +198,8 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "bytes": 5354,
-      "sha256": "7bc8faf3712740b7445ac5395e2ca304078834f8a68205d09d53315b60b182da"
+      "bytes": 6260,
+      "sha256": "da78b8ee8b50d116f13397e807027c6795e0fce7bb6924729c09f8b92825fa91"
     },
     {
       "path": "docs/BUILDING.md",
@@ -193,8 +213,8 @@
     },
     {
       "path": "docs/screenshots/home.png",
-      "bytes": 1137690,
-      "sha256": "b9cd2266a3c39a8a9c3c613518508fa8f26dcc128e4bf9c560404493f248fec8"
+      "bytes": 1050057,
+      "sha256": "08892cea565bbe3d05622e4a1f7361d3ba5fc596677cc6ae5a20de4584bfdd00"
     },
     {
       "path": "docs/screenshots/latest-rows.png",
@@ -212,19 +232,24 @@
       "sha256": "48e960f10be800bc27d47b2d54ab255eaa73b161b69e1b16a092cefa2f1cd3fb"
     },
     {
+      "path": "docs/screenshots/update-settings.png",
+      "bytes": 371591,
+      "sha256": "a9525db62040ccd3735b9c66e1c07b21bb2f10b0885b21f53bd0d5b6f78f250b"
+    },
+    {
       "path": "docs/SOURCES.md",
       "bytes": 3880,
       "sha256": "e52b729ecdbcf83c8d9683004bec164c9ed0d033010d4a860c9cadf995ca654c"
     },
     {
       "path": "docs/UPDATING.md",
-      "bytes": 1768,
-      "sha256": "0ef557b27fd50928151b9ecb3f269ea4491788a26e80fcaefbc746d4148f926d"
+      "bytes": 2975,
+      "sha256": "233a62d9f36981bcba6560b5bb59d0b1785a7e423dac3bb46928da6e8f1c7870"
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 5595,
-      "sha256": "401f4e86bc5ac8c70b57519325ac730ba532ba638c93cb65d4b35e05881027d1"
+      "bytes": 7659,
+      "sha256": "d0836a0cad7f03412a6b93255c6c9a4d6de794910fe742968f5e83eb1c6b7410"
     },
     {
       "path": "gradle/wrapper/gradle-wrapper.jar",
@@ -258,28 +283,28 @@
     },
     {
       "path": "README.md",
-      "bytes": 5036,
-      "sha256": "1864a96fa07433e2c2c655081d5dfc47a3311c3cd52d4ea571fd00aab9b9ef30"
+      "bytes": 5329,
+      "sha256": "4f50564b22aba5d331917a01670b06a416cc9d2b85c2e85ced1620b5d8a32349"
     },
     {
       "path": "release/NOTES.md",
-      "bytes": 311,
-      "sha256": "326c6a22cee3f7a56b8dd935da3ac83ef36d3e6dbaab8d2fb94763346e2e8001"
+      "bytes": 389,
+      "sha256": "7c0afa59af057829624f5bf2d3d71d380fde6866b9b101eb00a067ff4607cbfc"
     },
     {
       "path": "release/SHA256SUMS.txt",
       "bytes": 86,
-      "sha256": "b632b0d16563af3496795d71a3de51903e3711beeb3e3aae44ed53133184a6c9"
+      "sha256": "aaee51287f962a974623cda07a5a1ac1a9971c568a14fecaf98a8938277b5c42"
     },
     {
       "path": "release/update.json",
-      "bytes": 456,
-      "sha256": "6f76751a46eccd9c83596ebd4278c765496db7410755991f4e358687104dbc88"
+      "bytes": 534,
+      "sha256": "671132df402e26f1507dc01793cef92feb236491bf37dd7f2d156cd58ef28840"
     },
     {
       "path": "release/WCW-FireTV-App.apk",
-      "bytes": 7048221,
-      "sha256": "91cdf051d79238fab443e675466530f34db847d8cab478048ed30c83c6b9d625"
+      "bytes": 7052845,
+      "sha256": "129d75f1cdbb8265325cfc234e15adf5d7f05c5845091cf1efb0de22cbfa0438"
     },
     {
       "path": "scripts/check_sources.py",
@@ -308,8 +333,8 @@
     },
     {
       "path": "START_HERE.md",
-      "bytes": 2686,
-      "sha256": "fad0a90de599885e5fd15cb440e6a1cee8c3314eb00e283ce83068d3e013a993"
+      "bytes": 3208,
+      "sha256": "595b6279ccd13801cdd4aa8497d3fdaa7a58d69b4878acc5b7cf073a9ea5ec1c"
     },
     {
       "path": "third_party/licenses/APACHE-2.0.txt",
