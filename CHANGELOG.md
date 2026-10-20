@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.6
+
+- Remove the Souled Out 2000 countdown preshow and two SuperBrawl 2000 review files from full-event playback, including existing cached catalogues.
+- Audit Archive metadata for all 53 PPV-category entries across 65 Archive items. Store per-source runtime, creator and height.
+- Prefer the available Chasing That W event copies before resolution and file-size ranking, while preserving YouTube preference and valid saved-source resume.
+- Reject preshows, countdowns, reviews, recaps and known short standalone recordings before playback and during future scans.
+- Preserve episode IDs, watch history and valid multipart sources. Metadata checks do not guarantee visual completeness.
+
 ## 0.2.5
 
 - Show the unfinished episode's artwork, title, date, description and progress in the home hero. Use "WCW, in order." when there is nothing to resume.

@@ -25,6 +25,7 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Features
 
+- Version **0.2.6** corrects PPV sources that selected preshows or reviews, including Souled Out 2000 and SuperBrawl 2000. Corrections apply to existing catalogues while preserving viewing history. See the [PPV source audit](docs/PPV_SOURCE_AUDIT.md).
 - Version **0.2.5** adds automatic GitHub update checks with Update, Later and Skip this version options, verified APK installation and manual updates in Settings. The home hero shows your unfinished episode's artwork, details and saved progress. See [app updates](docs/UPDATING.md).
 - Version **0.2.4** adds six-second Archive.org stall recovery, episode progress bars and watched percentages, manual watched/unwatched controls, and source-aware resume. Clash of the Champions events are grouped under PPV.
 - Dark TV interface, artwork, event descriptions and remote-friendly cards.
@@ -41,7 +42,7 @@ I do not host any of the videos available through this app. Videos are sourced f
 
 ## Install
 
-Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.2.5** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases.
+Use the Downloader code **`7990024`** above, or [download the latest APK from GitHub Releases](https://github.com/deklol/WCW-FireTV-App/releases/latest/download/WCW-FireTV-App.apk). Version **0.2.6** is included under `release/WCW-FireTV-App.apk` with a SHA-256 checksum. The Downloader link stays the same for future releases. Existing 0.2.5 users can also check **Settings > Update app**.
 
 On Fire TV, allow installation for your chosen installer, transfer the APK and install it. The app appears as **WCW Chronology**. It needs no PC, server, YouTube account, Netflix account, root access or replacement launcher after installation.
 

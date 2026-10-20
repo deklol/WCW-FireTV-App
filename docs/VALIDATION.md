@@ -1,5 +1,14 @@
 # Validation
 
+## 0.2.6 PPV source corrections
+
+- Signed release build and all 26 Java tests pass; Android lint reports 0 errors and 22 warnings.
+- Four new regression tests cover preshow/review rejection, valid multipart preservation, priority selection for all 51 available Chasing That W event copies at 720p, existing-cache migration and future scan rejection.
+- Souled Out 2000 selects the Chasing That W recording with reported runtime 9,759.17 seconds. Invalid countdown and review alternatives are removed without changing episode IDs.
+- Public metadata for 65 Archive items covering all 53 PPV-category entries was fetched successfully. See [PPV_SOURCE_AUDIT.md](PPV_SOURCE_AUDIT.md) for findings and limits.
+- APK signature verification passes with minimum API 25 and the same signing certificate as prior releases.
+- This version has deliberately **not** been installed on the Fire Stick: the user will publish v0.2.6 and test the in-app update flow from the existing version. Playback of this build on the device remains untested.
+
 ## 0.2.5 in-app updater
 
 - Signed release build and 22 Java tests pass; Android lint has 0 errors and 22 warnings (including the debug-only test host).

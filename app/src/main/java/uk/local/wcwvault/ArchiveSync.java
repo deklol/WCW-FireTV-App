@@ -77,7 +77,7 @@ final class ArchiveSync {
                 + file.optString("original"));
     }
     Collections.sort(signatures);
-    String fingerprint = MetadataCache.hash("parser-v2:" + String.join("\n", signatures));
+    String fingerprint = MetadataCache.hash("parser-v3:" + metadata.optString("creator") + String.join("\n", signatures));
     JSONObject hashes = data.optJSONObject("archiveHashes");
     if (hashes == null) {
       hashes = new JSONObject();
@@ -87,6 +87,7 @@ final class ArchiveSync {
     Set<String> families = new HashSet<>();
     Map<String, JSONObject> knownFiles = new HashMap<>();
     Set<String> urls = new HashSet<>();
+    Map<String, JSONObject> existingSources = new HashMap<>();
     for (int i = 0; i < rows.length(); i++) {
       JSONObject row = rows.getJSONObject(i);
       JSONArray sources = row.getJSONArray("sources");
@@ -96,6 +97,7 @@ final class ArchiveSync {
         String url = source.optString("url");
         if (url.isEmpty()) continue;
         urls.add(url);
+        existingSources.put(url, source);
         if (collection(url).equals(identifier)) {
           families.add(row.getString("show"));
           knownFiles.put(
@@ -114,6 +116,10 @@ final class ArchiveSync {
     for (int i = 0; i < files.length(); i++) {
       JSONObject file = files.getJSONObject(i);
       String name = file.optString("name");
+      JSONObject candidate = new JSONObject()
+          .put("type", "archive").put("filename", name)
+          .put("duration", file.optDouble("length", 0));
+      if (!SourcePolicy.eligible(candidate)) continue;
       if (!name.matches("(?i).+\\.(?:mp4|m4v)$")
           || file.optBoolean("private")
           || name.contains("../")
@@ -132,7 +138,13 @@ final class ArchiveSync {
               + identifier
               + "/"
               + URLEncoder.encode(name, "UTF-8").replace("+", "%20").replace("%2F", "/");
-      if (urls.contains(url)) continue;
+      if (urls.contains(url)) {
+        existingSources.get(url)
+            .put("duration", duration)
+            .put("creator", metadata.optString("creator"))
+            .put("height", file.optInt("height"));
+        continue;
+      }
       String kind = family(name.replace('_', ' ')), when = fileDate(name, data);
       JSONObject selected = knownFiles.get(name);
       if (selected == null && !file.optString("original").isEmpty())
@@ -204,6 +216,9 @@ final class ArchiveSync {
                   .put("type", "archive")
                   .put("url", url)
                   .put("filename", name)
+                  .put("duration", duration)
+                  .put("creator", metadata.optString("creator"))
+                  .put("height", height)
                   .put("bytes", file.optLong("size"))
                   .put("label", "Internet Archive" + (height > 0 ? " " + height + "p" : "")));
       urls.add(url);

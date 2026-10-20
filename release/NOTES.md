@@ -1,5 +1,5 @@
-WCW Chronology 0.2.5
+WCW Chronology 0.2.6
 
-Automatic GitHub updates with Update/Later/Skip this version, manual Settings updates and verified APK installation. Home hero now features your unfinished episode artwork, details and saved progress. Includes six-second Archive recovery, watched history and Fire OS 6 compatibility.
+Fixes Souled Out 2000 selecting its countdown preshow and SuperBrawl 2000 selecting a review. Audits PPV source runtimes and prioritises available Chasing That W full-event copies. Applies corrections to existing catalogues and rejects preshows, reviews and known short standalone recordings. Preserves viewing history and all existing updater features.
 
 Minimum Android API: 25. Fire OS 6 device playback still needs confirmation.

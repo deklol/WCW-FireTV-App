@@ -1,7 +1,7 @@
 {
-  "versionCode": 7,
-  "versionName": "0.2.5",
-  "apkUrl": "https://github.com/deklol/WCW-FireTV-App/releases/download/v0.2.5/WCW-FireTV-App.apk",
-  "sha256": "129d75f1cdbb8265325cfc234e15adf5d7f05c5845091cf1efb0de22cbfa0438",
-  "notes": "Automatic GitHub updates with Update/Later/Skip this version, manual Settings updates and verified APK installation. Home hero now features your unfinished episode artwork, details and saved progress. Includes six-second Archive recovery, watched history and Fire OS 6 compatibility."
+  "versionCode": 8,
+  "versionName": "0.2.6",
+  "apkUrl": "https://github.com/deklol/WCW-FireTV-App/releases/download/v0.2.6/WCW-FireTV-App.apk",
+  "sha256": "197ae64695d31cb2c15e0375613789e9833a6e405425f6a17defad31e2f6aa93",
+  "notes": "Fixes Souled Out 2000 selecting its countdown preshow and SuperBrawl 2000 selecting a review. Audits PPV source runtimes and prioritises available Chasing That W full-event copies. Applies corrections to existing catalogues and rejects preshows, reviews and known short standalone recordings. Preserves viewing history and all existing updater features."
 }

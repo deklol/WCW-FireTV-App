@@ -78,7 +78,19 @@ final class Catalog {
       JSONArray sources = existing.getJSONArray("sources"),
           newSources = row.getJSONArray("sources");
       Set<String> keys = new HashSet<>();
-      for (int j = 0; j < sources.length(); j++) keys.add(sourceKey(sources.getJSONObject(j)));
+      Map<String, JSONObject> byKey = new HashMap<>();
+      for (int j = 0; j < sources.length(); j++) {
+        JSONObject source = sources.getJSONObject(j);
+        keys.add(sourceKey(source));
+        byKey.put(sourceKey(source), source);
+      }
+      // Refresh audited metadata on existing URLs as well as adding new sources.
+      for (int j = 0; j < newSources.length(); j++) {
+        JSONObject source = newSources.getJSONObject(j), old = byKey.get(sourceKey(source));
+        if (old != null)
+          for (String field : new String[] {"duration", "creator", "height", "label"})
+            if (source.has(field)) old.put(field, source.get(field));
+      }
       for (int j = 0; j < newSources.length(); j++)
         if (keys.add(sourceKey(newSources.getJSONObject(j))))
           sources.put(newSources.getJSONObject(j));
@@ -109,6 +121,9 @@ final class Catalog {
     ArrayList<Episode> next = new ArrayList<>();
     JSONArray rows = data.getJSONArray("episodes");
     for (int i = 0; i < rows.length(); i++) {
+      JSONArray sources = rows.getJSONObject(i).getJSONArray("sources");
+      for (int j = sources.length() - 1; j >= 0; j--)
+        if (!SourcePolicy.eligible(sources.getJSONObject(j))) sources.remove(j);
       Episode item = new Episode(rows.getJSONObject(i));
       if (item.date.compareTo("1997-01-01") >= 0
           && item.date.compareTo("2001-03-26") <= 0
